@@ -14,16 +14,34 @@ app.config(function ($routeProvider) {
 });  
 // CONTROLLERS ============================================
 // parent page controller 父控制器
-app.controller('parentCtrl', function($scope,$location) {
+app.controller('parentCtrl', function($scope,$location,$timeout) {
 	$scope.animate=function(str){
 		$scope.noanimate=str;
 	}
   $scope.animate(true);
   $("body").css("height",$(window).height()+"px");
-  $("#viewOuter").css("height",$("body").height()+"px");
-  $("#viewOuter>div").css("height",$("body").height()+"px");
-  $("#viewOuter>div>div").css("height",$("body").height()+"px");
-  $("#viewOuter .page-inner").css("height",$("body").height()+"px");
+  $("#viewOuter").css("height",$(window).height()+"px");
+  $("#viewOuter>div").css("height",$(window).height()+"px");
+  $("#viewOuter>div>div").css("height",$(window).height()+"px");
+ 	$("#menu-left ul li").click(function(){
+ 		if($(this).hasClass("active")){
+				$("#menu-left").removeClass("active").addClass("close");
+				$("#viewOuter div.page-inner").removeClass("active").addClass("close");
+ 		}else{
+ 			$("#menu-left ul li.active").removeClass("active");
+ 			$(this).addClass("active");
+// 			$("#menu-left").removeClass("active");
+// 			$("#viewOuter div.page-inner").removeClass("active");
+   			$timeout(function(){
+   				$("#menu-left").removeClass("active");
+   				$("#viewOuter div.page-inner").removeClass("active");
+   			},300);
+ 			
+ 		}
+		
+ 	});
+ 
+ 
 });
 
 // start page controller 主页
@@ -71,10 +89,10 @@ app.controller("menuCtrl",function($scope){
 	$scope.menuAnimate=function($event){
 		if($("#menu-left").hasClass("active")){
 			$("#menu-left").removeClass("active").addClass("close");
-			$("#viewOuter>div").removeClass("active").addClass("close");
+			$("#viewOuter div.page-inner").removeClass("active").addClass("close");
 		}else{
 			$("#menu-left").removeClass("close").addClass("active");
-			$("#viewOuter>div").removeClass("close").addClass("active");
+			$("#viewOuter div.page-inner").removeClass("close").addClass("active");
 		}
 	}
 });

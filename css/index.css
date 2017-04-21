@@ -2,13 +2,14 @@
 	margin:0;
 	padding: 0;
 	box-sizing: border-box;
+	-webkit-backface-visibility: hidden;
 }
 body{
 	width:100%;
 	height:100%;
 	overflow: hidden;
-	background: #cccccc;
-	font:12px/20px arial,sans-serif;
+	font:14px/20px arial,"楷体",sans-serif;
+	color:#666666;
 }
 input{
 	outline: none;
@@ -21,9 +22,13 @@ ul,li{
 }
 a{
 	text-decoration: none;
+	color:#333333;
 }
 .lf{
 	float:left
+}
+.rt{
+	float: right;
 }
 .clear{
 	overflow: hidden;
@@ -31,29 +36,24 @@ a{
 .textcenter{
 	text-align: center;
 }
- #container{
- 	width: 100%;
- 	height: 100%;
- 	overflow: hidden;
- 	z-index:100;
- }
+.boxshadow{
+	box-shadow: 0 0 8px #555555;
+	-webkit-box-shadow: 0 0 7px #555555;
+}
+/*ng-view外层框*/
  #viewOuter{
  	width: 200%;
  	height:100%;
  	overflow: hidden;
- 	position: relative;
  }
-#viewOuter>div{
-	width: 50%;
-	float: left;
-	background: #CCCCCC;
-	position: relative;
-	z-index: 100;
-	overflow: hidden;
-}
 #viewOuter div.page-inner{
-	width:100%;
-	
+	position: relative;
+	width:50%;
+	height: 100%;
+	float: left;
+	background:url("../img/main-bg.jpg") no-repeat;
+	background-size:cover ;
+	z-index: 100;
 }
  /*页面滑动动画*/
 /* rotate and fall */
@@ -83,8 +83,7 @@ a{
   
 /* slide in from the right */
 @keyframes slideInRight {
-  from   { transform:translateX(0); }
-  to     { transform: translateX(-100%); }
+  to     { transform: translateX(); }
 }
   
 /* slide in from the bottom */
@@ -98,8 +97,8 @@ a{
   /* page specific animations ------------------------ */
   
   /* home -------------------------- */
-  .page-animate.ng-enter     { animation: slideInRight 0.5s both ease-in;}
-  .page-animate.ng-leave     { transform-origin: 0% 0%; animation: slideOutLeft 0.5s both ease-in;}
+  .page-animate.ng-enter     { animation: slideInRight 0.3s both ease-in;}
+  .page-animate.ng-leave     { transform-origin: 0% 0%; animation: slideOutLeft 0.3s both ease-in;}
 /*导航按钮*/
 #menu-button{
 	position: absolute;
@@ -107,28 +106,16 @@ a{
 	left: 20px;
 }
 #menu-button img{
+	width: 55px;
 	border-radius: 10px;
 	box-shadow: 0 0 8px #666666;
 }
-/*左侧导航*/
-#menu-left{
-	width:100%;
-	height: 100%;
-	background: red;
-	position: absolute;
-	top:0;
-	left: -50px;
-}
-#menu-left ul li{
-	height: 30px;
-	line-height: 30px;
-}
 @keyframes slideRightView{
   from   { transform:translateX(0); }
-  to     { transform: translateX(80%); }
+  to     { transform: translateX(70%); }
 }
 @keyframes slideLeftView{
-  from   { transform:translateX(80%); }
+  from   { transform:translateX(70%); }
   to     { transform: translateX(0); }
 }
 @keyframes slideRightMenu{
@@ -139,15 +126,160 @@ a{
   from   { left:0px}
   to     { left:-50px; }
 }
+/*左侧导航*/
+#menu-left{
+	width:70%;
+	height: 100%;
+	background: url("../img/menu-left-bg.jpg") no-repeat;
+	background-size:100% 100%;
+	position: fixed;
+	top:0;
+	left: -50px;
+	z-index:10;
+}
+#menu-left-inner{
+	width: 100%;
+	height: 100%;
+	padding:30px 20px;
+	background: rgba(255,255,255,0.3);
+}
+#menu-left ul li{
+	font-size: 1.2em;
+	font-weight: 600;
+	height: 40px;
+	line-height: 40px;	
+}
+#menu-left ul li a{
+	color: #632A19;
+}
+#menu-left ul li a{
+	line-height: 25px;
+}
+#menu-left ul li a img{
+	vertical-align: sub;
+	margin-right: 8px;
+	width: 22px;
+}
 #menu-left.active{
-	animation: slideRightMenu 0.5s both ease-in;
+	animation: slideRightMenu 0.3s both ease-in;
 }
 #menu-left.close{
-	animation: slideLeftMenu 0.5s both ease-in;
+	animation: slideLeftMenu 0.3s both ease-in;
 }
-#viewOuter>div.active{
-	animation: slideRightView 0.5s both ease-in;
+#viewOuter div.page-inner.active{
+	animation: slideRightView 0.3s both ease-in;
 }
-#viewOuter>div.close{
-	animation: slideLeftView 0.5s both ease-in;
+#viewOuter div.page-inner.close{
+	animation: slideLeftView 0.3s both ease-in;
 }
+/*店铺主页*/
+#start{
+	width: 100%;
+	height: 100%;
+	overflow-y:auto;
+	background: rgba(200,200,200,0.5);
+	padding-bottom: 65px;
+}
+#start div.wellcome-img{
+	padding-top:20px;
+}
+#start div.wellcome-img img{
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	box-shadow: 0 0 8px #555555;
+	-webkit-box-shadow: 0 0 8px #555555;
+}
+#start div.wellcome-img p.name{
+	font-size: 1.5em;
+	font-weight: bold;
+	height: 40px;
+	line-height: 40px;
+	letter-spacing: 1.2px;
+}
+#start div.wellcome-img p.weChat{
+	height:25px;
+	line-height: 25px;
+	font-size: 1.2em;
+	font-weight: bold;
+	letter-spacing: 1.3px;
+}
+#start div.wellcome-img p.weChat span{
+	color:#BC5253;
+}
+#start div.favourable,#start div.storeMsg,#start div.evaluate{
+	width:90%;
+	margin: 20px auto;
+	border-radius: 5px;
+	border:1px solid #999999;
+	background: rgba(255,255,255,0.7);
+	padding:0 10px;
+}
+#start div.favourable div.youhui-title,#start div.storeMsg div.storeMsg-title,#start div.evaluate div.evaluate-title{
+	height: 40px;
+	line-height: 40px;
+	border-bottom:1px dashed #999999;
+	font-size: 1.3em;
+	
+}
+#start div.favourable div.youhuiquan{
+	width: 90%;
+	margin:10px auto;
+}
+#start div.favourable div.youhuiquan p{
+	font-size: 1em;
+}
+#start div.favourable div.youhuiquan p:first-child{
+	font-size: 1.3em;
+	color:red;
+}
+#start div.storeMsg div.jianjiecon{
+	margin: 0 auto;
+	padding:10px;
+	border-bottom:1px dashed #999999;
+}
+#start div.storeMsg ul{
+	padding:10px;
+}
+#start div.storeMsg ul li{
+	height:25px;
+	line-height: 25px;
+}
+#start div.storeMsg div.jianjie-title,#start div.evaluate div.evaluate-title{
+	padding-top:10px;
+	font-size: 1.1em;
+}
+#start div.evaluate{
+	overflow: hidden;
+}
+#start div.evaluate .rt{
+	font-size:0.8em;
+}
+#start div.evaluate ul.star{
+	width: 100%;
+	overflow: hidden;
+	padding-bottom:10px;
+	border-bottom: 1px dashed #999999;
+	margin-bottom: 10px;
+}
+#start div.evaluate ul.star li{
+	width: 33.3%;
+}
+#start div.evaluate ul.evaluate-lists li{
+	border-bottom: 1px dashed #999999;
+}
+#start div.evaluate ul.evaluate-lists li p.username img{
+	border-radius: 50%;
+}
+#start div.evaluate ul.evaluate-lists li p.rt{
+	height: 50px;
+	line-height: 50px;
+}
+#start div.evaluate ul.evaluate-lists li p:last-child{
+	line-height: 25px;
+}
+#start div.evaluate div.evaluate-more{
+	height: 35px;
+	line-height: 35px;
+}
+
+

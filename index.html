@@ -8,24 +8,28 @@
 </head>
 <body ng-controller="parentCtrl">
 	<div id="menu-left">
-		<ul>
-			<li><a href="#/start">店铺信息</a></li>
-			<li><a href="#/order">店铺菜单</a></li>
-			<li><a href="#/shopcart">购物车</a></li>
-			<li><a href="#/underoder">已下单菜品</a></li>
-			<li><a href="#/bill">待结账菜品</a></li>
-			<li><a href="#/myorder">我的订单</a></li>
-			<li><a href="#/account">我的主页</a></li>
-			<li><a class="menu-back" href="#">返回</a></li>
-		</ul>
+		<div id="menu-left-inner">
+			<ul>
+				<li class="active"><a href="#/start"><img src="img/home1.png" alt="" 
+					<span>
+					店铺主页
+					</span>
+				</a></li>
+				<li><a href="#/order"><img src="img/order2.png" alt="" /><span>店铺菜单</span></a></li>
+				<li><a href="#/shopcart"><img src="img/shopcart1.png" alt="" /><span>购物车</span></a></li>
+				<li><a href="#/underorder"><img src="img/underorder2.png" alt="" /><span>已下单菜品</span></a></li>
+				<li><a href="#/bill"><img src="img/bill2.png" alt="" /><span>待结账菜品</span></a></li>
+				<li><a href="#/myorder"><img src="img/myorder2.png" alt="" /><span>我的订单</span></a></li>
+				<li><a href="#/account"><img src="img/account2.png" alt="" /><span>我的主页</span></a></li>
+			</ul>
+		</div>
+		
 	</div>
 		<div id="viewOuter">
-			<div ng-hide="noanimate" class="view-inner">
-				<div ng-view class="page-animate page-inner"></div>
-			</div>
-			<div ng-show="noanimate" class="view-inner">
-				<div ng-view class="page-inner"></div>
-			</div>	
+
+				<div ng-hide="noanimate" ng-view class="page-animate page-inner"></div>
+
+				<div ng-show="noanimate" ng-view class="page-inner"></div>
 		</div>
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>

@@ -11,7 +11,7 @@ app.config(function ($routeProvider) {
         .when('/account',{templateUrl:'tpl/account.html',controller:'accountCtrl'})
 //      .when('/orderdetail/:did', {templateUrl: 'tpl/orderdetail.html',controller:'orderdetailCtrl'})
         .otherwise({redirectTo: '/start'})
-});  
+}); 
 // CONTROLLERS ============================================
 // parent page controller 父控制器
 app.controller('parentCtrl', function($scope,$location,$timeout) {
@@ -47,13 +47,84 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 // start page controller 主页
 app.controller('startCtrl', function($scope) {
 	$("#start").css("height",$(window).height()+"px");
-	console.log($("#start").height());
  
 });
   
 // order page controller 点餐
-app.controller('orderCtrl', function($scope) {
+app.controller('orderCtrl', function($scope,$timeout) {
   $scope.animate(false);
+//搜索框动画
+  $("#order div.search span").unbind("click").click(function(){
+  	if(!($(this).parent().hasClass("active"))){
+	  		$(this).parent().addClass("active");
+	  	}else{
+	  		$(this).parent().addClass("close");
+	  		$timeout(function(){
+	  			$("#order div.search").removeClass("active");
+	  			$("#order div.search").removeClass("close");
+	  		},300);
+	  	}
+  });
+//切换菜品列表样式
+  $("#order div.style").unbind("click").click(function(){
+  	if(!($(this).hasClass("active"))){
+  		$(this).addClass("active");
+  		$("#dishItems").addClass("active");
+  	}else{
+  		$(this).removeClass("active");
+  		$("#dishItems").removeClass("active");
+  	}
+  });
+//菜单点击
+ $scope.autoScroll = function ($event){
+ 	if(!($($event.target).hasClass("active"))){
+ 		$("#order div.order-menu ul li a.active").removeClass("active");
+ 		$($event.target).addClass("active");
+ 		$scope.elename=$($event.target).attr("name");
+	 	$event.preventDefault();
+	 	console.log($("#"+$scope.elename).offset().top);
+	   	 $('#dishItems').animate({
+	            "scrollTop": $("#"+$scope.elename).position().top
+	        }, 500);
+ 	} 	
+    };
+    
+    $("#dishItems").scroll(function(){
+    	if($(this).scrollTop()>60){
+    		if($("#order div.wellcome-title").hasClass("active")){
+    			$("#order div.wellcome-title").removeClass("active")
+    			$("#order div.wellcome-title").addClass("close");
+    		}
+    		
+    	}else{
+    		if($("#order div.wellcome-title").hasClass("close")){
+    			$("#order div.wellcome-title").removeClass("close")
+    			$("#order div.wellcome-title").addClass("active");
+    		}
+    	}
+    	if($("#order div.order-menu div.menuBtn").hasClass("active")){
+			$("#order div.order-menu div.menuBtn").removeClass("active");
+			$("#order div.order-menu").removeClass("active").addClass("close");
+		}
+    });
+    
+//  点击小厨师图片伸缩菜单
+	$("#order div.order-menu div.menuBtn").unbind("click").click(function(){
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+			$("#order div.order-menu").removeClass("active").addClass("close");
+		}else{
+			$(this).addClass("active");
+			$("#order div.order-menu").removeClass("close").addClass("active");
+		}
+	});
+	$("#dishItems").unbind("click").click(function(){
+		if($("#order div.order-menu div.menuBtn").hasClass("active")){
+			$("#order div.order-menu div.menuBtn").removeClass("active");
+			$("#order div.order-menu").removeClass("active").addClass("close");
+		}
+	});
+  
 });
   
 // shopcart page controller 购物车
@@ -85,6 +156,7 @@ app.controller('myorderCtrl', function($scope) {
 app.controller('accountCtrl', function($scope) {
    $scope.animate(false);
 });
+//左侧菜单
 app.controller("menuCtrl",function($scope){
 	$scope.menuAnimate=function($event){
 		if($("#menu-left").hasClass("active")){
@@ -95,5 +167,9 @@ app.controller("menuCtrl",function($scope){
 			$("#viewOuter div.page-inner").removeClass("close").addClass("active");
 		}
 	}
+});
+//点餐按钮
+app.controller("orderBtnCtrl",function($scope){
+	
 });
 

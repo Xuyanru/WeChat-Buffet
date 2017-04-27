@@ -124,6 +124,26 @@ app.controller('orderCtrl', function($scope,$timeout) {
 			$("#order div.order-menu").removeClass("active").addClass("close");
 		}
 	});
+	
+//	点击来一份弹出添加购物车弹出框
+	$scope.addDish=function(){
+		$("#cart-dialog-outer").fadeIn(200);
+		$("#cart-dialog").addClass("active");
+	}
+	
+//	点击弹出框的关闭按钮关闭弹出框
+	$("#cart-dialog p.close-dialog span").unbind("click").click(function(){
+		$("#cart-dialog").addClass("close");
+		$("#cart-dialog-outer").fadeOut(200);
+		setTimeout(function(){
+			$("#cart-dialog").removeClass("close").removeClass("active");
+		},200)
+	});
+//	点击加入购物车
+	$("#cart-dialog div.cart-num p.addCart").unbind("click").click(function(){
+		$("#cart-dialog").addClass("adddish");
+	});
+	
   
 });
   
@@ -168,8 +188,5 @@ app.controller("menuCtrl",function($scope){
 		}
 	}
 });
-//点餐按钮
-app.controller("orderBtnCtrl",function($scope){
-	
-});
+
 

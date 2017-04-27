@@ -8,7 +8,7 @@ body{
 	width:100%;
 	height:100%;
 	overflow: hidden;
-	font:14px/20px arial,"楷体",sans-serif;
+	font:14px/20px arial,sans-serif;
 	color:#666666;
 }
 input{
@@ -620,6 +620,192 @@ a{
 	width: 55px;
 	border-radius: 10px;
 	box-shadow: 0 0 8px #666666;
+}
+#cart-button>span{
+	height:15px;
+	line-height: 15px;
+	position: absolute;
+	top:2px;
+	left:50%;
+	transform: translateX(-50%);
+	padding:1px 5px 0 5px;
+	background: red;
+	font-size: 0.8em;
+	border-radius: 3px;
+	color: #FFFFFF;
+}
+#cart-button>span.active{
+	border-color:red ;
+}
+/*加入购物车弹出框*/
+#cart-dialog-outer{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top:0;
+	left: 0;
+	background: rgba(200,200,200,0.8);
+	z-index: 102;
+	display: none;
+}
+#cart-dialog{
+	/*width: 80%;*/
+	border:1px solid #333333;
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	background: #FFFFFF;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding:10px;
+	width: 0;
+	height:0;
+	opacity: 0;	
+	transition: all 0.3s;
+}
+#cart-dialog.active{
+	animation: openDialog 0.2s;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes openDialog{
+	from{
+		width: 0;
+		height: 0;
+		opacity: 0;
+	}
+	to{
+		width: 80%;
+		height: auto;
+		opacity: 1;
+	}
+}
+#cart-dialog.close{
+	animation: closeDialog 0.2s;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes closeDialog{
+	from{
+		width: 80%;
+		height: auto;
+		opacity: 1;		
+	}
+	to{
+		width: 0;
+		height: 0;
+		opacity: 0;
+	}
+}
+#cart-dialog.adddish{
+	animation: addDialog 0.5s,rotate;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes addDialog{
+	0%{
+		width: 80%;
+		height: 50px;
+		opacity: 1;
+		overflow: hidden;	
+	}
+	50%{
+		width: 50px;
+		height: 50px;
+		top:50%;
+		left: 50%;
+		opacity: 0.5;
+		transform: rotateZ(0deg);
+	}
+	100%{	
+		top: calc(100% - 40px);
+		left: calc(100% - 40px);
+		opacity:0.5;
+		overflow: hidden;
+		transform: rotateZ(720deg);
+	}
+}
+#cart-dialog>p.close-dialog{
+	text-align: right;
+	font-size: 1.2em;
+	color: #FFFFFF;
+	margin-top:-7px;
+	margin-right: -7px;
+}
+#cart-dialog>p.close-dialog span{
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	background: red;
+}
+#cart-dialog div.cart-dish-name{
+	height: 30px;
+	line-height: 30px;
+	border-bottom: 1px dashed #999999;
+}
+#cart-dialog div.cart-dish-name span.lf{
+	font-size: 1.1em;
+	font-weight: bold;
+}
+#cart-dialog div.cart-dish-name span.rt{
+	font-size: 0.8em;
+	color:red;
+}
+#cart-dialog div.make-way{
+	padding:10px 0 5px 0;
+}
+#cart-dialog div.make-way ul li{
+	margin-bottom: 5px;
+}
+#cart-dialog div.make-way ul li span{
+	border:1px solid #999999;
+	padding:1px 5px;
+	margin-right: 5px;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+#cart-dialog div.cart-img{
+	width:100%;
+	margin:5px auto 0;
+}
+#cart-dialog div.cart-img img{
+	width: 100%;
+}
+#cart-dialog div.cart-num{
+	margin-top:10px;
+}
+#cart-dialog div.cart-num a{
+	float: left;
+	height: 25px;
+	line-height: 25px;
+	border:1px solid #999999;
+	border-right: none;
+}
+#cart-dialog div.cart-num a:last-child{
+	border-right: 1px solid #999999;
+}
+#cart-dialog div.cart-num a.reduce,#cart-dialog div.cart-num a.add{
+	font-size: 1.2em;
+	width: 25px;
+	text-align: center;
+	font-weight: bold;
+	color:red
+}
+#cart-dialog div.cart-num a.numBer{
+	padding:0 7px;
+	font-size: 0.8em;
+}
+#cart-dialog div.cart-num p.rt{
+	background: red;
+	height: 25px;
+	line-height: 25px;
+	padding:0 5px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	color:#FFFFFF;
+	font-size: 0.8em;
 }
 
 

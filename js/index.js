@@ -127,22 +127,54 @@ app.controller('orderCtrl', function($scope,$timeout) {
 	
 //	点击来一份弹出添加购物车弹出框
 	$scope.addDish=function(){
-		$("#cart-dialog-outer").fadeIn(200);
-		$("#cart-dialog").addClass("active");
+		$("#cart-dialog-outer").show().css("display","flex");
+//		$("#cart-dialog").addClass("active");
+		$("#cart-dialog").addClass("animated bounceIn");
+		$('#cart-dialog').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+			$(this).removeClass("animated bounceIn");
+		});
 	}
 	
 //	点击弹出框的关闭按钮关闭弹出框
-	$("#cart-dialog p.close-dialog span").unbind("click").click(function(){
-		$("#cart-dialog").addClass("close");
-		$("#cart-dialog-outer").fadeOut(200);
-		setTimeout(function(){
-			$("#cart-dialog").removeClass("close").removeClass("active");
-		},200)
-	});
+	$scope.closeDialog=function(){
+//		$("#cart-dialog").addClass("active");
+		$("#cart-dialog").addClass("animated bounceOut");
+		$('#cart-dialog').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+			$(this).removeClass("animated bounceOut");
+			$("#cart-dialog-outer").hide();
+		});
+	}
+
+//	$("#cart-dialog p.close-dialog span").unbind("click").click(function(){
+//		$("#cart-dialog").addClass("close");
+//		$("#cart-dialog-outer").fadeOut(200);
+//		setTimeout(function(){
+//			$("#cart-dialog").removeClass("close").removeClass("active");
+//		},200);
+			
+//	});
+
 //	点击加入购物车
 	$("#cart-dialog div.cart-num p.addCart").unbind("click").click(function(){
+		$("#cart-dialog p.close-dialog span").html("&#10004");
 		$("#cart-dialog").addClass("adddish");
+		$("#cart-dialog>div").css("opacity","0");
+		setTimeout(function(){
+			$("#cart-dialog").removeClass("adddish");
+			$("#cart-dialog p.close-dialog span").html("X");
+			$("#cart-dialog-outer").hide();
+			$("#cart-dialog>div").css("opacity","1");
+		},800);
 	});
+	
+//	做法选择
+$scope.addActive=function($event){
+	$scope.me=$event.target;
+	if(!($($scope.me).hasClass("active"))){
+		$($scope.me).parent().children("span.active").removeClass("active");
+		$($scope.me).addClass("active");
+	}
+}
 	
   
 });
@@ -150,6 +182,31 @@ app.controller('orderCtrl', function($scope,$timeout) {
 // shopcart page controller 购物车
 app.controller('shopcartCtrl', function($scope) {
   $scope.animate(false);
+//点击修改弹出备注框
+$("#shopcart div.user-msg>div>div").unbind("click").click(function(){
+	$("#beizhu-dialog").show().addClass("animated bounceIn");
+	$('#beizhu-dialog').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+		$(this).removeClass("animated bounceIn")
+	});
+});
+  
+//点击选择用餐人数
+	$("#beizhu-dialog ul li").click(function(){
+		if(!($(this).hasClass("active"))){
+			$("#beizhu-dialog ul li.active").removeClass("active");
+			$(this).addClass("active");
+		}
+	});
+	
+//	点击备注框的确定和取消按钮
+
+	$("#beizhu-dialog div.dialogBtn p span").unbind("click").click(function(){
+		$("#beizhu-dialog").addClass("animated bounceOut");
+	$('#beizhu-dialog').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+		$(this).removeClass("animated bounceOut").hide();
+	});
+	});
+  
 });
 
 // check page controller 账单

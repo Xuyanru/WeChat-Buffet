@@ -171,7 +171,7 @@
 	</div>
 	<div id="cart-dialog-outer">
 		<div id="cart-dialog">
-			<p class="close-dialog"><span>X</span></p>
+			<p class="close-dialog"><span ng-click="closeDialog()">X</span></p>
 			<div class="cart-dish-name clear">
 				<span class="lf">法兰克福就离开</span>
 				<span class="rt">￥35.00/份</span>
@@ -179,15 +179,15 @@
 			<div class="make-way">
 				<p>请选择做法:</p>
 				<ul>
-					<li>
-						<span>加辣</span>
-						<span>微辣</span>
-						<span>无辣</span>
+					<li class="clear">
+						<span class="lf" ng-click="addActive($event)">加辣</span>
+						<span class="lf" ng-click="addActive($event)">微辣</span>
+						<span class="lf" ng-click="addActive($event)">无辣</span>
 					</li>
-					<li>
-						<span>加辣</span>
-						<span>微辣</span>
-						<span>无辣</span>
+					<li class="clear">
+						<span class="lf" ng-click="addActive($event)">加辣</span>
+						<span class="lf" ng-click="addActive($event)">微辣</span>
+						<span class="lf" ng-click="addActive($event)">无辣</span>
 					</li>
 				</ul>
 			</div>
@@ -208,8 +208,8 @@
 	
 	<div ng-include="'tpl/include/menu-button.html'"></div>
 	<div  id="cart-button">
-		<span class="cart-number">0</span>
 		<a href="#/shopcart">
+			<span class="cart-number">0</span>
 			<img src="img/cart-button.png" alt="" />
 		</a>
 	</div>

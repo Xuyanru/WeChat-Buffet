@@ -144,7 +144,7 @@ a{
 	background: rgba(255,255,255,0.3);
 }
 #menu-left ul li{
-	font-size: 1.2em;
+	font-size: 1.1em;
 	font-weight: 600;
 	height: 40px;
 	line-height: 40px;	
@@ -453,7 +453,7 @@ a{
 /*菜单列表*/
 #dishItems{
 	background:rgba(255,255,255,0.7);
-	padding:60px 0;
+	padding:65px 0;
 	width: 100%;
 	height:100%;
 	overflow-y: auto;
@@ -487,7 +487,14 @@ a{
 }
 #dishItems div.dishItem ul li.dish-msg p{
 	font-size: 1.1em;
-	height: 25px;
+	
+}
+#dishItems div.dishItem ul li.dish-msg p:first-child{
+	height: 20px;
+}
+#dishItems div.dishItem ul li.dish-msg p:last-child{
+	height: 30px;
+	padding-top:3px;
 }
 #dishItems div.dishItem ul li.dish-msg p.dish-name{
 	font-weight: bold;
@@ -498,7 +505,7 @@ a{
 	font-siae:1em;
 }
 #dishItems div.dishItem ul li.dish-msg p a.add-cart{
-	padding:2px 10px;
+	padding:3px 12px;
 	background: #E5004B;
 	border:1px solid #B4083E;
 	border-radius: 5px;
@@ -514,7 +521,7 @@ a{
 }
 #dishItems.active div.dishItem ul{
 	float: left;
-	width: calc(50% - 3px);
+	width:-webkit-calc(50% - 3px);
 	background: #FFFFFF;
 	margin-bottom: 5px;
 	padding:5px;
@@ -616,12 +623,17 @@ a{
 	bottom: 20px;
 	right: 20px;
 }
+#cart-button>a{
+	display: block;
+	width:55px;
+	height: 47px;
+}
 #cart-button img{
 	width: 55px;
 	border-radius: 10px;
 	box-shadow: 0 0 8px #666666;
 }
-#cart-button>span{
+#cart-button>a>span{
 	height:15px;
 	line-height: 15px;
 	position: absolute;
@@ -646,23 +658,17 @@ a{
 	left: 0;
 	background: rgba(200,200,200,0.8);
 	z-index: 102;
-	display: none;
+	display: none;;
+    justify-content: center;
+    align-items: center;
 }
 #cart-dialog{
-	/*width: 80%;*/
+	width: 90%;
 	border:1px solid #333333;
-	position: absolute;
-	top:50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
 	background: #FFFFFF;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	padding:10px;
-	width: 0;
-	height:0;
-	opacity: 0;	
-	transition: all 0.3s;
 }
 #cart-dialog.active{
 	animation: openDialog 0.2s;
@@ -675,7 +681,7 @@ a{
 		opacity: 0;
 	}
 	to{
-		width: 80%;
+		width: 90%;
 		height: auto;
 		opacity: 1;
 	}
@@ -686,7 +692,7 @@ a{
 }
 @-webkit-keyframes closeDialog{
 	from{
-		width: 80%;
+		width: 90%;
 		height: auto;
 		opacity: 1;		
 	}
@@ -697,36 +703,59 @@ a{
 	}
 }
 #cart-dialog.adddish{
-	animation: addDialog 0.5s,rotate;
+	animation: addDialog 0.8s;
 	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes addDialog{
 	0%{
-		width: 80%;
+		width: 90%;
 		height: 50px;
 		opacity: 1;
-		overflow: hidden;	
+		transform: rotateZ(0deg);
+		overflow: hidden;
+	}
+	30%{
+		width: 50px;
+		height: 60px;
+		overflow: hidden;
+		opacity: 1;
+	}
+	31%{
+		width: 50px;
+		height: 60px;
+		opacity:1;
+		overflow: hidden;
+		position: absolute;
+		top:-webkit-calc(50% - 30px);
+		left: -webkit-calc(50% - 25px);
+		top:calc(50% - 30px);
+		left:calc(50% - 25px);
+		transform: rotateZ(0deg);
 	}
 	50%{
 		width: 50px;
-		height: 50px;
-		top:50%;
-		left: 50%;
-		opacity: 0.5;
+		height: 60px;
+		opacity:1;
+		position: absolute;
+		top:30%;
+		left:55%;
+		overflow: hidden;
 		transform: rotateZ(0deg);
 	}
 	100%{	
-		top: calc(100% - 40px);
-		left: calc(100% - 40px);
-		opacity:0.5;
+		width: 25px;
+		height: 30px;
+		position: absolute;
+		top:-webkit-calc(100% - 70px);
+		left:-webkit-calc(100% - 60px);
+		opacity:1;
 		overflow: hidden;
-		transform: rotateZ(720deg);
+		transform: rotateZ(1440deg);
 	}
 }
 #cart-dialog>p.close-dialog{
 	text-align: right;
 	font-size: 1.2em;
-	color: #FFFFFF;
 	margin-top:-7px;
 	margin-right: -7px;
 }
@@ -739,18 +768,18 @@ a{
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
 	background: red;
+	color: #FFFFFF;
 }
 #cart-dialog div.cart-dish-name{
-	height: 30px;
-	line-height: 30px;
 	border-bottom: 1px dashed #999999;
+	margin-top:2px
 }
 #cart-dialog div.cart-dish-name span.lf{
-	font-size: 1.1em;
+	font-size: 1.2em;
 	font-weight: bold;
 }
 #cart-dialog div.cart-dish-name span.rt{
-	font-size: 0.8em;
+	padding-top:8px;
 	color:red;
 }
 #cart-dialog div.make-way{
@@ -761,10 +790,16 @@ a{
 }
 #cart-dialog div.make-way ul li span{
 	border:1px solid #999999;
-	padding:1px 5px;
-	margin-right: 5px;
+	line-height: 25px;
+	height: 25px;
+	padding:0px 10px;
+	margin-right: 8px;
 	border-radius: 2px;
 	-webkit-border-radius: 2px;
+}
+#cart-dialog div.make-way ul li span.active{
+	border-color: red;
+	color:red
 }
 #cart-dialog div.cart-img{
 	width:100%;
@@ -778,8 +813,8 @@ a{
 }
 #cart-dialog div.cart-num a{
 	float: left;
-	height: 25px;
-	line-height: 25px;
+	height: 30px;
+	line-height: 30px;
 	border:1px solid #999999;
 	border-right: none;
 }
@@ -787,8 +822,8 @@ a{
 	border-right: 1px solid #999999;
 }
 #cart-dialog div.cart-num a.reduce,#cart-dialog div.cart-num a.add{
-	font-size: 1.2em;
-	width: 25px;
+	font-size: 1.3em;
+	width: 30px;
 	text-align: center;
 	font-weight: bold;
 	color:red
@@ -799,14 +834,196 @@ a{
 }
 #cart-dialog div.cart-num p.rt{
 	background: red;
-	height: 25px;
-	line-height: 25px;
+	height: 30px;
+	line-height: 30px;
 	padding:0 5px;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
 	color:#FFFFFF;
-	font-size: 0.8em;
 }
-
+/*购物车*/
+#shopcart {
+	width: 100%;
+	height: 100%;
+	padding:0 10px;
+	background: rgba(255,255,255,0.8);
+}
+#shopcart div.cart-title{
+	padding:10px 0;
+}
+#shopcart div.user-msg{
+	background: rgba(255,255,255,0.7);
+	width: -webkit-calc(100% - 10px);
+	margin:5px auto;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+#shopcart div.user-msg>div{
+	padding:0 10px;
+}
+#shopcart div.user-msg>div>div{
+	color:#DB4916;
+}
+#shopcart div.user-msg>div:first-child{
+	padding-top:5px
+}
+#shopcart div.user-msg>div.totle{
+	border-top:1px solid #cccccc;
+	height: 35px;
+	line-height: 35px;
+}
+#shopcart div.cart-msg ul.addmsg li{
+	height: 25px;
+	line-height: 25px;
+}
+#shopcart div.cart-msg ul.addmsg li span.u-number,#shopcart div.cart-msg ul.addmsg li span.beizhu{
+	color: red;
+}
+#shopcart div.cart-msg div.totle{
+	margin-top:5px;
+}
+#shopcart div.cart-msg div.totle span.totle-num,#shopcart div.cart-msg div.totle span.totle-price{
+	margin-left: 3px;
+	color: red;
+}
+#shopcart div.cart-msg div.totle span.totle-price{
+	font-size: 1.1em;
+	font-weight: bold;
+}
+/*购物车菜品列表*/
+#cartItems{
+	padding-bottom: 65px;
+	max-height: -webkit-calc(100% - 165px);
+	overflow-y: auto;
+	background: rgba(255,255,255,0.7);
+	width: -webkit-calc(100% - 10px);
+	margin:10px auto 0;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+#cartItems>p{
+	height: 35px;
+	line-height: 35px;
+	font-size: 1.1em;
+	border-bottom: 1px dashed sandybrown;
+}
+#cartItems ul{
+	padding:5px;
+	border-bottom: 1px dashed sandybrown;
+}
+#cartItems ul li.dish-img{
+	width:80px;
+}
+#cartItems ul li.dish-img img{
+	width: 100%;
+}
+#cartItems ul li.dish-msg{
+	width: -webkit-calc(100% - 85px);
+	margin-left: 5px;
+}
+#cartItems ul li.dish-msg p.dish-name{
+	height: 20px;
+}
+#cartItems ul li.dish-msg p.lf,#cartItems ul li.dish-msg p.rt{
+	height: 30px;
+	line-height: 30px;
+}
+#cartItems ul li.dish-msg p.lf{
+	color:red
+}
+#cartItems ul li.dish-msg p.rt a{
+	width:30px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 1.5em;
+	font-weight: bold;
+	text-align: center;
+	border:1px solid red;
+	color: red;
+}
+#cartItems ul li.dish-msg p.rt a.jian{
+	border-top-left-radius: 100%;
+	border-bottom-left-radius: 100%;
+	border-right: none;
+}
+#cartItems ul li.dish-msg p.rt a.jia{
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+	border-left: none;
+}
+#cartItems ul li.dish-msg p.rt span{
+	height: 30px;
+	line-height: 30px;
+	width:30px;
+	border:1px solid red;
+	border-right: none;
+	border-left: none;
+}
+/*备注弹出框*/
+#beizhu-dialog{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 102;
+	color:#ffffff;
+	display: none;
+}
+#beizhu-dialog div.beizhu-dialog-inner>p{
+	height: 63px;
+	line-height: 44px;
+	font-size: 1.2em;
+	background: url("../img/dialog-title.png") no-repeat center center;
+	margin-bottom: 10px;
+}
+#beizhu-dialog div.beizhu-dialog-inner{
+	width: 90%;
+	padding-top:20px;
+	margin:0 auto;
+}
+#beizhu-dialog ul.sel-num li{
+	width: -webkit-calc(25% - 10px);
+	height: 30px;
+	line-height: 30px;
+	color: #ffffff;
+	border:1px solid antiquewhite;
+	text-align: center;
+	margin:5px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+#beizhu-dialog ul.sel-num li.active{
+	background: #F5885C;
+}
+#beizhu-main{
+	width: 100%;
+	background:none;
+}
+textarea{
+	line-height: 20px;
+	color: #ffffff;
+	resize: auto;
+	padding:5px 10px;
+	outline: none;
+	
+}
+#beizhu-dialog div.dialogBtn p{
+	width: 50%;
+	margin-top:30px;
+	font-size: 1.3em;
+}
+#beizhu-dialog div.dialogBtn p span{
+	padding:8px 20px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+#beizhu-dialog div.dialogBtn p.lf span{
+	background: #CB2D2C;
+}
+#beizhu-dialog div.dialogBtn p.rt span{
+	background: #5ACE79;
+}
 
 

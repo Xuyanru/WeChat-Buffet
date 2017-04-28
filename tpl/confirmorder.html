@@ -1,0 +1,85 @@
+<div id="confirm-order">
+	<div class="confirm-order-title textcenter">
+		订单确认
+	</div>
+	<div class="confirm-order-con">
+		<div class="orderCon borderRadius5">
+		<p>订单详情</p>
+		<div id="orderItems">
+			<ul class="orderItems-title clear">
+				<li class="lf order-name">菜品名称</li>
+				<li class="lf order-count textcenter">菜品数量</li>
+				<li class="lf order-price textcenter">菜品价格</li>
+			</ul>
+			<div class="orderItem">
+				<ul class="orderItems-list clear">
+					<li class="lf order-name">哪来的风格的李开复</li>
+					<li class="lf order-count textcenter">2</li>
+					<li class="lf order-price textcenter">25.00</li>
+				</ul>
+				<ul class="orderItems-list clear">
+					<li class="lf order-name">哪来的风格的李</li>
+					<li class="lf order-count textcenter">2</li>
+					<li class="lf order-price textcenter">25.00</li>
+				</ul>
+				<ul class="orderItems-list clear">
+					<li class="lf order-name">哪来的风格的李开复</li>
+					<li class="lf order-count textcenter">2</li>
+					<li class="lf order-price textcenter">25.00</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="selYouhui clear">
+		<p class="lf">优惠选择</p>
+		<p class="rt">&gt;</p>
+	</div>
+	<div class="totle-order borderRadius5">
+			<p class="totle-count">合计<span>3</span>件</p>
+			<ul class="totle-price">
+				<li class="clear">
+					<p class="lf">消费金额</p>
+					<p class="rt">￥75.00</p>
+				</li>
+				<li class="clear">
+					<p class="lf">优惠金额</p>
+					<p class="rt youhui">￥0.00</p>
+				</li>
+				<li class="clear yingfu">
+					<p class="lf">应付金额</p>
+					<p class="rt">￥75.00</p>
+				</li>
+			</ul>
+		</div>
+	<div class="tishi clear textcenter">
+			<img src="img/tishi.png" alt="" />
+			亲,订单支付完成后才能为您做菜哦！
+	</div>
+	</div>
+	<div class="order-price textcenter borderRadius10 boxshadow">
+		<a href="#/bill">
+			还需支付<span>75.00</span>元，去支付
+		</a>		
+	</div>
+	<div id="cancel-order-dialog">
+		<div class="cancel-inner boxshadow borderRadius10">
+			<div class="tupian clear">
+				<p class="lf">
+					<img src="img/cancen-order-bg.png" alt="" />	
+				</p>
+				<p class="lf cancel-text">
+					确认取消订单吗？
+				</p>
+			</div>
+			<div class="cancel-button">
+				<p class="cancel-cancel-button lf textcenter borderRadius5" ng-click="closeDialog()">取消</p>
+				<p class="cancel-confirm-button lf textcenter borderRadius5"><a href="#/order">确定</a></p>
+			</div>
+		</div>
+	</div>
+	<div id="cancel-order-button" class="textcenter boxshadow buttonColor borderRadius10" ng-click="openDialog()">
+		<img src="img/cancel-order.png" alt="" />
+		<p class="textcenter">取消</p>
+	</div>
+	<div ng-include="'tpl/include/menu-button.html'"></div>
+</div>

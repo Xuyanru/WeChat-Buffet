@@ -7,12 +7,12 @@
 			<div class="clear">
 				<ul class="lf addmsg">
 					<li>
-						<span>用餐人数:</span>
-						<span class="u-number">1人</span>
+						<span>备注 :</span>
+						<span class="beizhu">无</span>
 					</li>
 					<li>
-						<span>备注:</span>
-						<span class="beizhu">无</span>
+						<span>用餐人数 :</span>
+						<span class="u-number">1人</span>
 					</li>
 				</ul>
 				<div class="rt clear">
@@ -20,6 +20,15 @@
 					<p class="textcenter">修改</p>
 				</div>	
 			</div>			
+			<p class="order-time">
+				用餐时间 : <input type="date" name="" id="" value="" />
+				<!--<input id="selTime" type="text" readonly="" name="input_date" placeholder="请选择用餐时间" data-lcalendar="{{userTime}}" />-->
+			</p>
+			<p class="yongcan-way clear textcenter">
+				<span class="lf yongcan-way-text">用餐方式 :</span>
+				<span class="lf tangshi active canClick">堂食</span>
+				<span class="lf dabao canClick">打包</span>
+			</p>
 			<div class="totle clear">
 				<span class="dish-totle-name lf">已选菜品数量:</span>
 				<span class="lf totle-num">5</span>
@@ -120,6 +129,18 @@
 				<p class="rt textcenter"><span>确定</span></p>
 			</div>
 		</div>
+	</div>
+	<div  id="continue-order-button" class="boxshadow textcenter borderRadius10">
+		<a href="#/order" class="buttonColor">
+			<img src="img/continue-order.png" alt=""/>
+			<p class="textcenter">加菜</p>
+		</a>	
+	</div>
+	<div  id="place-order-button" class="boxshadow textcenter borderRadius10">
+		<a href="#/confirmorder" class="buttonColor">
+			<img  src="img/place-order.png" alt=""/>
+			<p class="textcenter">下单</p>
+		</a>	
 	</div>
 	<div ng-include="'tpl/include/menu-button.html'"></div>
 </div>

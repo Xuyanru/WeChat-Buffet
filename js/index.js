@@ -4,6 +4,7 @@ app.config(function ($routeProvider) {
         .when('/start', {templateUrl: 'tpl/start.html',controller:'startCtrl'})
         .when('/order', {templateUrl: 'tpl/order.html',controller:'orderCtrl'})
         .when('/shopcart', {templateUrl: 'tpl/shopcart.html',controller:'shopcartCtrl'})
+        .when('/confirmorder', {templateUrl: 'tpl/confirmorder.html',controller:'confirmorderCtrl'})
         .when('/check',{templateUrl:'tpl/check.html',controller:'checkCtrl'})
         .when('/underorder',{templateUrl:'tpl/underorder.html',controller:'underorderCtrl'})
         .when('/bill',{templateUrl:'tpl/bill.html',controller:'billCtrl'})
@@ -206,10 +207,49 @@ $("#shopcart div.user-msg>div>div").unbind("click").click(function(){
 		$(this).removeClass("animated bounceOut").hide();
 	});
 	});
-  
+	
+//	用餐时间限制
+	$scope.userTime1=new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate();
+	$scope.addTime=new Date(new Date().getTime()+(30*24*60*60*1000));
+	$scope.userTime2=$scope.addTime.getFullYear()+"-"+($scope.addTime.getMonth()+1)+"-"+$scope.addTime.getDate();
+	$scope.userTime=$scope.userTime1+","+$scope.userTime2;
+//	var calendardatetime = new lCalendar();
+//				calendardatetime.init({
+//					'trigger': '#s',
+//					'type': 'datetime'
+//				});  
+
+//	堂食,外带
+	$("#shopcart div.user-msg p.yongcan-way span.canClick").unbind("click").click(function(){
+		console.log("111");
+		if(!($(this).hasClass("active"))){
+			$("#shopcart div.user-msg p.yongcan-way span.canClick.active").removeClass("active");
+			$(this).addClass("active");
+		}
+	});
+
+
+});
+// confirmorder page controller 订单确认
+app.controller('confirmorderCtrl', function($scope) {
+   $scope.animate(false);
+   
+// 点击取消弹出取消弹出框
+	$scope.openDialog=function(){
+		$("#cancel-order-dialog").fadeIn().css("display","flex");
+	}
+// 取消订单弹出框取消按钮点击
+	$scope.closeDialog=function(){
+		$("#cancel-order-dialog").fadeOut();
+	}
 });
 
-// check page controller 账单
+// bill page controller 结账
+app.controller('billCtrl', function($scope) {
+   $scope.animate(false);
+});
+
+// check page controller 待支付账单
 app.controller('checkCtrl', function($scope) {
    $scope.animate(false);
 });
@@ -219,10 +259,6 @@ app.controller('underorderCtrl', function($scope) {
    $scope.animate(false);
 });
 
-// bill page controller 结账
-app.controller('billCtrl', function($scope) {
-   $scope.animate(false);
-});
 
 // myorder page controller 我的订单
 app.controller('myorderCtrl', function($scope) {

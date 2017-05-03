@@ -1,6 +1,6 @@
 <div id="confirm-order">
 	<div class="confirm-order-title textcenter">
-		订单确认
+		订单支付
 	</div>
 	<div class="confirm-order-con">
 		<div class="orderCon borderRadius5">
@@ -31,23 +31,32 @@
 		</div>
 	</div>
 	<div class="selYouhui clear">
-		<p class="lf">优惠选择</p>
-		<p class="rt">&gt;</p>
+		<a href="#/youhui">
+			<p class="lf">优惠选择</p>
+			<p class="rt">&gt;</p>
+		</a>
+		<p class="youhui-text clear" ng-show="youhuiShow">
+			{{youhuitext}}
+		</p>
+	</div>
+	<div class="selpayWay clear">
+		<p class="lf">支付方式</p>
+		<p class="rt"><img src="img/weixin.png" alt="" />微信支付</p>
 	</div>
 	<div class="totle-order borderRadius5">
 			<p class="totle-count">合计<span>3</span>件</p>
 			<ul class="totle-price">
 				<li class="clear">
 					<p class="lf">消费金额</p>
-					<p class="rt">￥75.00</p>
+					<p class="rt">￥{{xfPrice}}</p>
 				</li>
 				<li class="clear">
 					<p class="lf">优惠金额</p>
-					<p class="rt youhui">￥0.00</p>
+					<p class="rt youhui">￥{{youhuiPrice}}</p>
 				</li>
 				<li class="clear yingfu">
 					<p class="lf">应付金额</p>
-					<p class="rt">￥75.00</p>
+					<p class="rt">￥{{sfPrice}}</p>
 				</li>
 			</ul>
 		</div>
@@ -58,7 +67,7 @@
 	</div>
 	<div class="order-price textcenter borderRadius10 boxshadow">
 		<a href="#/bill">
-			还需支付<span>75.00</span>元，去支付
+			还需支付<span>{{sfPrice}}</span>元，去支付
 		</a>		
 	</div>
 	<div id="cancel-order-dialog">

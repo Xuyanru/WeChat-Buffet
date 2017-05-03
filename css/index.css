@@ -58,11 +58,11 @@ a{
  	height:100%;
  	overflow: hidden;
  }
-#viewOuter div.page-inner{
+/*#viewOuter*/ div.page-inner{
 	position: relative;
-	width:50%;
+	width:100%;
 	height: 100%;
-	float: left;
+	/*float: left;*/
 	background:url("../img/main-bg.jpg") no-repeat;
 	background-size:cover ;
 	z-index: 100;
@@ -178,10 +178,10 @@ a{
 #menu-left.close{
 	animation: slideLeftMenu 0.3s both ease-in;
 }
-#viewOuter div.page-inner.active{
+/*#viewOuter*/ div.page-inner.active{
 	animation: slideRightView 0.3s both ease-in;
 }
-#viewOuter div.page-inner.close{
+/*#viewOuter*/ div.page-inner.close{
 	animation: slideLeftView 0.3s both ease-in;
 }
 /*店铺主页*/
@@ -263,35 +263,46 @@ a{
 #start div.evaluate{
 	overflow: hidden;
 }
-#start div.evaluate .rt{
+#start div.evaluate .rt,#evaluate div.evaluateCon .rt{
 	font-size:0.8em;
 }
-#start div.evaluate ul.star{
+#start div.evaluate ul.star,#evaluate div.evaluateCon ul.star{
 	width: 100%;
 	overflow: hidden;
 	padding-bottom:10px;
 	border-bottom: 1px dashed #999999;
-	margin-bottom: 10px;
 }
-#start div.evaluate ul.star li{
+#start div.evaluate ul.star li,#evaluate div.evaluateCon ul.star li{
 	width: 33.3%;
 }
-#start div.evaluate ul.evaluate-lists li{
-	border-bottom: 1px dashed #999999;
+#start div.evaluate ul.star li img,#evaluate div.evaluateCon ul.star li img{
+	width: 12px;
 }
-#start div.evaluate ul.evaluate-lists li p.username img{
+#start div.evaluate ul.evaluate-lists li,#evaluate div.evaluateCon ul.evaluate-lists li{
+	border-bottom: 1px dashed #999999;
+	padding-top:5px
+}
+#start div.evaluate ul.evaluate-lists li p.username img,#evaluate div.evaluateCon ul.evaluate-lists li p.username img{
 	border-radius: 50%;
 }
-#start div.evaluate ul.evaluate-lists li p.rt{
+#start div.evaluate ul.evaluate-lists li p.rt,#evaluate div.evaluateCon ul.evaluate-lists li p.rt{
 	height: 50px;
 	line-height: 50px;
 }
-#start div.evaluate ul.evaluate-lists li p:last-child{
-	line-height: 25px;
+#start div.evaluate ul.evaluate-lists li p.rt img,#evaluate div.evaluateCon ul.evaluate-lists li p.rt img{
+	width: 20px;
+}
+#start div.evaluate ul.evaluate-lists li p:last-child,#evaluate div.evaluateCon ul.evaluate-lists li p:last-child{
+	line-height: 20px;
 }
 #start div.evaluate div.evaluate-more{
 	height: 35px;
 	line-height: 35px;
+}
+#start div.evaluate div.evaluate-more a{
+	display: block;
+	width: 100%;
+	height: 100%;
 }
 /*点餐按钮*/
 #order-button{
@@ -1096,7 +1107,7 @@ textarea{
 	padding:0 0 60px 0;
 	background: rgba(255,255,255,0.5);
 }
-#confirm-order div.confirm-order-title{
+#confirm-order div.confirm-order-title,#youhui div.youhuipage-title{
 	height: 60px;
 	line-height: 60px;
 	font-size: 1.5em;
@@ -1123,9 +1134,7 @@ textarea{
 	border-top:none
 }
 #orderItems{
-	border:1px solid #632A19;
-	border-left: none;
-	border-right: none;
+	border-top:1px solid #632A19;
 	margin-bottom: 15px;
 }
 #orderItems ul li.order-name{
@@ -1227,14 +1236,111 @@ textarea{
 #cancel-order-dialog div.cancel-inner div.cancel-button>p.cancel-confirm-button{
 	background: #DE5347;
 }
-#confirm-order div.selYouhui{
+#confirm-order div.selYouhui,#confirm-order div.selpayWay{
 	padding:10px;
 	background: #FFFFFF;
 	margin-bottom: 5px;
 }
+#confirm-order div.selpayWay p.rt{
+	color:#0AB70E;
+}
+#confirm-order div.selYouhui p.youhui-text{
+	width: 100%;
+	line-height: 20px;
+	color:red;
+	padding-top:10px;
+	font-size: 0.8em;
+	border-top: 1px solid saddlebrown;
+}
 #confirm-order div.confirm-order-con{
 	background: rgba(240,240,240,0.8);
 	border:1px solid #dddddd;
+}
+#confirm-order div.selYouhui a{
+	float: left;
+	width: 100%;
+	height: 25px;
+	line-height: 25px;
+
+}
+/*优惠页面*/
+#youhuiBack{
+	width: 55px;
+	height: 47px;
+	background: url("../img/button-bg.png") no-repeat;
+	line-height: 45px;
+	position: absolute;
+	bottom: 15px;
+	right: 20px;
+}
+#youhui div.youhuiquan,#youhui div.dazheka{
+	background: #FFFFFF;
+	padding: 5px 10px;
+}
+#youhui div.youhuiquan-title,#youhui div.dazheka-title{
+	border-bottom: 1px dashed saddlebrown;
+	font-size: 1.2em;
+	font-weight: bold;
+	line-height: 35px;
+}
+#youhui div.youhuiquan p.youhuiimgs,#youhui div.dazheka p.youhuiimgs{
+	margin:5px 0;
+	width: 100%;
+	padding:0 10px;
+	position: relative;
+}
+#youhui div.youhuiquan p.youhuiimgs img,#youhui div.dazheka p.youhuiimgs img{
+	width: 100%;
+}
+#youhui div.youhuiCon p.canClick span{
+	position: absolute;
+	top:20px;
+	right: 30px;
+	font-size: 2em;
+	font-weight: bold;
+	color:#FF0000;
+	display: none;
+}
+/*评价页面*/
+#evaluate{
+	background: rgba(255,255,255,0.8);
+	padding-bottom: 60px;
+	height: 100%;
+	overflow-y:auto;
+}
+#evaluate>div.evaluateCon{
+	padding: 10px;
+	padding-top:0;
+	background: #FFFFFF;
+}
+#evaluate div.evaluateCon p.evaluate-totleNum{
+	text-align: right;
+	border-bottom: 1px dashed #E6E6E6;
+	height: 35px;
+	line-height: 35px;
+}
+#evaluate div.evaluateCon p.evaluate-totleNum select{
+	margin-top:7px;
+	width: 60px;
+	padding:0px 0 3px 5px;
+	letter-spacing: 4.5px;
+	background:;
+	border:1px solid saddlebrown;
+	color:#AE9088;
+	outline: none;
+}
+#evaluate div.evaluateCon p.evaluate-totleNum select option{
+	background:;
+}
+#evaluate>div.evaluate-title{
+	height: 60px;
+    line-height: 60px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #632A19;
+}
+#evaluate div.evaluateCon ul.star{
+	padding-top: 5px;
 }
 
 

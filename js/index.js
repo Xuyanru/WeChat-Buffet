@@ -1,10 +1,12 @@
-var app=angular.module("weixindiancan",["ng","ngRoute","ngAnimate"]);
+var app=angular.module("weixindiancan",["ng","ngRoute"]);
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/start', {templateUrl: 'tpl/start.html',controller:'startCtrl'})
+        .when('/evaluate', {templateUrl: 'tpl/evaluate.html',controller:'evaluateCtrl'})
         .when('/order', {templateUrl: 'tpl/order.html',controller:'orderCtrl'})
         .when('/shopcart', {templateUrl: 'tpl/shopcart.html',controller:'shopcartCtrl'})
-        .when('/confirmorder', {templateUrl: 'tpl/confirmorder.html',controller:'confirmorderCtrl'})
+        .when('/confirmorder/:alt', {templateUrl: 'tpl/confirmorder.html',controller:'confirmorderCtrl'})
+        .when('/youhui', {templateUrl: 'tpl/youhui.html',controller:'youhuiCtrl'})
         .when('/check',{templateUrl:'tpl/check.html',controller:'checkCtrl'})
         .when('/underorder',{templateUrl:'tpl/underorder.html',controller:'underorderCtrl'})
         .when('/bill',{templateUrl:'tpl/bill.html',controller:'billCtrl'})
@@ -19,11 +21,11 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 	$scope.animate=function(str){
 		$scope.noanimate=str;
 	}
-  $scope.animate(true);
+//$scope.animate(true);
   $("body").css("height",$(window).height()+"px");
-  $("#viewOuter").css("height",$(window).height()+"px");
-  $("#viewOuter>div").css("height",$(window).height()+"px");
-  $("#viewOuter>div>div").css("height",$(window).height()+"px");
+//$("#viewOuter").css("height",$(window).height()+"px");
+//$("#viewOuter>div").css("height",$(window).height()+"px");
+//$("#viewOuter>div>div").css("height",$(window).height()+"px");
  	$("#menu-left ul li").click(function(){
  		if($(this).hasClass("active")){
 				$("#menu-left").removeClass("active").addClass("close");
@@ -50,10 +52,15 @@ app.controller('startCtrl', function($scope) {
 	$("#start").css("height",$(window).height()+"px");
  
 });
+
+app.controller('evaluateCtrl', function($scope) {
+
+ 
+});
   
 // order page controller 点餐
 app.controller('orderCtrl', function($scope,$timeout) {
-  $scope.animate(false);
+//$scope.animate(false);
 //搜索框动画
   $("#order div.search span").unbind("click").click(function(){
   	if(!($(this).parent().hasClass("active"))){
@@ -83,9 +90,8 @@ app.controller('orderCtrl', function($scope,$timeout) {
  		$($event.target).addClass("active");
  		$scope.elename=$($event.target).attr("name");
 	 	$event.preventDefault();
-	 	console.log($("#"+$scope.elename).offset().top);
 	   	 $('#dishItems').animate({
-	            "scrollTop": $("#"+$scope.elename).position().top
+	            "scrollTop": $("#"+$scope.elename).position().top-5
 	        }, 500);
  	} 	
     };
@@ -182,7 +188,7 @@ $scope.addActive=function($event){
   
 // shopcart page controller 购物车
 app.controller('shopcartCtrl', function($scope) {
-  $scope.animate(false);
+//$scope.animate(false);
 //点击修改弹出备注框
 $("#shopcart div.user-msg>div>div").unbind("click").click(function(){
 	$("#beizhu-dialog").show().addClass("animated bounceIn");
@@ -221,7 +227,6 @@ $("#shopcart div.user-msg>div>div").unbind("click").click(function(){
 
 //	堂食,外带
 	$("#shopcart div.user-msg p.yongcan-way span.canClick").unbind("click").click(function(){
-		console.log("111");
 		if(!($(this).hasClass("active"))){
 			$("#shopcart div.user-msg p.yongcan-way span.canClick.active").removeClass("active");
 			$(this).addClass("active");
@@ -231,8 +236,8 @@ $("#shopcart div.user-msg>div>div").unbind("click").click(function(){
 
 });
 // confirmorder page controller 订单确认
-app.controller('confirmorderCtrl', function($scope) {
-   $scope.animate(false);
+app.controller('confirmorderCtrl', function($scope,$routeParams) {
+// $scope.animate(false);
    
 // 点击取消弹出取消弹出框
 	$scope.openDialog=function(){
@@ -242,42 +247,84 @@ app.controller('confirmorderCtrl', function($scope) {
 	$scope.closeDialog=function(){
 		$("#cancel-order-dialog").fadeOut();
 	}
+	$scope.xfPrice=75.00;
+	$scope.xfPrice=$scope.xfPrice.toFixed(2);
+	
+	if($routeParams.alt!=0){
+		$scope.youhuitext=eval($routeParams.alt)[1];
+		if(eval($routeParams.alt)[0]==1){
+			$scope.youhuiPrice=parseInt($scope.youhuitext).toFixed(2);
+			$scope.youhuiShow=true;
+		}else if(eval($routeParams.alt)[0]==2){
+			$scope.youhuiPrice=(parseFloat($scope.xfPrice)-parseInt($scope.youhuitext)*parseFloat($scope.xfPrice)/10).toFixed(2);
+			$scope.youhuiShow=true;
+		}else{
+			$scope.youhuiShow=false;
+			$scope.youhuiPrice="0.00";
+		}
+	}else{
+			$scope.youhuiShow=false;
+			$scope.youhuiPrice="0.00";
+		}
+		$scope.sfPrice=(parseFloat($scope.xfPrice)-parseFloat($scope.youhuiPrice)).toFixed(2);
+});
+
+// youhui page controller 优惠选择页面
+app.controller('youhuiCtrl', function($scope) {
+// $scope.animate(false);
+	$scope.youhuiText=[];
+	$scope.selYouhui=function($event){
+		if(!($($event.currentTarget).hasClass("active"))){
+			$("#youhui div.youhuiCon p.canClick.active").removeClass("active").children("span").hide();
+			$($event.currentTarget).addClass("active").children("span").show();
+		}else{
+			$($event.currentTarget).removeClass("active").children("span").hide();
+		}
+		if($("#youhui div.youhuiCon p.canClick.active")){
+			$scope.youhuiText[0]=$("#youhui div.youhuiCon p.canClick.active").children("img").attr("title");
+			$scope.youhuiText[1]=$("#youhui div.youhuiCon p.canClick.active").children("img").attr("alt");
+		}else{
+			$scope.youhuiText[0]=0;
+			$scope.youhuiText[1]=0;
+		}
+	}
+
 });
 
 // bill page controller 结账
 app.controller('billCtrl', function($scope) {
-   $scope.animate(false);
+// $scope.animate(false);'
 });
 
 // check page controller 待支付账单
 app.controller('checkCtrl', function($scope) {
-   $scope.animate(false);
+// $scope.animate(false);
 });
 
 // underorder page controller 已下单
 app.controller('underorderCtrl', function($scope) {
-   $scope.animate(false);
+// $scope.animate(false);
 });
 
 
 // myorder page controller 我的订单
 app.controller('myorderCtrl', function($scope) {
-   $scope.animate(false);
+// $scope.animate(false);
 });
 
 // account page controller 我的账户
 app.controller('accountCtrl', function($scope) {
-   $scope.animate(false);
+// $scope.animate(false);
 });
 //左侧菜单
 app.controller("menuCtrl",function($scope){
-	$scope.menuAnimate=function($event){
+	$scope.menuAnimate=function(){
 		if($("#menu-left").hasClass("active")){
 			$("#menu-left").removeClass("active").addClass("close");
-			$("#viewOuter div.page-inner").removeClass("active").addClass("close");
+			$("div.page-inner").removeClass("active").addClass("close");
 		}else{
 			$("#menu-left").removeClass("close").addClass("active");
-			$("#viewOuter div.page-inner").removeClass("close").addClass("active");
+			$("div.page-inner").removeClass("close").addClass("active");
 		}
 	}
 });

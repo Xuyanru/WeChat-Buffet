@@ -12,6 +12,7 @@ app.config(function ($routeProvider) {
         .when('/bill',{templateUrl:'tpl/bill.html',controller:'billCtrl'})
         .when('/myorder', {templateUrl: 'tpl/myorder.html',controller:'myorderCtrl'})
         .when('/account',{templateUrl:'tpl/account.html',controller:'accountCtrl'})
+        .when('/assess',{templateUrl:'tpl/assess.html',controller:'assessCtrl'})
 //      .when('/orderdetail/:did', {templateUrl: 'tpl/orderdetail.html',controller:'orderdetailCtrl'})
         .otherwise({redirectTo: '/start'})
 }); 
@@ -23,13 +24,10 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 	}
 //$scope.animate(true);
   $("body").css("height",$(window).height()+"px");
-//$("#viewOuter").css("height",$(window).height()+"px");
-//$("#viewOuter>div").css("height",$(window).height()+"px");
-//$("#viewOuter>div>div").css("height",$(window).height()+"px");
  	$("#menu-left ul li").click(function(){
  		if($(this).hasClass("active")){
 				$("#menu-left").removeClass("active").addClass("close");
-				$("#viewOuter div.page-inner").removeClass("active").addClass("close");
+				$("div.page-inner").removeClass("active").addClass("close");
  		}else{
  			$("#menu-left ul li.active").removeClass("active");
  			$(this).addClass("active");
@@ -37,7 +35,7 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 // 			$("#viewOuter div.page-inner").removeClass("active");
    			$timeout(function(){
    				$("#menu-left").removeClass("active");
-   				$("#viewOuter div.page-inner").removeClass("active");
+   				$("div.page-inner").removeClass("active");
    			},300);
  			
  		}
@@ -50,11 +48,15 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 // start page controller 主页
 app.controller('startCtrl', function($scope) {
 	$("#start").css("height",$(window).height()+"px");
+	
  
 });
 
 app.controller('evaluateCtrl', function($scope) {
-
+				
+				$( '#cd-dropdown' ).dropdown( {
+					gutter :4
+				} );
  
 });
   
@@ -289,6 +291,24 @@ app.controller('youhuiCtrl', function($scope) {
 		}
 	}
 
+});
+
+// assess page controller 结账
+app.controller('assessCtrl', function($scope) {
+// $scope.animate(false);'
+	$(window).resize(function(){
+		if($("#textCon").hasClass("active")){
+			$("#assess").animate({
+				"top":"0px"
+			},100);
+			$("#textCon").removeClass("active")
+		}else{
+			$("#textCon").addClass('active');
+			$("#assess").animate({
+				"top":"-100px"
+			},100);
+		}
+	});
 });
 
 // bill page controller 结账

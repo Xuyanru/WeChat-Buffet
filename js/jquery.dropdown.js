@@ -8,7 +8,7 @@
  * Copyright 2012, Codrops
  * http://www.codrops.com
  */
- /* ´úÂëÕûÀí£ºÀÁÈËÖ®¼Ò www.lanrenzhijia.com */
+ /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ www.lanrenzhijia.com */
 ;( function( $, window, undefined ) {
 	
 	'use strict';
@@ -148,7 +148,7 @@
 				
 				$( this ).css( {
 					opacity : 1,
-					top : self.options.rotated ? self.size.height + self.options.gutter : ( i + 1 ) * ( self.size.height + self.options.gutter ), 
+					top : self.options.rotated ? self.size.height + self.options.gutter : ( i + 1 ) * ( self.size.height), 
 					left : self.options.random ? Math.floor( Math.random() * 11 - 5 ) : 0,
 					width : self.size.width,
 					marginLeft : 0,
@@ -199,4 +199,4 @@
 	};
 	
 } )( jQuery, window );
-/* ´úÂëÕûÀí£ºÀÁÈËÖ®¼Ò www.lanrenzhijia.com */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ www.lanrenzhijia.com */

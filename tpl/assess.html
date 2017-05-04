@@ -17,12 +17,12 @@
 		</div>
 	</div>
 	<div class="assessMain">
-		<ul class="assessMain-zongp clear">
-			<li class="lf"><img src="img/cha.png" alt="" /></li>
-			<li class="lf"><img src="img/yiban.png" alt="" /></li>
-			<li class="lf"><img src="img/manyi.png" alt="" /></li>
-			<li class="lf"><img src="img/henmanyi.png" alt="" /></li>
-			<li class="lf"><img src="img/tuijian.png" alt="" /></li>
+		<ul class="assessMain-zongp clear textcenter">
+			<li class="lf" ng-click="addHeart($event)"><p><img src="img/cha.png" alt="" />差</p></li>
+			<li class="lf" ng-click="addHeart($event)"><p><img src="img/yiban.png" alt="" />一般</p></li>
+			<li class="lf" ng-click="addHeart($event)"><p><img src="img/manyi.png" alt="" />满意</p></li>
+			<li class="lf" ng-click="addHeart($event)"><p><img src="img/henmanyi.png" alt="" />很满意</p></li>
+			<li class="lf" ng-click="addHeart($event)"><p><img src="img/tuijian.png" alt="" />强烈推荐</p></li>
 		</ul>
 		<div class="assessStar">
 			<ul class="zongStar textcenter">
@@ -88,8 +88,9 @@
 					</ul>
 				</li>
 			</ul>
-			<div class="assessText">
-				<div id="textCon" contenteditable="true">菜品口味还满足您的味蕾吗？服务还到位吗?环境是否符合您的要求？谈谈您的用餐感受吧！</div>
+		</div>
+		<div class="assessText">
+				<div id="textCon" contenteditable="true"><p>菜品口味还满足您的味蕾吗？服务还到位吗?环境是否符合您的要求？谈谈您的用餐感受吧！</p></div>
 			</div>
 			<div class="addimgs">
 				<ul class="clear">
@@ -111,6 +112,32 @@
 					</li>
 				</ul>
 			</div>
+	</div>
+	<div id="cancel-assess-dialog">
+		<div class="cancel-inner boxshadow borderRadius10">
+			<div class="tupian clear">
+				<p class="lf">
+					<img src="img/cancen-order-bg.png" alt="" />	
+				</p>
+				<p class="lf cancel-text">
+					确认取消评论吗？
+				</p>
+			</div>
+			<div class="cancel-button">
+				<p class="cancel-cancel-button lf textcenter borderRadius5" ng-click="closeDialog()">取消</p>
+				<p class="cancel-confirm-button lf textcenter borderRadius5"><a href="">确定</a></p>
+			</div>
 		</div>
+	</div>
+	<div id="cancel-assess-button" class="textcenter boxshadow buttonColor borderRadius10 buttonNormal" ng-click="openDialog()">
+		<img src="img/cancel-order.png" alt="" />
+		<p class="textcenter">取消</p>
+	</div>
+	<div id="publish-assess-button" class="textcenter boxshadow buttonColor borderRadius10 buttonNormal">
+		<a href="" class="buttonColor">
+			<img src="img/publish.png" alt="" />
+			<p class="textcenter">发布</p>
+		</a>
+		
 	</div>
 </div>

@@ -1200,8 +1200,8 @@ textarea{
 #confirm-order div.order-price a{
 	color: #FFFFFF;
 }
-/*取消订单弹出框*/
-#cancel-order-dialog{
+/*取消订单弹出框,取消评论*/
+#cancel-order-dialog,#cancel-assess-dialog{
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -1214,16 +1214,16 @@ textarea{
 	z-index: 103;
 	display: none;
 }
-#cancel-order-dialog div.cancel-inner{
+#cancel-order-dialog div.cancel-inner,#cancel-assess-dialog div.cancel-inner{
 	background: #FFFFFF;
 	width: calc(100% - 20px);
 	width:-webkit-calc(100% - 20px);
 	padding:10px;
 }
-#cancel-order-dialog div.cancel-inner img{
+#cancel-order-dialog div.cancel-inner img,#cancel-assess-dialog div.cancel-inner img{
 	width: 150px;
 }
-#cancel-order-dialog div.cancel-inner p.cancel-text{
+#cancel-order-dialog div.cancel-inner p.cancel-text,#cancel-assess-dialog div.cancel-inner p.cancel-text{
 	width:calc(100% - 150px);
 	width: -webkit-calc(100% - 160px);
 	margin-left: 10px;
@@ -1231,7 +1231,7 @@ textarea{
 	font-size: 1.3em;
 	color:#E5004B;
 }
-#cancel-order-dialog div.cancel-inner div.cancel-button>p{
+#cancel-order-dialog div.cancel-inner div.cancel-button>p,#cancel-assess-dialog div.cancel-inner div.cancel-button>p{
 	font-size: 1.2em;
 	width:100px;
 	height: 40px;
@@ -1241,13 +1241,13 @@ textarea{
 	margin-left: calc((100% - 200px)/3);
 	margin-left: -webkit-calc((100% - 200px)/3);
 }
-#cancel-order-dialog div.cancel-inner div.cancel-button>p a{
+#cancel-order-dialog div.cancel-inner div.cancel-button>p a,#cancel-assess-dialog div.cancel-inner div.cancel-button>p a{
 	color:#FFFFFF;
 }
-#cancel-order-dialog div.cancel-inner div.cancel-button>p.cancel-cancel-button{
+#cancel-order-dialog div.cancel-inner div.cancel-button>p.cancel-cancel-button,#cancel-assess-dialog div.cancel-inner div.cancel-button>p.cancel-cancel-button{
 	background: #1AA260;
 }
-#cancel-order-dialog div.cancel-inner div.cancel-button>p.cancel-confirm-button{
+#cancel-order-dialog div.cancel-inner div.cancel-button>p.cancel-confirm-button,#cancel-assess-dialog div.cancel-inner div.cancel-button>p.cancel-confirm-button{
 	background: #DE5347;
 }
 #confirm-order div.selYouhui,#confirm-order div.selpayWay{
@@ -1565,6 +1565,10 @@ a {
 /*用户评价页面*/
 #assess{
 	position: relative;
+	height: 100%;
+	background: #FFFFFF;
+	padding-bottom:60px;
+	overflow-y: auto;
 }
 #assess div.dishCon{
 	padding:5px;
@@ -1572,12 +1576,12 @@ a {
 	background: #FFFFFF;
 }
 #assess div.dishCon div.lf img{
-	width: 100px;
+	width: 120px;
 	margin-right: 5px;
 }
 #assess div.dishCon div.rt{
-	width: calc(100% - 105px);
-	width: -webkit-calc(100% - 105px);
+	width: calc(100% - 125px);
+	width: -webkit-calc(100% - 125px);
 }
 #assess div.dishCon div.rt p{
 	width: 100%;
@@ -1585,31 +1589,59 @@ a {
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
-#assess div.dishCon div.rt p.dishCount,#assess div.dishCon div.rt p.buyTime{
-	font-size: 0.8em;
+#assess div.dishCon div.rt p.dishName{
+	font-size: 1.1em;
+	margin-bottom: 8px;
+}
+#assess div.dishCon div.rt p.dishCount{
+	margin-bottom: 5px;
 }
 #assess div.dishCon div.rt p.dishCount span{
 	color: red;
 }
 #assess div.assessMain{
 	background: #FFFFFF;
+	padding-bottom: 20px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#assess ul.assessMain-zongp{
+	position: relative;
+	z-index:100;
 }
 #assess ul.assessMain-zongp li{
-	width: 20%;
-	border-right: 1px solid #CCCCCC;
+	width: 20%;	
+	padding-bottom: 1px;
 	border-bottom: 1px solid #CCCCCC;
+}
+#assess ul.assessMain-zongp li p{
+	width: 100%;
+	/*height: calc(100% - 1px);
+	height: -webkit-calc(100% - 1px);*/
+	box-shadow: 0.5px 0 0 #CCCCCC;
+	border-right: 1px solid #CCCCCC;adding:5px;
 	padding:5px;
+	font-size: 0.8em;
 }
 #assess ul.assessMain-zongp li img{
 	width: 100%;
 }
 #assess ul.assessMain-zongp li:last-child{
-	border-right: none;
 	width: calc(20% - 1px);
 	width: -webkit-calc(20% - 1px);
 }
+#assess ul.assessMain-zongp li:last-child p{
+	border-right: none;
+	
+}
 #assess ul.assessMain-zongp li.active{
 	border-bottom: none;
+	z-index: 100;
+	background: #FFFFFF;
+	color: red;
+}
+#assess div.assessStar{
+	display: none;
 }
 #assess div.assessStar ul.zongStar img{
 	width: 35px;
@@ -1617,6 +1649,8 @@ a {
 #assess div.assessStar ul.zongStar{
 	border-bottom: 1px solid #CCCCCC;
 	padding:10px;
+	box-shadow: 0px -2px 5px #777777;
+	margin-top:-1px
 }
 #assess div.assessStar ul.zongStar li{
 	display: inline-block;
@@ -1626,9 +1660,6 @@ a {
 	line-height: 30px;
 	padding:5px 10px;
 	font-size: 1.1em;
-}
-#assess div.assessStar ul.assessStar-list{
-	border-bottom: 1px solid #CCCCCC;
 }
 #assess div.assessStar ul.assessStar-list>li ul.lf{
 	width: calc(100% - 70px);
@@ -1644,31 +1675,142 @@ a {
 #assess div.assessStar ul.assessStar-list>li ul.lf li img{
 	width: 35px;
 }
+#assess div.assessStar ul.assessStar-list{
+	box-shadow: 0px 2px 5px #666666;
+	padding:5px 0;
+}
 #textCon{
 	width:100%;
 	min-height: 50px;
 	padding:10px;
 	outline-color:#FFFFFF
 }
-#assess div.assessStar div.addimgs{
+#assess div.assessMain div.addimgs{
 	padding:5px 10px;
+	border-bottom: 1px solid #CCCCCC;
 }
-#assess div.assessStar div.addimgs ul li{
+#assess div.assessMain div.addimgs ul li{
 	width: 70px;
 	border:1px solid #CCCCCC;
 	height: 70px;
 	margin-right: 5px;
 	margin-bottom: 5px;
 }
-#assess div.assessStar div.addimgs ul li.addIcon{
+#assess div.assessMain div.addimgs ul li.addIcon{
 	border:1px dashed #CCCCCC
 }
-#assess div.assessStar div.addimgs ul li p:first-child{
+#assess div.assessMain div.addimgs ul li p:first-child{
 	margin-top: 10px;	
 }
-#assess div.assessStar div.addimgs ul li>img{
+#assess div.assessMain div.addimgs ul li>img{
 	width: 100%;
 	height: 100%;
+}
+@media only screen and (min-width:400px)and (max-width:600px){
+	#assess div.assessMain div.addimgs ul li{
+		width:calc(20% - 5px);
+		width: -webkit-calc(20% - 5px);
+	}
+}
+@media only screen and (max-width: 399px) {
+	#assess div.assessMain div.addimgs ul li{
+		width:calc(25% - 5px);
+		width: -webkit-calc(25% - 5px);
+	}
+}
+/*取消按钮*/
+.buttonNormal{
+	width: 55px;
+	height: 47px;
+	position: fixed;
+	padding-top:3px;
+	bottom: 15px;
+	background: url("../img/button-bg.png") no-repeat;	
+}
+#continue-order-button img,#place-order-button img,#cancel-order-button img{
+	width: 25px;
+}
+#cancel-assess-button{
+	left: 20px;
+}
+/*发布按钮*/
+#publish-assess-button{
+	background: url("../img/button-bg.png") no-repeat;	
+	right: 20px;
+}
+#publish-assess-button a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+/*个人中心*/
+#account{
+	width: 100%;
+	height: 100%;
+	background: url("../img/urser-bg.jpg") no-repeat;
+	background-size:cover ;
+}
+#account div.user-title{
+	height: 120px;
+	position: relative;
+}
+#account div.user-title div.title-text{
+	font-weight: bold;
+	font-size: 1.3em;
+	background: rgba(200,200,200,0.7);
+	color:#FFFFFF;
+	padding:10px 0;
+}
+#account div.user-title div.user-head{
+	width: 80px;
+	height: 80px;
+	padding:3px;
+	border-radius: 50%;
+	background: #FFFFFF;
+	position: absolute;
+	top:80px;
+	left: calc(50% - 40px);
+	
+}
+#account div.user-title div.user-head img{
+	width: 100%;
+	border-radius: 50%;
+}
+#account div.user-main{
+	min-height: calc(100% - 120px);
+	min-height: -webkit-calc(100% - 120px);
+	background: rgba(255,255,255,0.9);	
+	padding-top:40px
+}
+#account div.user-main p.user_name{
+	font-size: 1.5em;
+	font-weight: bold;
+	height: 30px;
+	line-height: 30px;
+}
+#account div.user-main div.signature{
+	padding:0 10px;
+}
+#account div.user-main div.signature p{
+	padding-left: 30px;
+	background: url("../img/qianming.png") no-repeat left top;
+	display: inline-block;
+	outline: transparent;
+}
+#account div.user-main ul.user-list li{
+	margin:5px;
+	width:calc(25% - 10px);
+	border:1px solid #CCCCCC;
+	padding:10px 0;
+	box-shadow: 0 0 6px #bbbbbb;
+}
+#account div.user-main div.huiyuancenter{
+	padding:5px 10px;
+	margin-top:10px;
+	line-height: 35px;
+}
+#account div.user-main div.huiyuancenter span{
+	font-size: 1.5em;
 }
 
 

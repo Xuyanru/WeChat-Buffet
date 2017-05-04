@@ -293,22 +293,101 @@ app.controller('youhuiCtrl', function($scope) {
 
 });
 
-// assess page controller 结账
+// assess page controller 用户评论
 app.controller('assessCtrl', function($scope) {
 // $scope.animate(false);'
+//	用户输入区域placeholder显示
+	
 	$(window).resize(function(){
 		if($("#textCon").hasClass("active")){
 			$("#assess").animate({
 				"top":"0px"
-			},100);
-			$("#textCon").removeClass("active")
+			},50);
+			$("#textCon").removeClass("active");
+			if($("#textCon").html()==""){
+				$("#textCon").append('<p>菜品口味还满足您的味蕾吗？服务还到位吗?环境是否符合您的要求？谈谈您的用餐感受吧！</p>');
+			}
+			$("#cancel-assess-button,#publish-assess-button").show();
 		}else{
 			$("#textCon").addClass('active');
-			$("#assess").animate({
-				"top":"-100px"
-			},100);
+			var mainOffsetTop = $("#textCon").offset().top;
+            var mainHeight = $("#textCon").height();
+            var winHeight = $(window).height();
+            var winScrollTop = $(window).scrollTop();
+            if(winScrollTop > mainOffsetTop + mainHeight || winScrollTop <　mainOffsetTop - winHeight){
+            	$("#assess").animate({
+					"top":"-150px"
+				},50);
+            }
+			
+			$("#textCon>p").remove();
+			$("#cancel-assess-button,#publish-assess-button").hide();
 		}
+		
 	});
+	
+	// 点击取消弹出取消弹出框
+	$scope.openDialog=function(){
+		$("#cancel-assess-dialog").fadeIn().css("display","flex");
+	}
+// 取消订单弹出框取消按钮点击
+	$scope.closeDialog=function(){
+		$("#cancel-assess-dialog").fadeOut();
+	}
+//	总体评价点击事件
+	$scope.addHeart=function($event){
+		$scope.target=$event.currentTarget;
+		if(!($($scope.target).hasClass("active"))){
+			$scope.active=$("#assess ul.assessMain-zongp li.active");
+			if($scope.active.length!=0){
+				$scope.src=[];
+				$scope.srcarr=$scope.active.find("img").attr("src").split(".");
+				$scope.srcarr1=$scope.srcarr[0].split("-");
+				$scope.src.push($scope.srcarr1[0]);
+				$scope.src.push($scope.srcarr[1]);
+				$scope.src=$scope.src.join(".");
+				$scope.active.find("img").attr("src",$scope.src);
+				$scope.active.removeClass("active");
+			}else{
+				$("#assess div.assessStar").slideDown();
+			}
+			$scope.nsrc=$($scope.target).find("img").attr("src").split(".");
+			$scope.nsrc[0]=$scope.nsrc[0]+"-active";
+			$scope.nsrc=$scope.nsrc.join(".");
+			$($scope.target).addClass("active").find("img").attr("src",$scope.nsrc);
+			$scope.idx=$($scope.target).index()+1;
+			for(var i=0;i<$scope.idx;i++){
+				if(i==0){
+					$("#assess div.assessStar ul.zongStar").html(" ").append('<li><img src="img/heart-full.png" alt="" /></li>');
+				}else{
+					setTimeout(function(){
+						$("#assess div.assessStar ul.zongStar").append('<li><img src="img/heart-full.png" alt="" /></li>');
+					},100);
+				}
+			}
+		}
+	}
+	
+//	点击星星进行打分
+	$("#assess div.assessStar ul.assessStar-list>li>ul").on("click","li",function(){
+		var idex=$(this).index()+1;
+		if($(this).parent().children("li.active").length!=idex){
+			$(this).parent().children("li.active").each(function(){
+				$(this).children("img").attr("src","img/star-empty.png").removeClass("active");
+			});
+			$(this).parent().children("li").each(function(i){
+				if(i<idex){
+					$(this).children("img").attr("src","img/star-full.png");
+					$(this).addClass("active");
+				}
+				
+			});
+		}
+		
+	});
+
+	
+	
 });
 
 // bill page controller 结账

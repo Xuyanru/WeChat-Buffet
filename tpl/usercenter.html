@@ -1,0 +1,64 @@
+<div id="usercenter">
+	<div class="usercenter-title textcenter boxshadow">
+		<a href="#/account">
+			<img src="img/back.png" alt="" />
+		</a>
+		个人资料
+	</div>
+	<div class="user-content">
+		<ul class="content-list">
+			<li class="usercenter-head">
+				<span class="lf">头&nbsp;&nbsp;&nbsp;像</span>
+				<span class="rt">
+					<img src="img/userhead.png" alt="" />
+				</span>
+			</li>
+			<li class="usercenter-name line-H">
+				<span class="lf">用户名</span>
+				<span class="rt">John baby</span>
+			</li>
+			<li class="enter usercenter-phone line-H">
+				<span class="lf">手机号</span>
+				<span class="rt">15478965231</span>
+			</li>
+			<li class="usercenter-gender enter line-H" ng-click="toggleGender($event)">
+				<span class="lf">性&nbsp;&nbsp;&nbsp;别</span>
+				<div class="rt">
+					<p class="selVal"></p>
+					<div class="valCon" id="genderVal">
+						<p class="male gender-list">男</p>
+						<p class="female gender-list">女</p>
+					</div>
+				</div>
+			</li>
+			<li class="usercenter-birth enter line-H">
+				<span class="lf">生&nbsp;&nbsp;&nbsp;日</span>
+				<label class="rt"  for="birthday"><img src="img/enter.png" alt="" /></label>
+				<input id="birthday" class="rt" type="date" name="" id="" value="" />
+			</li>
+		</ul>
+	</div>
+	<div class="kouwei-mark">
+		<p class="kouwei-title textcenter"><img src="img/kouwei.png" alt="" />口味标签</p>
+		<ul>
+			<li class="borderRadius5">
+				<p class="kouwei-title"><a href="" class="a-block"><img src="img/jikou.png" alt="" />忌口食物标签</a></p>
+				<div class="kouwei-con">
+					<span ng-show="selTaboos">无</span>
+				</div>
+			</li>
+			<li class="borderRadius5">
+				<p class="kouwei-title"><a href="" class="a-block"><img src="img/ladu.png" alt="" />吃辣程度标签</a></p>
+				<div class="kouwei-con">
+					<span ng-show="selTaboos">无</span>
+				</div>
+			</li>
+			<li class="borderRadius5">
+				<p class="kouwei-title"><a href="" class="a-block"><img src="img/xihuan.png" alt="" />爱吃食物标签</a></p>
+				<div class="kouwei-con">
+					<span ng-show="selTaboos">无</span>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -14,6 +14,8 @@ body{
 }
 input{
 	outline: none;
+	font:14px/20px arial,sans-serif;
+	color:#666666;
 }
 img{
 	vertical-align: middle;
@@ -125,10 +127,10 @@ a{
 }
 @keyframes slideRightView{
   from   { transform:translateX(0); }
-  to     { transform: translateX(70%); }
+  to     { transform: translateX(150px); }
 }
 @keyframes slideLeftView{
-  from   { transform:translateX(70%); }
+  from   { transform:translateX(150px); }
   to     { transform: translateX(0); }
 }
 @keyframes slideRightMenu{
@@ -141,26 +143,42 @@ a{
 }
 /*左侧导航*/
 #menu-left{
-	width:70%;
+	width:150px;
 	height: 100%;
 	background: url("../img/menu-left-bg.jpg") no-repeat;
 	background-size:100% 100%;
-	position: fixed;
+	position: absolute;
 	top:0;
 	left: -50px;
 	z-index:10;
+	color: #632A19;
 }
 #menu-left-inner{
 	width: 100%;
 	height: 100%;
-	padding:30px 20px;
+	padding-top:20px;
 	background: rgba(255,255,255,0.3);
 }
+#menu-left-inner div.menu-head img{
+	border-radius: 50%;
+}
+#menu-left-inner div.menu-head{
+	margin-bottom: 10px;
+}
+#menu-left ul{
+	height: calc(100% - 70px);
+	height: -webkit-calc(100% - 70px);
+	background: rgba(255,255,255,0.5);
+}
 #menu-left ul li{
+	padding-left: 20px;
 	font-size: 1.1em;
 	font-weight: 600;
 	height: 40px;
 	line-height: 40px;	
+}
+#menu-left ul li.active{
+	background: rgba(0,0,0,0.2);
 }
 #menu-left ul li a{
 	color: #632A19;
@@ -613,24 +631,32 @@ a{
 }
 /*点餐菜单*/
 #order div.order-menu{
-	width: 50%;
+	width: 160px;
 	height:100%;
 	position: fixed;
 	top:0;
 	right: 0;
 	z-index: 101;
 	transition: all 0.3s;
+	background: url("../img/order-menu-bg2.png") no-repeat;
+	background-size:100% 100%;
 }
 #order div.order-menu.active{
 	right: 0;
 }
 #order div.order-menu.close{
-	right:-50%;
+	right:-160px;
 }
 #order div.order-menu div.menucontent{
 	width:100%;
 	height: 100%;
-	background: #FFFFFF;
+	color:saddlebrown;
+	padding-top:77px;
+	background: rgba(255,255,255,0.3);
+}
+#order div.order-menu div.menucontent>p{
+	height: 35px;
+	line-height: 35px;
 }
 #order div.order-menu div.menuBtn{
 	position: absolute;
@@ -641,18 +667,20 @@ a{
 	height: 73px;
 }
 #order div.order-menu div.menucontent ul{
-	padding:10px;
+	padding:0px 40px 0 40px;
+	text-align: center;
 }
 #order div.order-menu div.menucontent ul li{
 	padding:0 10px;
 	height: 35px;
 	line-height: 35px;
-	border-bottom: 1px solid #4457AB;
+	border-bottom: 1px solid saddlebrown;
 }
 #order div.order-menu div.menucontent ul li a{
 	display: block;
 	width:100%;
 	height: 100%;
+	color:saddlebrown
 }
 /*购物车按钮*/
 #cart-button{
@@ -1797,20 +1825,221 @@ a {
 	display: inline-block;
 	outline: transparent;
 }
+#account div.user-main ul.user-list{
+	margin-top:5px
+}
 #account div.user-main ul.user-list li{
 	margin:5px;
 	width:calc(25% - 10px);
 	border:1px solid #CCCCCC;
-	padding:10px 0;
+	padding:8px 0;
 	box-shadow: 0 0 6px #bbbbbb;
 }
+#account div.user-main ul.user-list li p{
+	margin-top:4px
+}
 #account div.user-main div.huiyuancenter{
-	padding:5px 10px;
+	padding:3px 10px;
 	margin-top:10px;
 	line-height: 35px;
 }
 #account div.user-main div.huiyuancenter span{
 	font-size: 1.5em;
+}
+.a-block{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+/*个人资料*/
+#usercenter,#vipcenter{
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background: rgba(255,255,255,0.9);
+}
+div.usercenter-title{
+	font-size:1.3em;
+	font-weight: bold;
+	padding:15px 0;	
+	position: relative;
+}
+div.usercenter-title a{
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+}
+div.usercenter-title a img{
+	width: 25px;
+}
+#usercenter div.user-content{
+	padding:0 2px 10px 2px;
+	border-top:1px solid #efefef;
+	background: #FFFFFF;
+	font-size: 1.1em;
+	margin-bottom: 10px;
+}
+#usercenter div.user-content ul.content-list li{
+	width: 100%;
+	border-bottom: 1px solid #efefef;
+	height: 30px;
+	line-height: 30px;
+}
+#usercenter div.user-content ul.content-list li .lf{
+	padding-left: 35px;
+	color:#333333;
+	font-size: 16px;
+}
+#usercenter div.user-content ul.content-list li .rt{
+	padding-right: 20px;
+}
+#usercenter div.user-content ul.content-list li img{
+	border-radius: 50%;
+}
+#usercenter div.user-content ul.content-list li.enter .rt{
+	background: url("../img/enter.png") no-repeat right center;
+}
+#usercenter div.user-content ul.content-list li.enter:active{
+	background: #EFEFEF;
+}
+#usercenter div.user-content ul.content-list li.enter:active label{
+	background: #EFEFEF;
+}
+#usercenter div.user-content ul.content-list li.line-H{
+	height: 45px;
+	line-height: 45px;
+}
+#usercenter div.user-content ul.content-list li.usercenter-gender div.rt{
+	width: calc(100% - 85px);
+	width: -webkit-calc(100% - 85px);
+	height: 45px;
+	line-height: 45px;
+}
+#usercenter div.user-content ul.content-list li.usercenter-gender div.rt p.selVal{
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+}
+#usercenter div.user-content ul.content-list li.usercenter-gender div.rt div.valCon{
+	background: #FFFFFF;
+	position: relative;
+	z-index: 102;
+	border:1px solid #CCCCCC;
+	display: none;
+}
+#usercenter div.user-content ul.content-list li.usercenter-gender div.rt div.valCon p{
+	border-bottom: 1px solid #CCCCCC;
+	padding-left: 10px;
+}
+#usercenter div.user-content ul.content-list li.usercenter-gender div.rt>p.selVal{
+	text-align: right;
+}
+#usercenter div.user-content ul.content-list li.usercenter-gender div.rt div.valCon p:active{
+	background: #F0B771;
+	color:#FFFFFF;
+}
+#usercenter div.user-content ul.content-list li.usercenter-head{
+	height: 63px;
+	line-height: 63px;
+}
+::-webkit-inner-spin-button{ 	
+	visibility: hidden; 
+}
+#usercenter div.user-content ul.content-list li.usercenter-birth .rt{
+	padding-right: 0;
+}
+#usercenter div.user-content ul.content-list li.usercenter-birth label.rt{
+	position: relative;
+	width: 20px;
+	z-index: 100;
+	background: #FFFFFF;
+}
+#usercenter div.user-content ul.content-list li.usercenter-birth input.rt{
+	border:none;
+	height: 45px;
+	color:#666666
+	background: none;
+	margin-right: -60px;
+}
+#usercenter div.user-content ul.content-list li.usercenter-head .lf{
+	background: url("../img/head-icon.png") no-repeat 5px center;
+}
+#usercenter div.user-content ul.content-list li.usercenter-name .lf{
+	background: url("../img/signature-icon.png") no-repeat 5px center;
+}
+#usercenter div.user-content ul.content-list li.usercenter-phone .lf{
+	background: url("../img/phone-icon.png") no-repeat 5px center;
+}
+#usercenter div.user-content ul.content-list li.usercenter-gender .lf{
+	background: url("../img/gender-icon.png") no-repeat 5px center;
+}
+#usercenter div.user-content ul.content-list li.usercenter-birth .lf{
+	background: url("../img/birth-icon.png") no-repeat 3px center;
+}
+#usercenter div.kouwei-mark{
+	padding:10px;
+	background: #FFFFFF;
+}
+#usercenter div.kouwei-mark ul li{
+	border:1px solid #CCCCCC;
+	margin-bottom: 10px;
+}
+#usercenter div.kouwei-mark ul li p{
+	border-bottom: 1px solid #CCCCCC;
+	height: 35px;
+	line-height: 35px;
+	padding-left: 10px;
+}
+#usercenter div.kouwei-mark ul li p img{
+	margin-right: 5px;
+}
+#usercenter div.kouwei-mark ul li div span{
+	padding-left: 10px;
+	line-height: 30px;
+}
+#usercenter div.kouwei-mark ul li p a{
+	background: url("../img/enter.png") no-repeat center right;
+	background-size:18px ;
+}
+#usercenter div.kouwei-mark ul li p:active{
+	background: #EFEFEF;
+}
+/*会员中心*/
+#vipcenter div.vip-con{
+	background: #FFFFFF;
+	padding:10px;
+	font-size: 16px;
+}
+#vipcenter dl dt{
+	width: 200px;
+	height: 200px;
+	line-height: 195px;
+	margin: 0 auto;
+	background: url("../img/qr-code-bg.png") no-repeat;
+}
+#vipcenter dl dd{
+	height: 35px;
+	line-height: 35px;
+}
+#vipcenter ul{
+	padding:10px;
+	margin-top:10px
+}
+#vipcenter ul li{
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px dashed #CCCCCC;
+	padding:0 5px
+}
+#vipcenter ul li:last-child{
+	border-bottom: none;
+}
+#vipcenter ul li.vip-yue span.rt{
+	color:red;
 }
 
 

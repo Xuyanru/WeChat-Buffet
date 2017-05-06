@@ -12,6 +12,8 @@ app.config(function ($routeProvider) {
         .when('/bill',{templateUrl:'tpl/bill.html',controller:'billCtrl'})
         .when('/myorder', {templateUrl: 'tpl/myorder.html',controller:'myorderCtrl'})
         .when('/account',{templateUrl:'tpl/account.html',controller:'accountCtrl'})
+        .when('/usercenter',{templateUrl:'tpl/usercenter.html',controller:'usercenterCtrl'})
+        .when('/vipcenter',{templateUrl:'tpl/vipcenter.html',controller:'vipcenterCtrl'})
         .when('/assess',{templateUrl:'tpl/assess.html',controller:'assessCtrl'})
 //      .when('/orderdetail/:did', {templateUrl: 'tpl/orderdetail.html',controller:'orderdetailCtrl'})
         .otherwise({redirectTo: '/start'})
@@ -314,7 +316,7 @@ app.controller('assessCtrl', function($scope) {
             var mainHeight = $("#textCon").height();
             var winHeight = $(window).height();
             var winScrollTop = $(window).scrollTop();
-            if(winScrollTop > mainOffsetTop + mainHeight || winScrollTop <　mainOffsetTop - winHeight){
+            if(winScrollTop>mainOffsetTop+mainHeight||winScrollTop<mainOffsetTop-winHeight){
             	$("#assess").animate({
 					"top":"-150px"
 				},50);
@@ -411,10 +413,34 @@ app.controller('myorderCtrl', function($scope) {
 // $scope.animate(false);
 });
 
-// account page controller 我的账户
+// account page controller 个人中心
 app.controller('accountCtrl', function($scope) {
 // $scope.animate(false);
 });
+
+// vipcenter page controller 会员中心
+app.controller('vipcenterCtrl', function($scope) {
+// $scope.animate(false);
+	$("#vipcenter dl dt").addClass("animated bounceInLeft");
+	$("#vipcenter dl dt img").addClass("animated bounceInRight");
+
+});
+
+// usercenter page controller 用户信息
+app.controller('usercenterCtrl', function($scope) {
+// $scope.animate(false);
+
+	$scope.toggleGender=function($event){
+			$("#genderVal").slideToggle();
+			if($($event.target).hasClass("gender-list")){
+				$("#usercenter li.usercenter-gender div.rt p.selVal").html($($event.target).html());
+			}
+			
+	}
+	
+	$scope.selTaboos=true;
+});
+
 //左侧菜单
 app.controller("menuCtrl",function($scope){
 	$scope.menuAnimate=function(){

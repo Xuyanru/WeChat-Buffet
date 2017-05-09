@@ -21,11 +21,13 @@ app.config(function ($routeProvider) {
 // CONTROLLERS ============================================
 // parent page controller 父控制器
 app.controller('parentCtrl', function($scope,$location,$timeout) {
-	$scope.animate=function(str){
+	$(function(){
+		$scope.animate=function(str){
 		$scope.noanimate=str;
 	}
 //$scope.animate(true);
   $("body").css("height",$(window).height()+"px");
+  $("#menu-left").css("height",$(window).height()+"px");
  	$("#menu-left ul li").click(function(){
  		if($(this).hasClass("active")){
 				$("#menu-left").removeClass("active").addClass("close");
@@ -43,13 +45,15 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
  		}
 		
  	});
+	});
+	
  
  
 });
 
 // start page controller 主页
 app.controller('startCtrl', function($scope) {
-	$("#start").css("height",$(window).height()+"px");
+
 	
  
 });
@@ -416,6 +420,7 @@ app.controller('myorderCtrl', function($scope) {
 // account page controller 个人中心
 app.controller('accountCtrl', function($scope) {
 // $scope.animate(false);
+	$("#account div.user-title div.user-head").addClass("animated rotateIn");
 });
 
 // vipcenter page controller 会员中心

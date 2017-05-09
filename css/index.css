@@ -2,7 +2,6 @@
 	margin:0;
 	padding: 0;
 	box-sizing: border-box;
-	-webkit-backface-visibility: hidden;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 body{
@@ -74,7 +73,8 @@ a{
 /* rotate and fall */
 @keyframes rotateFall {
   0%     { transform: rotateZ(0deg); }
-  20%   { transform: rotateZ(10deg); animation-timing-function: ease-out; }
+  20%   { transform: rotateZ(10deg); animation-timing-function: ease-out;
+  		-webkit-animation-timing-function: ease-out; }
   40%   { transform: rotateZ(17deg); }
   60%   { transform: rotateZ(16deg); }
   100%   { transform: translateY(100%) rotateZ(17deg); }
@@ -112,8 +112,8 @@ a{
   /* page specific animations ------------------------ */
   
   /* home -------------------------- */
-  .page-animate.ng-enter     { animation: slideInRight 0.3s both ease-in;}
-  .page-animate.ng-leave     { transform-origin: 0% 0%; animation: slideOutLeft 0.3s both ease-in;}
+  .page-animate.ng-enter     { animation: slideInRight 0.3s both ease-in;-webkit-animation: slideInRight 0.3s both ease-in;}
+  .page-animate.ng-leave     { transform-origin: 0% 0%; animation: slideOutLeft 0.3s both ease-in;-webkit-animation: slideOutLeft 0.3s both ease-in;}
 /*导航按钮*/
 #menu-button{
 	position: absolute;
@@ -145,7 +145,7 @@ a{
 #menu-left{
 	width:200px;
 	height: 100%;
-	background: url("../img/menu-left-bg.jpg") no-repeat;
+	overflow: hidden;
 	background-size:100% 100%;
 	position: absolute;
 	top:0;
@@ -171,7 +171,7 @@ a{
 	background: rgba(255,255,255,0.5);
 }
 #menu-left ul li{
-	padding-left: 45px;
+	padding-left: 10px;
 	font-size: 1.1em;
 	font-weight: 600;
 	height: 40px;
@@ -183,40 +183,133 @@ a{
 #menu-left ul li a{
 	color: #632A19;
 }
-#menu-left ul li a{
+/*#menu-left ul li a{
 	line-height: 25px;
-}
+}*/
 #menu-left ul li a img{
 	vertical-align: sub;
 	margin-right: 8px;
 	width: 22px;
 }
 #menu-left.active{
-	animation: slideRightMenu 0.3s both ease-in;
+	animation: slideRightMenu 0.25s both ease-in;
+	-webkit-animation: slideRightMenu 0.25s both ease-in;
 }
 #menu-left.close{
 	animation: slideLeftMenu 0.3s both ease-in;
+	-webkit-animation: slideLeftMenu 0.3s both ease-in;
 }
 /*#viewOuter*/ div.page-inner.active{
 	animation: slideRightView 0.3s both ease-in;
+	-webkit-animation: slideRightView 0.3s both ease-in;
 }
 /*#viewOuter*/ div.page-inner.close{
-	animation: slideLeftView 0.3s both ease-in;
+	animation: slideLeftView 0.25s both ease-in;
+	-webkit-animation: slideLeftView 0.25s both ease-in;
 }
+.view {
+	width: 100%;
+	height:100%;
+	position: relative;
+	box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+	background: #333;
+	-webkit-perspective: 500px;
+	perspective: 500px;
+}
+
+.view .slice{
+	height: 100%;
+	z-index: 100;	
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;	
+	-webkit-transform-origin: left center;
+	transform-origin: left center;	
+	-webkit-transition: -webkit-transform 150ms ease-in-out;
+	transition: transform 150ms ease-in-out;
+	background: url("../img/menu-left-bg.jpg") no-repeat;
+		
+}
+.view .s1 {
+	width:25px;
+	background-position: 0px 0px;
+}
+.view .s2 {
+	width: 125px;
+	background-position: -25px 0px;
+	-webkit-transform: translate3d(25px,0,0);
+	transform: translate3d(25px,0,0);
+}
+.view .s3 {
+	width: 50px;
+	background-position: -150px 0px;
+	-webkit-transform: translate3d(125px,0,0);
+	transform: translate3d(125px,0,0);
+}
+.view .overlay {
+	height: 100%;
+	opacity: 0;
+	position: absolute;
+	-webkit-transition: opacity 150ms ease-in-out;
+	transition: opacity 150ms ease-in-out;
+}
+.view .s1 .overlay{
+	width: 25px;
+}
+.view .s2 .overlay{
+	width: 125px;
+}
+.view .s3 .overlay{
+	width: 50px;
+}
+
+#menu-left.close .overlay {
+	opacity: 1;
+}
+#menu-left.close .s2{
+	-webkit-transform: translate3d(25px,0,0) rotate3d(0,1,0,-60deg);
+	transform: translate3d(25px,0,0) rotate3d(0,1,0,-60deg);
+}
+#menu-left.close .s3
+	-webkit-transform: translate3d(125px,0,0) rotate3d(0,1,0,0deg);
+	transform: translate3d(125px,0,0) rotate3d(0,1,0,0deg);
+}
+#menu-left.active .s2{
+	-webkit-transform: translate3d(25px,0,0) rotate3d(0,1,0,-60deg);
+	transform: translate3d(25px,0,0) rotate3d(0,1,0,-60deg);
+}
+#menu-left.active .s3
+	-webkit-transform: translate3d(125px,0,0) rotate3d(0,1,0,0deg);
+	transform: translate3d(125px,0,0) rotate3d(0,1,0,0deg);
+}
+.view .s1 > .overlay {
+	background: -webkit-linear-gradient(right, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%);
+	background: linear-gradient(right, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%);
+}
+
+.view .s2 > .overlay {
+	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.2) 100%);
+	background: linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.2) 100%);
+}
+
+.view .s3 > .overlay {
+	background: -webkit-linear-gradient(right, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.2) 100%);
+	background: linear-gradient(right, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.2) 100%);
+}
+#menu-left-inner{
+	width: 100%;
+	height: 100%;
+	position: absolute;	
+}
+
 /*店铺主页*/
 #start,#order{
 	width: 100%;
 	height: 100%;
 	overflow-y:auto;
+	overflow-x: hidden;
 	background: rgba(200,200,200,0.5);
-	padding-bottom: 65px;
 }
 /*轮播*/
-/*
- *	generated by WOW Slider 8.7
- *	template Book
- */
-@import url(https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext,cyrillic);
 #wowslider-container1 { 
 	display: table;
 	zoom: 1; 
@@ -345,18 +438,6 @@ a{
 }
 #wowslider-container1 .ws_cube_side {
 	background: #A6A5A9;
-}
-
-
-#wowslider-container1.ws_gestures {
-	cursor: -webkit-grab;
-	cursor: -moz-grab;
-	cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAABwSURBVEjH7ZJBEsAgCAMT/v/n9NCOSqe2oD2yNx1JggB4BCEFWyFASP2KMQE7ywWhe/tTRGCGogLk02tFctiW/SUgaMyQG4PdPzDn31rQbMb8FiAXgvsEJNax1yVlVGAjA93apP3HFhZTGIqiKH7iADB6HxPlHdNVAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE0LTA3LTA3VDEzOjQ5OjEwKzAyOjAwm7WiFAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNC0wNy0wN1QxMzo0OToxMCswMjowMOroGqgAAAAASUVORK5CYII="), move;
-}
-#wowslider-container1.ws_gestures.ws_grabbing {
-	cursor: -webkit-grabbing;
-	cursor: -moz-grabbing;
-	cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAABaSURBVEjH7ZMxCkAhDEOT8u9/5TpJ+xWkFse8IYutJgEB8RCHL1qCc90BEFnT6QH7mwgFHBUf8wJyS1TDLuc3vmighx37LZdIth3E5hKj9n6O0HRh+oJCiFcMxRUUDxR1CTMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTQtMDctMDdUMTM6NDk6MzgrMDI6MDDqf+sOAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE0LTA3LTA3VDEzOjQ5OjM4KzAyOjAwmyJTsgAAAABJRU5ErkJggg=="), move;
 }
 
 /* hide controls when video start play */
@@ -815,14 +896,20 @@ a{
 }
 #order .search.active{
 	animation: opensearch 0.3s;
+	-webkit-animation: opensearch 0.3s;
+	animation-fill-mode:forwards;
 	-webkit-animation-fill-mode:forwards;
 }
 #order .search.active input{
 	animation: openinput 0.3s;
+	-webkit-animation: openinput 0.3s;
+	animation-fill-mode:forwards;
 	-webkit-animation-fill-mode:forwards;
 }
 #order .search.active span{
 	animation: openspan 0.3s;
+	-webkit-animation: openspan 0.3s;
+	animation-fill-mode:forwards;
 	-webkit-animation-fill-mode:forwards;
 }
 /*添加close动画*/
@@ -873,14 +960,20 @@ a{
 }
 #order .search.close{
 	animation: closesearch 0.3s;
+	-webkit-animation: closesearch 0.3s;
+	animation-fill-mode:forwards;
 	-webkit-animation-fill-mode:forwards;
 }
 #order .search.close input{
 	animation: closeinput 0.3s;
+	-webkit-animation: closeinput 0.3s;
+	animation-fill-mode:forwards;
 	-webkit-animation-fill-mode:forwards;
 }
 #order .search.close span{
 	animation: closespan 0.3s;
+	-webkit-animation: closespan 0.3s;
+	animation-fill-mode:forwards;
 	-webkit-animation-fill-mode:forwards;
 }
 /*欢迎光临页头*/
@@ -1133,6 +1226,8 @@ a{
 }
 #cart-dialog.active{
 	animation: openDialog 0.2s;
+	-webkit-animation: openDialog 0.2s;
+	animation-fill-mode: forwards;
 	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes openDialog{
@@ -1149,6 +1244,8 @@ a{
 }
 #cart-dialog.close{
 	animation: closeDialog 0.2s;
+	-webkit-animation: closeDialog 0.2s;
+	animation-fill-mode: forwards;
 	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes closeDialog{
@@ -1165,6 +1262,8 @@ a{
 }
 #cart-dialog.adddish{
 	animation: addDialog 0.8s;
+	-webkit-animation: addDialog 0.8s;
+	animation-fill-mode: forwards;
 	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes addDialog{
@@ -2207,10 +2306,12 @@ a {
 	width: 113px;
 	top:-17px;
 	left: -17px;
-	opacity: 0;
+	opacity: 1;
 	z-index: 99;
-	animation: rotateLight 2s;
+	animation: rotateLight 2.5s;
+	-webkit-animation: rotateLight 2.5s;
 	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes rotateLight{
 	from{

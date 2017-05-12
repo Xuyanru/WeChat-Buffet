@@ -69,6 +69,12 @@ a{
 	background-size:cover ;
 	z-index: 100;
 }
+div.page-inner>div{
+	width: 100%;
+	height: 100%;
+	overflow-y:auto ;
+	overflow-x: hidden;
+}
  /*页面滑动动画*/
 /* rotate and fall */
 @keyframes rotateFall {
@@ -2373,7 +2379,7 @@ a {
 	height: 100%;
 }
 /*个人资料*/
-#usercenter,#vipcenter{
+#usercenter,#vipcenter,#allorder{
 	width: 100%;
 	height: 100%;
 	overflow-y: auto;
@@ -2562,5 +2568,30 @@ div.usercenter-title a img{
 #vipcenter ul li.vip-yue span.rt{
 	color:red;
 }
+/*我的订单页面*/
+#myorder{
+	background: rgba(255,255,255,0.5);
+}
+#myorder div.myorder-con ul.myorder-title li{
+	width: 25%;
+	height: 45px;
+	line-height: 45px;
+	background: #999999;
+	color:#FFFFFF;
+}
+#myorder div.myorder-con ul.myorder-title{
+	position: relative;
+	padding:5px 0;
+}
+#myorder div.myorder-con ul.myorder-title li#moving-tab{
+	position: absolute;
+	top:5px;
+	left: 0;
+	background: #F97F00;
+	text-transform: uppercase;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-weight: bold;
+}
+
 
 

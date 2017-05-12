@@ -53,8 +53,6 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 
 // start page controller 主页
 app.controller('startCtrl', function($scope) {
-
-	
  
 });
 
@@ -223,11 +221,11 @@ $("#shopcart div.user-msg>div>div").unbind("click").click(function(){
 	});
 	
 //	用餐时间限制
-	$scope.userTime1=new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate();
-	$scope.addTime=new Date(new Date().getTime()+(30*24*60*60*1000));
-	$scope.userTime2=$scope.addTime.getFullYear()+"-"+($scope.addTime.getMonth()+1)+"-"+$scope.addTime.getDate();
-	$scope.userTime=$scope.userTime1+","+$scope.userTime2;
-//	var calendardatetime = new lCalendar();
+//	$scope.userTime1=new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate();
+//	$scope.addTime=new Date(new Date().getTime()+(30*24*60*60*1000));
+//	$scope.userTime2=$scope.addTime.getFullYear()+"-"+($scope.addTime.getMonth()+1)+"-"+$scope.addTime.getDate();
+//	$scope.userTime=$scope.userTime1+","+$scope.userTime2;
+////	var calendardatetime = new lCalendar();
 //				calendardatetime.init({
 //					'trigger': '#s',
 //					'type': 'datetime'
@@ -415,6 +413,16 @@ app.controller('underorderCtrl', function($scope) {
 // myorder page controller 我的订单
 app.controller('myorderCtrl', function($scope) {
 // $scope.animate(false);
+//	点击菜单选择订单
+	$("#myorder div.myorder-con ul.myorder-title li.canClick").unbind("click").click(function(){
+		var idx=$(this).index();
+		var move=idx*$(this).width();
+		$("#moving-tab").css({"transform": "translate3d("+move+"px, 0px, 0px)","transition": "all 0.3s ease-out"}).html($(this).html());
+		$("#myorder div.myorder-con ul.myorder-title li.active").removeClass("active");
+		$(this).addClass("active");
+	});
+
+
 });
 
 // account page controller 个人中心

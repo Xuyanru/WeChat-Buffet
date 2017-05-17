@@ -10,7 +10,8 @@ app.config(function ($routeProvider) {
         .when('/check',{templateUrl:'tpl/check.html',controller:'checkCtrl'})
         .when('/underorder',{templateUrl:'tpl/underorder.html',controller:'underorderCtrl'})
         .when('/bill',{templateUrl:'tpl/bill.html',controller:'billCtrl'})
-        .when('/myorder', {templateUrl: 'tpl/myorder.html',controller:'myorderCtrl'})
+        .when('/myorder/:idx', {templateUrl: 'tpl/myorder.html',controller:'myorderCtrl'})
+        .when('/details', {templateUrl: 'tpl/details.html',controller:'detailsCtrl'})
         .when('/account',{templateUrl:'tpl/account.html',controller:'accountCtrl'})
         .when('/usercenter',{templateUrl:'tpl/usercenter.html',controller:'usercenterCtrl'})
         .when('/vipcenter',{templateUrl:'tpl/vipcenter.html',controller:'vipcenterCtrl'})
@@ -25,26 +26,36 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 		$scope.animate=function(str){
 		$scope.noanimate=str;
 	}
-//$scope.animate(true);
-  $("body").css("height",$(window).height()+"px");
-  $("#menu-left").css("height",$(window).height()+"px");
- 	$("#menu-left ul li").click(function(){
- 		if($(this).hasClass("active")){
-				$("#menu-left").removeClass("active").addClass("close");
-				$("div.page-inner").removeClass("active").addClass("close");
- 		}else{
- 			$("#menu-left ul li.active").removeClass("active");
- 			$(this).addClass("active");
-// 			$("#menu-left").removeClass("active");
-// 			$("#viewOuter div.page-inner").removeClass("active");
-   			$timeout(function(){
-   				$("#menu-left").removeClass("active");
-   				$("div.page-inner").removeClass("active");
-   			},300);
- 			
- 		}
-		
- 	});
+	//$scope.animate(true);
+	  $("body").css("height",$(window).height()+"px");
+	  $("#menu-left").css("height",$(window).height()+"px");
+	 	$("#menu-left ul li").click(function(){
+	 		if($(this).hasClass("active")){
+					$("#menu-left").removeClass("active").addClass("close");
+					$("div.page-inner").removeClass("active").addClass("close");
+	 		}else{
+	 			$("#menu-left ul li.active").removeClass("active");
+	 			$(this).addClass("active");
+	// 			$("#menu-left").removeClass("active");
+	// 			$("#viewOuter div.page-inner").removeClass("active");
+	   			$timeout(function(){
+	   				$("#menu-left").removeClass("active");
+	   				$("div.page-inner").removeClass("active");
+	   			},300);
+	 			
+	 		}
+			
+	 	});
+//	 	左侧导航添加或去除class
+	 	$scope.addClass=function($event){
+			if($($event.currentTarget).attr("title")){
+				var mclass=$($event.currentTarget).attr("title");
+				$("#menu-left ul li.active").removeClass("active");
+				$("#menu-left ul li."+mclass).addClass("active");
+			}else{
+				$("#menu-left ul li.active").removeClass("active");
+			}
+		};
 	});
 	
  
@@ -389,6 +400,32 @@ app.controller('assessCtrl', function($scope) {
 		}
 		
 	});
+//	点击添加图片进行添加图片
+var filePaths = $("#addImgs")[0].files;//或者这样写 document.getElementById("id").files;  
+for( var i=0;i<filePaths.length; i++ ){  
+    filePaths[i].name;  
+}  
+	$("#assess div.assessMain div.addimgs ul li.addIcon input").change(function(){
+		var imgLength=$("#assess div.assessMain div.addimgs ul li").length-1;
+		var files=document.getElementById('addImgs').files, fs=files.length, s=0;
+		var add=5-imgLength;
+			if(fs >add ){
+			    alert("上传的文件数量超过5个了！请重新选择！");    
+			}else{
+				var frag=document.createDocumentFragment();
+			    for(var i=0;i<fs;i++){
+			        $(frag).append('<li class="lf"><img src="'+window.URL.createObjectURL(files[i])+'" alt="" /></li>')
+			    }
+			    $("#assess div.assessMain div.addimgs ul li.addIcon").before(frag);
+			}
+			imgLength=$("#assess div.assessMain div.addimgs ul li").length-1;
+			if(imgLength<5){
+				 $("#assess div.assessMain div.addimgs ul li.addIcon").show();
+			}else{
+				$("#assess div.assessMain div.addimgs ul li.addIcon").hide();
+			}
+			
+	});
 
 	
 	
@@ -411,19 +448,66 @@ app.controller('underorderCtrl', function($scope) {
 
 
 // myorder page controller 我的订单
-app.controller('myorderCtrl', function($scope) {
+app.controller('myorderCtrl', function($scope,$routeParams) {
 // $scope.animate(false);
 //	点击菜单选择订单
-	$("#myorder div.myorder-con ul.myorder-title li.canClick").unbind("click").click(function(){
-		var idx=$(this).index();
-		var move=idx*$(this).width();
-		$("#moving-tab").css({"transform": "translate3d("+move+"px, 0px, 0px)","transition": "all 0.3s ease-out"}).html($(this).html());
-		$("#myorder div.myorder-con ul.myorder-title li.active").removeClass("active");
-		$(this).addClass("active");
-	});
+	$scope.classInner=function(me,idx){
+		var move=idx*$(me).width();
+		$("#moving-tab").css({"transform": "translate3d("+move+"px, 0px, 0px)","transition": "all 0.3s ease-out"}).html($(me).html());
+		$("#myorder div.myorder-con ul.myorder-title-menu li.active").removeClass("active");
+		$(me).addClass("active");
+	}
+	if($routeParams){
+		var idx=parseInt($routeParams.idx);
+		var me=$("#myorder div.myorder-con ul.myorder-title-menu li")[idx];
+		$scope.classInner(me,idx);
+	}
+	$scope.addClassA=function($event){
+		var idx=$($event.currentTarget).index();
+		$scope.classInner($event.currentTarget,idx);
+	};
+//	返回页面顶部
+	$scope.backToTop=function(){
+		$("#myorder").animate({
+			"scrollTop": "0"
+		},500);
+	}
+//	点击删除订单
+	$scope.deleteOrder=function($event){
+		var me=$event.currentTarget;
+		$("#delete-dialog").css({'transform': 'translateY(100%)','transition': 'all 0.5s'});
+		$(me).parent().parent().parent().addClass("active");
+	}
+	$scope.closeDialog=function(){
+		$("#delete-dialog").css({'transform': 'translateY(0)','transition': 'all 0.5s'});
+		$("#myorder div.myorder-list>div.myorder-list-con.active").removeClass("active");
+	}
+	$scope.deleteOrderList=function($event){
+		var me=$event.currentTarget;
+		if(!($(me).hasClass("active"))){
+			$(me).addClass("active");
+			$("#myorder div.myorder-list>div.myorder-list-con.active").remove();
+			$("#delete-dialog div.delete-dialog-inner p.inner1").html("删除订单成功！").css("color","green");
+			$("#delete-dialog").css({'transform': 'translateY(0)','transition': 'all 0.5s 0.5s'});
+			setTimeout(function(){
+				$("#delete-dialog div.delete-dialog-inner p.inner1").css("color","#E5004B").html("确定删除该订单吗？");
+				$(me).removeClass("active");
+			}.bind(me),1000);
+		}
+			
+	}
+	
+	
 
 
 });
+
+// details page controller 订单详情
+app.controller('detailsCtrl', function($scope) {
+// $scope.animate(false);
+	
+});
+
 
 // account page controller 个人中心
 app.controller('accountCtrl', function($scope) {

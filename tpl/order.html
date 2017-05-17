@@ -479,7 +479,7 @@
 	
 	<div ng-include="'tpl/include/menu-button.html'"></div>
 	<div  id="cart-button">
-		<a href="#/shopcart">
+		<a href="#/shopcart" ng-click="addClass($event)" title="shopcart">
 			<span class="cart-number">0</span>
 			<img src="img/cart-button.png" alt="" />
 		</a>

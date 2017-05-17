@@ -131,13 +131,13 @@
 		</div>
 	</div>
 	<div  id="continue-order-button" class="boxshadow textcenter borderRadius10">
-		<a href="#/order" class="buttonColor">
+		<a href="#/order" class="buttonColor" ng-click="addClass($event)"  title="order">
 			<img src="img/continue-order.png" alt=""/>
 			<p class="textcenter">加菜</p>
 		</a>	
 	</div>
 	<div  id="place-order-button" class="boxshadow textcenter borderRadius10">
-		<a href="#/confirmorder/{{0}}" class="buttonColor">
+		<a href="#/confirmorder/{{0}}" class="buttonColor" ng-click="addClass($event)" title="underorder">
 			<img  src="img/place-order.png" alt=""/>
 			<p class="textcenter">下单</p>
 		</a>	

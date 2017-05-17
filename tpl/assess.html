@@ -94,7 +94,7 @@
 			</div>
 			<div class="addimgs">
 				<ul class="clear">
-					<li class="lf">
+					<!--<li class="lf">
 						<img src="img/01-xin_07.png" alt="" />
 					</li>
 					<li class="lf">
@@ -105,10 +105,13 @@
 					</li>
 					<li class="lf">
 						<img src="img/01-xin_07.png" alt="" />
-					</li>
+					</li>-->
 					<li class="addIcon lf">
-						<p class='textcenter'><img src="img/camaro.png" alt="" /></p>
+						<label for="addImgs">
+							<p class='textcenter'><img src="img/camaro.png" alt="" /></p>
 						<p class="textcenter">添加图片</p>
+						</label>
+						<input type="file" accept="image/*" id="addImgs"/ multiple="multiple">	
 					</li>
 				</ul>
 			</div>
@@ -125,7 +128,7 @@
 			</div>
 			<div class="cancel-button">
 				<p class="cancel-cancel-button lf textcenter borderRadius5" ng-click="closeDialog()">取消</p>
-				<p class="cancel-confirm-button lf textcenter borderRadius5"><a href="">确定</a></p>
+				<p class="cancel-confirm-button lf textcenter borderRadius5"><a href="#/myorder/{{3}}" class="a-block">确定</a></p>
 			</div>
 		</div>
 	</div>

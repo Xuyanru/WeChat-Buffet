@@ -150,7 +150,8 @@ app.controller('orderCtrl', function($scope,$timeout) {
 	});
 	
 //	点击来一份弹出添加购物车弹出框
-	$scope.addDish=function(){
+	$scope.addDish=function($event){
+		$scope.dishInfo=eval($($event.currentTarget).attr("title"));
 		$("#cart-dialog-outer").show().css("display","flex");
 //		$("#cart-dialog").addClass("active");
 		$("#cart-dialog").addClass("animated bounceIn");
@@ -168,28 +169,86 @@ app.controller('orderCtrl', function($scope,$timeout) {
 			$("#cart-dialog-outer").hide();
 		});
 	}
-
-//	$("#cart-dialog p.close-dialog span").unbind("click").click(function(){
-//		$("#cart-dialog").addClass("close");
-//		$("#cart-dialog-outer").fadeOut(200);
-//		setTimeout(function(){
-//			$("#cart-dialog").removeClass("close").removeClass("active");
-//		},200);
-			
-//	});
+//	动态获取菜品
+	$.getJSON("json/food.json",function(data){
+		$scope.foodList=[];
+		for(var i=0;i<data[0].foodtypes.length;i++){
+			if(data[0].foodtypes[i].foodinfos.length>0){
+				$scope.foodList.push(data[0].foodtypes[i]);
+			}
+		}
+	});
+	
+//	点击加减号进行菜品数量加减
+	$scope.addNum=function(){
+		var num=parseInt($("#cart-dialog div.cart-num a.numBer span").html());
+		$("#cart-dialog div.cart-num a.numBer span").html(num+1);
+	}
+	$scope.reduceNum=function(){
+		var num=parseInt($("#cart-dialog div.cart-num a.numBer span").html());
+		if(num>1){
+			$("#cart-dialog div.cart-num a.numBer span").html(num-1);
+		}
+		
+	}
 
 //	点击加入购物车
 	$("#cart-dialog div.cart-num p.addCart").unbind("click").click(function(){
+		var pid=$(this).attr("title");
+		var numBer=$("#cart-dialog div.cart-num a.numBer span").html();
 		$("#cart-dialog p.close-dialog span").html("&#10004");
 		$("#cart-dialog").addClass("adddish");
 		$("#cart-dialog>div").css("opacity","0");
-		setTimeout(function(){
+		$("#dishItems div.dishItem ul."+pid).addClass("active");
+		$("#cart-dialog").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
 			$("#cart-dialog").removeClass("adddish");
 			$("#cart-dialog p.close-dialog span").html("X");
 			$("#cart-dialog-outer").hide();
 			$("#cart-dialog>div").css("opacity","1");
-		},800);
+			$("#dishItems div.dishItem ul."+pid+" li.dish-msg .likeCount").html(numBer);
+			$scope.totleNum();
+			$("#dishItems div.dishItem ul."+pid+" li.dish-msg .feed").show();
+			$("#dishItems div.dishItem ul."+pid+" li.dish-msg .heart").addClass("heartAnimation");
+			$($("#dishItems div.dishItem ul."+pid+" li.dish-msg .heart")[0]).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+				$("#dishItems div.dishItem ul."+pid+" li.dish-msg .heart").removeClass("heartAnimation");
+				$("#dishItems div.dishItem ul."+pid+" li.dish-msg .heart").css("background-position","left");
+			$("#cart-dialog div.cart-num a.numBer span").html("1");
+			});
+		});
 	});
+//	购物车总数量
+	$scope.totleNum=function(){
+		Array.prototype.unique3 = function(){
+			 var res = [];
+			 var json = {};
+			 for(var i = 0; i < this.length; i++){
+			  if(!json[this[i]]){
+			   res.push(this[i]);
+			   json[this[i]] = 1;
+			  }
+			 }
+			 var totle=0;
+			 var ulmsg=[];
+	 		for(var j=0;j<res.length;j++){
+	 			var ulobj={};
+	 			var xnum=parseInt($($("#dishItems div.dishItem ul."+res[j])[0]).find(".likeCount").html());
+	 			ulobj.pid=res[j];
+	 			ulobj.price=parseFloat($($("#dishItems div.dishItem ul."+res[j])[0]).find("span.price-num").html());
+	 			ulobj.name=$($("#dishItems div.dishItem ul."+res[j])[0]).find("p.dish-name").html();
+	 			ulobj.count=xnum;
+	 			ulmsg.push(ulobj);
+	 			totle+=xnum;
+	 		}
+	 		ulmsg=JSON.stringify(ulmsg);
+	 		$("#cart-button>a>span").html(totle);
+	 		$("#cart-button>a>span").attr("title",ulmsg);
+		}
+		var arr=[];
+		$("#dishItems div.dishItem ul.active").each(function(){
+			arr.push($(this).attr("title"));
+		});
+		arr.unique3();
+	}
 	
 //	做法选择
 $scope.addActive=function($event){

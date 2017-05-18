@@ -12,9 +12,9 @@
 		<div class="menucontent">
 			<p class="textcenter">菜品分类</p>
 			<ul>
-				<li><a href="" name="recai" ng-click="autoScroll($event)">热菜</a></li>
-				<li><a href="" name='liangcai' ng-click="autoScroll($event)">凉菜</a></li>
-				<li><a href="" name="yinpin" ng-click="autoScroll($event)">饮品</a></li>
+				<li ng-repeat="fooditems in foodList">
+					<a href="" name="{{fooditems.fCode}}" ng-click="autoScroll($event)">{{fooditems.foodName}}</a>
+				</li>
 			</ul>
 		</div>
 		<div class="menuBtn active">
@@ -25,414 +25,23 @@
 		<img src="img/wellcome-img.png" alt="" />
 	</div>
 	<div id="dishItems">
-		<div class="dishItem clear">
-			<p class="textcenter" id="recai">热菜</p>
-			<ul class="clear">
+		<div class="dishItem clear" ng-repeat="fooditems in foodList">
+			<p class="textcenter" id="{{fooditems.fCode}}">{{fooditems.foodName}}</p>
+			<ul class="clear {{foodinfoList.shopfood.id}}" ng-repeat="foodinfoList in fooditems.foodinfos" title="{{foodinfoList.shopfood.id}}">
 				<li class="lf dish-img">
 					<img src="img/01-xin_07.png" alt="" />
 				</li>
 				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
+					<div class="feed">
+						<div class="heart"></div> 
+						<div class="likeCount">1</div>
+					</div>
+					<p class="dish-name">{{foodinfoList.foodinfo.foodName}}</p>
 					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter"ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter"ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-		</div>
-		<div class="dishItem clear">
-			<p class="textcenter" id="liangcai">凉菜</p>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-		</div>
-		<div class="dishItem clear">
-			<p class="textcenter" id="yinpin">饮品</p>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p>
-						<span class="lf dish-price">￥ 35.00/份</span>
-						<a class="rt add-cart textcenter" ng-click="addDish()">
-							<span>来一份</span>
+						<span class="lf dish-price">￥</span>
+						<span class="lf dish-price price-num"> {{foodinfoList.foodinfo.price}}/{{foodinfoList.enumitem.enumItemName}}</span>
+						<a class="rt add-cart textcenter" ng-click="addDish($event)" title="{{[foodinfoList.foodinfo.foodName,foodinfoList.foodinfo.price,foodinfoList.enumitem.enumItemName,foodinfoList.shopfood.id]}}">
+							<span >来一份</span>
 							<img src="img/cart-img.png" alt="" />
 						</a>
 					</p>
@@ -444,8 +53,8 @@
 		<div id="cart-dialog">
 			<p class="close-dialog"><span ng-click="closeDialog()">X</span></p>
 			<div class="cart-dish-name clear">
-				<span class="lf">法兰克福就离开</span>
-				<span class="rt">￥35.00/份</span>
+				<span class="lf">{{dishInfo[0]}}</span>
+				<span class="rt">￥{{dishInfo[1]}}/{{dishInfo[2]}}</span>
 			</div>
 			<div class="make-way">
 				<p>请选择做法:</p>
@@ -467,12 +76,13 @@
 			</div>
 			<div class="cart-num clear">
 				<p class="lf">
-					<a class='reduce' href="">－</a>
+					<a class='reduce' href="" ng-click="reduceNum()">&#8211</a>
 					<a href="" class="numBer">
-						<span>1</span>份
-					</a><a class="add" href="">+</a>
+						<span>1</span>{{dishInfo[2]}}
+					</a>
+					<a class="add" href="" ng-click="addNum()">&#10010</a>
 				</p>
-				<p class="rt addCart">加入购物车</p>
+				<p class="rt addCart" title="{{dishInfo[3]}}">加入购物车</p>
 			</div>
 		</div>
 	</div>

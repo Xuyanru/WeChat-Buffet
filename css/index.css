@@ -1034,6 +1034,7 @@ div.page-inner>div{
 }
 #dishItems div.dishItem ul li.dish-msg{
 	width: -webkit-calc(100% - 100px);
+	position: relative;
 }
 #dishItems div.dishItem ul li.dish-msg p{
 	font-size: 1.1em;
@@ -1052,7 +1053,7 @@ div.page-inner>div{
 #dishItems div.dishItem ul li.dish-msg p span.dish-price{
 	padding-top:5px;
 	color:red;
-	font-siae:1em;
+	font-size:1em;
 }
 #dishItems div.dishItem ul li.dish-msg p a.add-cart{
 	padding:3px 12px;
@@ -1123,6 +1124,73 @@ div.page-inner>div{
 }
 #dishItems.active div.dishItem ul li.dish-msg p a.add-cart span{
 	display: none;
+}
+#dishItems div.dishItem ul li.dish-msg .heart {
+	    background: url(../img/web_heart_animation.png);
+	    background-position: left;
+	    background-repeat: no-repeat;
+	    height: 100px;
+	    width: 100px;
+	    cursor: pointer;
+	    position: absolute;
+	    top:0;
+	    left:0;
+        background-size:2900%;
+    }
+
+    @-webkit-keyframes heartBlast {
+    0% {
+	    background-position: left;
+	}
+	100% {
+	    background-position: right;
+	}
+	}
+
+	@keyframes heartBlast {
+	    0% {
+	    background-position: left;
+	}
+	100% {
+	    background-position: right;
+	}
+	}
+#dishItems div.dishItem ul li.dish-msg .heartAnimation {
+    display: inline-block;
+    -webkit-animation-name: heartBlast;
+    animation-name: heartBlast;
+    -webkit-animation-duration: .8s;
+    animation-duration: .8s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: steps(28);
+    animation-timing-function: steps(28);
+    background-position: right;
+    }
+#dishItems div.dishItem ul li.dish-msg .feed{
+	clear: both; 
+	width:100px;
+	height:100px;
+	position: absolute;
+	top:-12px;
+	right: 55px;
+	display: none;
+}
+#dishItems.active div.dishItem ul li.dish-msg .feed{
+	right: 16px;
+	top:-5px;
+}
+#dishItems div.dishItem ul li.dish-msg .likeCount{
+	font-family: 'Georgia', Times, Times New Roman, serif;
+	font-size: 15px;
+	color:#FFFFFF;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100px;
+	height:100px;
+	line-height:95px;
+	text-align:center;
 }
 /*点餐菜单*/
 #order div.order-menu{
@@ -1392,7 +1460,15 @@ div.page-inner>div{
 	width: 30px;
 	text-align: center;
 	font-weight: bold;
-	color:red
+	color:red;	
+}
+#cart-dialog div.cart-num a.add{
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#cart-dialog div.cart-num a.reduce{
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
 }
 #cart-dialog div.cart-num a.numBer{
 	padding:0 7px;
@@ -1521,6 +1597,7 @@ div.page-inner>div{
 #cartItems ul li.dish-msg{
 	width: -webkit-calc(100% - 85px);
 	margin-left: 5px;
+	position: relative;
 }
 #cartItems ul li.dish-msg p.dish-name{
 	height: 20px;

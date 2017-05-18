@@ -76,8 +76,20 @@ app.controller('evaluateCtrl', function($scope) {
 });
   
 // order page controller 点餐
-app.controller('orderCtrl', function($scope,$timeout) {
-//$scope.animate(false);
+app.controller('orderCtrl', function($scope,$timeout,$http) {
+		
+		//$scope.animate(false);
+
+//	动态获取菜品
+	$http.get("json/food.json").success(function(data){
+		$scope.foodList=[];
+		for(var i=0;i<data[0].foodtypes.length;i++){
+			if(data[0].foodtypes[i].foodinfos.length>0){
+				$scope.foodList.push(data[0].foodtypes[i]);
+			}
+		}
+	});
+
 //搜索框动画
   $("#order div.search span").unbind("click").click(function(){
   	if(!($(this).parent().hasClass("active"))){
@@ -169,15 +181,6 @@ app.controller('orderCtrl', function($scope,$timeout) {
 			$("#cart-dialog-outer").hide();
 		});
 	}
-//	动态获取菜品
-	$.getJSON("json/food.json",function(data){
-		$scope.foodList=[];
-		for(var i=0;i<data[0].foodtypes.length;i++){
-			if(data[0].foodtypes[i].foodinfos.length>0){
-				$scope.foodList.push(data[0].foodtypes[i]);
-			}
-		}
-	});
 	
 //	点击加减号进行菜品数量加减
 	$scope.addNum=function(){
@@ -258,8 +261,6 @@ $scope.addActive=function($event){
 		$($scope.me).addClass("active");
 	}
 }
-	
-  
 });
   
 // shopcart page controller 购物车

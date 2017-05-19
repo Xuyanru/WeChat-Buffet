@@ -31,70 +31,28 @@
 			</p>
 			<div class="totle clear">
 				<span class="dish-totle-name lf">已选菜品数量:</span>
-				<span class="lf totle-num">5</span>
-				<span class="rt totle-price">120.00</span>
+				<span class="lf totle-num">{{totlenum}}</span>
+				<span class="rt totle-price">{{totlePrice}}</span>
 				<span class="rt">合计:</span>
 			</div>
 		</div>	
 		</div>
 		<div id="cartItems" class="boxshadow">
 			<p class="textcenter">已选菜品详情</p>
-			<ul class="clear">
+			<ul class="clear" ng-repeat="orderItem in orderList" on-finish-render-filters id="{{orderItem.pid}}">
 				<li class="lf dish-img">
 					<img src="img/01-xin_07.png" alt="" />
 				</li>
 				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p class="lf">￥ 35.00/份</span></p>
+					<p class="dish-name">{{orderItem.name}}</p>
+					<p class="lf price">&#165;<span>{{orderItem.price}}</span>/{{orderItem.unit}}</span></p>
 					<p class="rt">
-						<a href="" class="jian lf">&ndash;</a>
-						<span class="textcenter lf">1</span>
-						<a  class="jia lf" href="">+</a>
+						<a href="" class="jian lf" ng-click="reducefun($event)">&ndash;</a>
+						<span class="textcenter lf">{{orderItem.count}}</span>
+						<a  class="jia lf" href="" ng-click="addfun($event)">+</a>
 					</p>
 				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p class="lf">￥ 35.00/份</span></p>
-					<p class="rt">
-						<a href="" class="jian lf">&ndash;</a>
-						<span class="textcenter lf">1</span>
-						<a  class="jia lf" href="">+</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p class="lf">￥ 35.00/份</span></p>
-					<p class="rt">
-						<a href="" class="jian lf">&ndash;</a>
-						<span class="textcenter lf">1</span>
-						<a  class="jia lf" href="">+</a>
-					</p>
-				</li>
-			</ul>
-			<ul class="clear">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<p class="dish-name">附加费的空间</p>
-					<p class="lf">￥ 35.00/份</span></p>
-					<p class="rt">
-						<a href="" class="jian lf">&ndash;</a>
-						<span class="textcenter lf">1</span>
-						<a  class="jia lf" href="">+</a>
-					</p>
-				</li>
-			</ul>			
+			</ul>	
 		</div>
 	<div id="beizhu-dialog">
 		<div class="beizhu-dialog-inner">
@@ -131,13 +89,13 @@
 		</div>
 	</div>
 	<div  id="continue-order-button" class="boxshadow textcenter borderRadius10">
-		<a href="#/order" class="buttonColor" ng-click="addClass($event)"  title="order">
+		<a href="#/order/{{ulmsg}}" class="buttonColor" ng-click="addClass($event)"  title="order">
 			<img src="img/continue-order.png" alt=""/>
 			<p class="textcenter">加菜</p>
 		</a>	
 	</div>
 	<div  id="place-order-button" class="boxshadow textcenter borderRadius10">
-		<a href="#/confirmorder/{{0}}" class="buttonColor" ng-click="addClass($event)" title="underorder">
+		<a href="#/confirmorder/{{ulmsg}}" class="buttonColor" ng-click="addClass($event)" title="underorder">
 			<img  src="img/place-order.png" alt=""/>
 			<p class="textcenter">下单</p>
 		</a>	

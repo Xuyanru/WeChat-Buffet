@@ -10,6 +10,7 @@ body{
 	overflow: hidden;
 	font:14px/20px arial,sans-serif;
 	color:#666666;
+	position: relative;
 }
 input{
 	outline: none;
@@ -1724,10 +1725,19 @@ textarea{
 }
 /*确认订单页面*/
 #confirm-order{
-	padding:0 0 60px 0;
+	padding:0;
 	background: rgba(255,255,255,0.5);
+	transition: all 0.5s;
+	position: relative;
+	overflow: hidden;
 }
-#confirm-order div.confirm-order-title,#youhui div.youhuipage-title{
+#confirm-order>div.confirm-order-inner{
+	width: 100%;
+	height: 100%;
+	padding:0 0 60px 0;
+	overflow-y: auto;
+}
+#confirm-order div.confirm-order-title,#youhui div.youhuipage-title,#ordersuccess div.confirm-order-title{
 	height: 60px;
 	line-height: 60px;
 	font-size: 1.5em;
@@ -1884,6 +1894,12 @@ textarea{
 
 }
 /*优惠页面*/
+#youhui{
+	position: absolute;
+	top:0;
+	left: 100%;
+	transition: all 0.5s;
+}
 #youhuiBack{
 	width: 55px;
 	height: 47px;

@@ -3,13 +3,12 @@ app.config(function ($routeProvider) {
     $routeProvider
         .when('/start', {templateUrl: 'tpl/start.html',controller:'startCtrl'})
         .when('/evaluate', {templateUrl: 'tpl/evaluate.html',controller:'evaluateCtrl'})
-        .when('/order', {templateUrl: 'tpl/order.html',controller:'orderCtrl'})
-        .when('/shopcart', {templateUrl: 'tpl/shopcart.html',controller:'shopcartCtrl'})
+        .when('/order/:orderItem', {templateUrl: 'tpl/order.html',controller:'orderCtrl'})
+        .when('/shopcart/:msgItem', {templateUrl: 'tpl/shopcart.html',controller:'shopcartCtrl'})
         .when('/confirmorder/:alt', {templateUrl: 'tpl/confirmorder.html',controller:'confirmorderCtrl'})
-        .when('/youhui', {templateUrl: 'tpl/youhui.html',controller:'youhuiCtrl'})
         .when('/check',{templateUrl:'tpl/check.html',controller:'checkCtrl'})
         .when('/underorder',{templateUrl:'tpl/underorder.html',controller:'underorderCtrl'})
-        .when('/bill',{templateUrl:'tpl/bill.html',controller:'billCtrl'})
+        .when('/ordersuccess',{templateUrl:'tpl/ordersuccess.html',controller:'ordersuccessCtrl'})
         .when('/myorder/:idx', {templateUrl: 'tpl/myorder.html',controller:'myorderCtrl'})
         .when('/details', {templateUrl: 'tpl/details.html',controller:'detailsCtrl'})
         .when('/account',{templateUrl:'tpl/account.html',controller:'accountCtrl'})
@@ -19,6 +18,18 @@ app.config(function ($routeProvider) {
 //      .when('/orderdetail/:did', {templateUrl: 'tpl/orderdetail.html',controller:'orderdetailCtrl'})
         .otherwise({redirectTo: '/start'})
 }); 
+app.directive('onFinishRenderFilters', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit('ngRepeatFinished');
+                });
+            }
+        }
+    }
+});
 // CONTROLLERS ============================================
 // parent page controller 父控制器
 app.controller('parentCtrl', function($scope,$location,$timeout) {
@@ -76,11 +87,45 @@ app.controller('evaluateCtrl', function($scope) {
 });
   
 // order page controller 点餐
-app.controller('orderCtrl', function($scope,$timeout,$http) {
+app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams) {
 		
 		//$scope.animate(false);
+		//	购物车总数量
+	$scope.totleNum=function(){
+		Array.prototype.unique3 = function(){
+			 var res = [];
+			 var json = {};
+			 for(var i = 0; i < this.length; i++){
+			  if(!json[this[i]]){
+			   res.push(this[i]);
+			   json[this[i]] = 1;
+			  }
+			 }
+			 var totle=0;
+			 $scope.ulmsg=[];
+	 		for(var j=0;j<res.length;j++){
+	 			var ulobj={};
+	 			var xnum=parseInt($($("#dishItems div.dishItem ul."+res[j])[0]).find(".likeCount").html());
+	 			ulobj.pid=res[j];
+	 			ulobj.price=(parseFloat($($("#dishItems div.dishItem ul."+res[j])[0]).find("span.price-num").html())).toFixed(2);
+	 			ulobj.unit=$($("#dishItems div.dishItem ul."+res[j])[0]).find("span.danwei").html();
+	 			ulobj.name=$($("#dishItems div.dishItem ul."+res[j])[0]).find("p.dish-name").html();
+	 			ulobj.count=xnum;
+	 			$scope.ulmsg.push(ulobj);
+	 			totle+=xnum;
+	 		}
+	 		console.log($scope.ulmsg);
+	 		$("#cart-button>a>span").html(totle);
+		}
+		var arr=[];
+		$("#dishItems div.dishItem ul.active").each(function(){
+			arr.push($(this).attr("title"));
+		});
+		arr.unique3();
+	}
 
 //	动态获取菜品
+
 	$http.get("json/food.json").success(function(data){
 		$scope.foodList=[];
 		for(var i=0;i<data[0].foodtypes.length;i++){
@@ -89,6 +134,20 @@ app.controller('orderCtrl', function($scope,$timeout,$http) {
 			}
 		}
 	});
+	if($routeParams.orderItem!=0){
+		console.log(eval($routeParams.orderItem));
+		 $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent){
+		 	$.each(eval($routeParams.orderItem),function(){
+		 		console.log(this);
+		 		$("#dishItems div.dishItem ul."+this.pid).addClass("active");
+		 		$("#dishItems div.dishItem ul."+this.pid+" li.dish-msg .likeCount").html(this.count);
+			$("#dishItems div.dishItem ul."+this.pid+" li.dish-msg .feed").show();
+		 	});
+	       $scope.totleNum();
+	    });
+	}
+	 
+	
 
 //搜索框动画
   $("#order div.search span").unbind("click").click(function(){
@@ -219,39 +278,7 @@ app.controller('orderCtrl', function($scope,$timeout,$http) {
 			});
 		});
 	});
-//	购物车总数量
-	$scope.totleNum=function(){
-		Array.prototype.unique3 = function(){
-			 var res = [];
-			 var json = {};
-			 for(var i = 0; i < this.length; i++){
-			  if(!json[this[i]]){
-			   res.push(this[i]);
-			   json[this[i]] = 1;
-			  }
-			 }
-			 var totle=0;
-			 var ulmsg=[];
-	 		for(var j=0;j<res.length;j++){
-	 			var ulobj={};
-	 			var xnum=parseInt($($("#dishItems div.dishItem ul."+res[j])[0]).find(".likeCount").html());
-	 			ulobj.pid=res[j];
-	 			ulobj.price=parseFloat($($("#dishItems div.dishItem ul."+res[j])[0]).find("span.price-num").html());
-	 			ulobj.name=$($("#dishItems div.dishItem ul."+res[j])[0]).find("p.dish-name").html();
-	 			ulobj.count=xnum;
-	 			ulmsg.push(ulobj);
-	 			totle+=xnum;
-	 		}
-	 		ulmsg=JSON.stringify(ulmsg);
-	 		$("#cart-button>a>span").html(totle);
-	 		$("#cart-button>a>span").attr("title",ulmsg);
-		}
-		var arr=[];
-		$("#dishItems div.dishItem ul.active").each(function(){
-			arr.push($(this).attr("title"));
-		});
-		arr.unique3();
-	}
+
 	
 //	做法选择
 $scope.addActive=function($event){
@@ -264,8 +291,53 @@ $scope.addActive=function($event){
 });
   
 // shopcart page controller 购物车
-app.controller('shopcartCtrl', function($scope) {
+app.controller('shopcartCtrl', function($scope,$routeParams) {
 //$scope.animate(false);
+//	从点餐页面获取数据
+	if($routeParams.msgItem!=0){
+		$scope.orderList=eval($routeParams.msgItem);
+	}
+	
+
+//	菜品数量和价格
+	$scope.totleNum=function(){	
+		$scope.totlePrice=0;
+		$scope.totlenum=0;
+		$scope.ulmsg=[];
+		$("#cartItems ul").each(function(){
+			var ulobj={};
+			ulobj.pid=$(this).attr("id");
+			var count=parseInt($(this).children("li").children("p.rt").children("span").html());
+			ulobj.count=count;
+			ulobj.name=$(this).children("li").children("p.dish-name").html();
+			ulobj.price=$(this).children("li").children("p.price").children("span").html();
+			$scope.totlenum+=count;
+			$scope.totlePrice=(parseFloat($scope.totlePrice)+($(this).children("li").children("p.price").children("span").html()*count)).toFixed(2);
+			$scope.ulmsg.push(ulobj);
+		});
+		console.log($scope.ulmsg);
+	}
+	
+	  $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
+	       $scope.totleNum();
+	    });
+	
+	//	加减菜的数量
+	$scope.addfun=function($event){
+		var me=$event.currentTarget;
+		$(me).prev("span").html(parseInt($(me).prev("span").html())+1);
+		$scope.totleNum();
+	}
+	$scope.reducefun=function($event){
+		var me=$event.currentTarget;
+		if($(me).next("span").html()>1){
+			$(me).next("span").html(parseInt($(me).next("span").html())-1);
+			$scope.totleNum();
+		}
+		
+	}
+	
+	
 //点击修改弹出备注框
 $("#shopcart div.user-msg>div>div").unbind("click").click(function(){
 	$("#beizhu-dialog").show().addClass("animated bounceIn");
@@ -315,6 +387,27 @@ $("#shopcart div.user-msg>div>div").unbind("click").click(function(){
 // confirmorder page controller 订单确认
 app.controller('confirmorderCtrl', function($scope,$routeParams) {
 // $scope.animate(false);
+
+	if($routeParams.alt!=0){
+		console.log(eval($routeParams.alt));
+		$scope.orderList=eval($routeParams.alt);
+	}
+	
+	 $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
+	 		$scope.xfPrice=0.00;
+	      	$("#orderItems div.orderItem>ul").each(function(){
+	      		console.log(this);
+	      		console.log($(this).children("li.order-count").html());
+	      		console.log($(this).children("li.order-count").html());
+	      		$scope.xfPrice+=$(this).children("li.order-count").html()*$(this).children("li.order-price").html();
+	      		console.log($scope.xfPrice);
+	      	});
+	      	$scope.xfPrice=$scope.xfPrice.toFixed(2);
+	      	$scope.youhuiPrice=0.00;
+	      	$scope.youhuiPrice=$scope.youhuiPrice.toFixed(2);
+	      	$scope.sfPrice=$scope.xfPrice;
+	      	
+	    });
    
 // 点击取消弹出取消弹出框
 	$scope.openDialog=function(){
@@ -324,26 +417,69 @@ app.controller('confirmorderCtrl', function($scope,$routeParams) {
 	$scope.closeDialog=function(){
 		$("#cancel-order-dialog").fadeOut();
 	}
-	$scope.xfPrice=75.00;
-	$scope.xfPrice=$scope.xfPrice.toFixed(2);
 	
-	if($routeParams.alt!=0){
-		$scope.youhuitext=eval($routeParams.alt)[1];
-		if(eval($routeParams.alt)[0]==1){
-			$scope.youhuiPrice=parseInt($scope.youhuitext).toFixed(2);
-			$scope.youhuiShow=true;
-		}else if(eval($routeParams.alt)[0]==2){
-			$scope.youhuiPrice=(parseFloat($scope.xfPrice)-parseInt($scope.youhuitext)*parseFloat($scope.xfPrice)/10).toFixed(2);
+//	优惠页面显示
+	$scope.youhuishow=function(){
+		$("#confirm-order").css("transform","translateX(-100%)");
+		$("#youhui").css("transform","translateX(-100%)");
+	}
+	$scope.youhuiHide=function(){
+		$("#confirm-order").css({"transform":"translateX(0)"});
+		$("#youhui").css("transform","translateX(0)");
+//		$("#confirm-order").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+//			$(this).css("position","static");
+//			console.log("111");
+//		});
+		if($("#youhui div.youhuiCon p.canClick.active").length!=0){
+			var youhuiType=$("#youhui div.youhuiCon p.canClick.active").children("img").attr("title");
+			var alt=$("#youhui div.youhuiCon p.canClick.active").children("img").attr("alt");
+			$scope.youhuitext=alt;
+			if(youhuiType==1){
+				$scope.youhuiPrice=parseInt(alt).toFixed(2);
+			}else{
+				$scope.youhuiPrice=(parseFloat($scope.xfPrice)-parseFloat($scope.youhuitext)*parseFloat($scope.xfPrice)/10).toFixed(2);
+			}
 			$scope.youhuiShow=true;
 		}else{
-			$scope.youhuiShow=false;
 			$scope.youhuiPrice="0.00";
-		}
-	}else{
 			$scope.youhuiShow=false;
-			$scope.youhuiPrice="0.00";
 		}
 		$scope.sfPrice=(parseFloat($scope.xfPrice)-parseFloat($scope.youhuiPrice)).toFixed(2);
+	}
+//	优惠选择
+	$scope.selYouhui=function($event){
+		if(!($($event.currentTarget).hasClass("active"))){
+			$("#youhui div.youhuiCon p.canClick.active").removeClass("active").children("span").hide();
+			$($event.currentTarget).addClass("active").children("span").show();
+		}else{
+			$($event.currentTarget).removeClass("active").children("span").hide();
+		}
+//		if($("#youhui div.youhuiCon p.canClick.active")){
+//			$scope.youhuiText[0]=$("#youhui div.youhuiCon p.canClick.active").children("img").attr("title");
+//			$scope.youhuiText[1]=$("#youhui div.youhuiCon p.canClick.active").children("img").attr("alt");
+//		}else{
+//			$scope.youhuiText[0]=0;
+//			$scope.youhuiText[1]=0;
+//		}
+	}
+	
+//	if($routeParams.alt!=0){
+//		$scope.youhuitext=eval($routeParams.alt)[1];
+//		if(eval($routeParams.alt)[0]==1){
+//			$scope.youhuiPrice=parseInt($scope.youhuitext).toFixed(2);
+//			$scope.youhuiShow=true;
+//		}else if(eval($routeParams.alt)[0]==2){
+//			$scope.youhuiPrice=(parseFloat($scope.xfPrice)-parseInt($scope.youhuitext)*parseFloat($scope.xfPrice)/10).toFixed(2);
+//			$scope.youhuiShow=true;
+//		}else{
+//			$scope.youhuiShow=false;
+//			$scope.youhuiPrice="0.00";
+//		}
+//	}else{
+//			$scope.youhuiShow=false;
+//			$scope.youhuiPrice="0.00";
+//		}
+//		$scope.sfPrice=(parseFloat($scope.xfPrice)-parseFloat($scope.youhuiPrice)).toFixed(2);
 });
 
 // youhui page controller 优惠选择页面
@@ -491,8 +627,8 @@ for( var i=0;i<filePaths.length; i++ ){
 	
 });
 
-// bill page controller 结账
-app.controller('billCtrl', function($scope) {
+// ordersuccess page controller 结账
+app.controller('ordersuccessCtrl', function($scope) {
 // $scope.animate(false);'
 });
 

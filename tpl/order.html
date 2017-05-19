@@ -25,7 +25,7 @@
 		<img src="img/wellcome-img.png" alt="" />
 	</div>
 	<div id="dishItems">
-		<div class="dishItem clear" ng-repeat="fooditems in foodList">
+		<div class="dishItem clear" ng-repeat="fooditems in foodList" on-finish-render-filters>
 			<p class="textcenter" id="{{fooditems.fCode}}">{{fooditems.foodName}}</p>
 			<ul class="clear {{foodinfoList.shopfood.id}}" ng-repeat="foodinfoList in fooditems.foodinfos" title="{{foodinfoList.shopfood.id}}">
 				<li class="lf dish-img">
@@ -38,8 +38,8 @@
 					</div>
 					<p class="dish-name">{{foodinfoList.foodinfo.foodName}}</p>
 					<p>
-						<span class="lf dish-price">￥</span>
-						<span class="lf dish-price price-num"> {{foodinfoList.foodinfo.price}}/{{foodinfoList.enumitem.enumItemName}}</span>
+						<span class="lf dish-price">&#165;</span>
+						<span class="lf dish-price price-num"> {{foodinfoList.foodinfo.price}}/</span><span  class="lf dish-price danwei">{{foodinfoList.enumitem.enumItemName}}</span>
 						<a class="rt add-cart textcenter" ng-click="addDish($event)" title="{{[foodinfoList.foodinfo.foodName,foodinfoList.foodinfo.price,foodinfoList.enumitem.enumItemName,foodinfoList.shopfood.id]}}">
 							<span >来一份</span>
 							<img src="img/cart-img.png" alt="" />
@@ -54,7 +54,7 @@
 			<p class="close-dialog"><span ng-click="closeDialog()">X</span></p>
 			<div class="cart-dish-name clear">
 				<span class="lf">{{dishInfo[0]}}</span>
-				<span class="rt">￥{{dishInfo[1]}}/{{dishInfo[2]}}</span>
+				<span class="rt">&#165;{{dishInfo[1]}}/{{dishInfo[2]}}</span>
 			</div>
 			<div class="make-way">
 				<p>请选择做法:</p>
@@ -89,7 +89,7 @@
 	
 	<div ng-include="'tpl/include/menu-button.html'"></div>
 	<div  id="cart-button">
-		<a href="#/shopcart" ng-click="addClass($event)" title="shopcart">
+		<a href="#/shopcart/{{ulmsg}}" ng-click="addClass($event)" title="shopcart">
 			<span class="cart-number">0</span>
 			<img src="img/cart-button.png" alt="" />
 		</a>

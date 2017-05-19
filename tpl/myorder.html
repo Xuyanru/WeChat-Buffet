@@ -1,6 +1,6 @@
 <div id="myorder">
 	<div class="usercenter-title textcenter">
-		<a href="#/account">
+		<a href="#/account" ng-click="addClass($event)" title="usercenter">
 			<img src="img/back.png" alt="" />
 		</a>
 		我的订单
@@ -16,7 +16,7 @@
 	</div>
 	<div class="myorder-list">
 			<div class="yiwancheng myorder-list-con boxshadow">
-				<a href="#/details" class="a-block">
+				<a href="#/details" class="a-block" ng-click="addClass($event)">
 					<div class="myOrder-title">
 						<img src="img/logo.png" alt="" />
 						<div class="tubiao-icon textcenter"></div>
@@ -27,7 +27,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -38,17 +38,17 @@
 					</ul>
 					<div class="totle-msg">
 						<div class="myorder-totle-price">
-							共1道菜品  合计: <span>￥35.00</span>
+							共1道菜品  合计: <span>&#165;35.00</span>
 						</div>
 						<div class="myoder-handle clear">
-							<a href="#/shopcart" class="zaigou rt handleWay">再次购买</a>
+							<a href="#/shopcart" ng-click="addClass($event)" title="shopcart" class="zaigou rt handleWay">再次购买</a>
 							<a class="deleteOrder rt" ng-click="deleteOrder($event)">删除订单</a>
 						</div>
 					</div>
 				</a>
 			</div>
 			<div class="daizhifu myorder-list-con boxshadow">
-				<a href="#/details" class="a-block">
+				<a href="#/details" class="a-block" ng-click="addClass($event)">
 					<div class="myOrder-title">
 						<img src="img/logo.png" alt="" />
 						<div class="tubiao-icon textcenter"></div>
@@ -59,7 +59,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -72,7 +72,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -85,7 +85,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -98,7 +98,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -109,7 +109,7 @@
 					</ul>
 					<div class="totle-msg">
 						<div class="myorder-totle-price">
-							共1道菜品  合计: <span>￥35.00</span>
+							共1道菜品  合计: <span>&#165;35.00</span>
 						</div>
 						<div class="myoder-handle clear">
 							<a href="#/confirmorder/{{0}}" ng-click="addClass($event)" title="underorder" class="zhifu rt handleWay">去支付</a>
@@ -119,7 +119,7 @@
 				</a>
 			</div>
 			<div class="daishiyong myorder-list-con boxshadow">
-				<a href="#/details" class="a-block">
+				<a href="#/details" class="a-block" ng-click="addClass($event)">
 					<div class="myOrder-title">
 						<img src="img/logo.png" alt="" />
 						<div class="tubiao-icon textcenter"></div>
@@ -130,7 +130,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -143,7 +143,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -156,7 +156,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -169,7 +169,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -180,7 +180,7 @@
 					</ul>
 					<div class="totle-msg">
 						<div class="myorder-totle-price">
-							共1道菜品  合计: <span>￥35.00</span>
+							共1道菜品  合计: <span>&#165;35.00</span>
 						</div>
 						<div class="myoder-handle clear">
 							<a class="shiyong rt handleWay">去使用</a>
@@ -189,7 +189,7 @@
 				</a>
 			</div>
 			<div class="daipingjia myorder-list-con boxshadow">
-				<a href="#/details" class="a-block">
+				<a href="#/details" class="a-block" ng-click="addClass($event)">
 					<div class="myOrder-title">
 						<img src="img/logo.png" alt="" />
 						<div class="tubiao-icon textcenter"></div>
@@ -200,7 +200,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -213,7 +213,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -226,7 +226,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -239,7 +239,7 @@
 							<div class="rt">
 								<p class="myorder-msg clear">
 									<span class="lf myorder-name">分类看到手机付款了等级分类贷款</span>
-									<span class="rt myorder-price">￥35.00</span>
+									<span class="rt myorder-price">&#165;35.00</span>
 								</p>
 								<p class="myorder-beizhu clear">
 									<span class="lf">做法:微辣</span>
@@ -250,10 +250,10 @@
 					</ul>
 					<div class="totle-msg">
 						<div class="myorder-totle-price">
-							共1道菜品  合计: <span>￥35.00</span>
+							共1道菜品  合计: <span>&#165;35.00</span>
 						</div>
 						<div class="myoder-handle clear">
-							<a href="#/assess" class="pingjia rt handleWay">去评价</a>
+							<a href="#/assess" ng-click="addClass($event)" class="pingjia rt handleWay">去评价</a>
 							<a class="deleteOrder rt" ng-click="deleteOrder($event)">删除订单</a>
 						</div>
 					</div>

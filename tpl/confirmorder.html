@@ -1,94 +1,119 @@
 <div id="confirm-order">
-	<div class="confirm-order-title textcenter">
-		订单支付
-	</div>
-	<div class="confirm-order-con">
-		<div class="orderCon borderRadius5">
-		<p>订单详情</p>
-		<div id="orderItems">
-			<ul class="orderItems-title clear">
-				<li class="lf order-name">菜品名称</li>
-				<li class="lf order-count textcenter">菜品数量</li>
-				<li class="lf order-price textcenter">菜品价格</li>
-			</ul>
-			<div class="orderItem">
-				<ul class="orderItems-list clear">
-					<li class="lf order-name">哪来的风格的李开复</li>
-					<li class="lf order-count textcenter">2</li>
-					<li class="lf order-price textcenter">25.00</li>
+	<div class="confirm-order-inner">
+		<div class="confirm-order-title textcenter">
+			订单支付
+		</div>
+		<div class="confirm-order-con">
+			<div class="orderCon borderRadius5">
+			<p>订单详情</p>
+			<div id="orderItems">
+				<ul class="orderItems-title clear">
+					<li class="lf order-name">菜品名称</li>
+					<li class="lf order-count textcenter">菜品数量</li>
+					<li class="lf order-price textcenter">菜品价格</li>
 				</ul>
-				<ul class="orderItems-list clear">
-					<li class="lf order-name">哪来的风格的李</li>
-					<li class="lf order-count textcenter">2</li>
-					<li class="lf order-price textcenter">25.00</li>
+				<div class="orderItem">
+					<ul class="orderItems-list clear" ng-repeat="orderItem in orderList" on-finish-render-filters>
+						<li class="lf order-name">{{orderItem.name}}</li>
+						<li class="lf order-count textcenter">{{orderItem.count}}</li>
+						<li class="lf order-price textcenter">{{orderItem.price}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="selYouhui clear">
+			<a ng-click="youhuishow()">
+				<p class="lf">优惠选择</p>
+				<p class="rt">&gt;</p>
+			</a>
+			<p class="youhui-text clear" ng-show="youhuiShow">
+				{{youhuitext}}
+			</p>
+		</div>
+		<div class="selpayWay clear">
+			<p class="lf">支付方式</p>
+			<p class="rt"><img src="img/weixin.png" alt="" />微信支付</p>
+		</div>
+		<div class="totle-order borderRadius5">
+				<p class="totle-count">合计<span>3</span>件</p>
+				<ul class="totle-price">
+					<li class="clear">
+						<p class="lf">消费金额</p>
+						<p class="rt">&#165;{{xfPrice}}</p>
+					</li>
+					<li class="clear">
+						<p class="lf">优惠金额</p>
+						<p class="rt youhui">&#165;{{youhuiPrice}}</p>
+					</li>
+					<li class="clear yingfu">
+						<p class="lf">应付金额</p>
+						<p class="rt">&#165;{{sfPrice}}</p>
+					</li>
 				</ul>
-				<ul class="orderItems-list clear">
-					<li class="lf order-name">哪来的风格的李开复</li>
-					<li class="lf order-count textcenter">2</li>
-					<li class="lf order-price textcenter">25.00</li>
-				</ul>
+			</div>
+		<div class="tishi clear textcenter">
+				<img src="img/tishi.png" alt="" />
+				亲,订单支付完成后才能为您做菜哦！
+		</div>
+		</div>
+		<div class="order-price textcenter borderRadius10 boxshadow">
+			<a href="#/ordersuccess" ng-click="addClass($event)">
+				还需支付<span>{{sfPrice}}</span>元，马上支付
+			</a>		
+		</div>
+		<div id="cancel-order-dialog">
+			<div class="cancel-inner boxshadow borderRadius10">
+				<div class="tupian clear">
+					<p class="lf">
+						<img src="img/cancen-order-bg.png" alt="" />	
+					</p>
+					<p class="lf cancel-text">
+						确认取消订单吗？
+					</p>
+				</div>
+				<div class="cancel-button">
+					<p class="cancel-cancel-button lf textcenter borderRadius5" ng-click="closeDialog()">取消</p>
+					<p class="cancel-confirm-button lf textcenter borderRadius5"><a href="#/order/{{0}}" ng-click="addClass($event)" title="order">确定</a></p>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="selYouhui clear">
-		<a href="#/youhui">
-			<p class="lf">优惠选择</p>
-			<p class="rt">&gt;</p>
-		</a>
-		<p class="youhui-text clear" ng-show="youhuiShow">
-			{{youhuitext}}
-		</p>
-	</div>
-	<div class="selpayWay clear">
-		<p class="lf">支付方式</p>
-		<p class="rt"><img src="img/weixin.png" alt="" />微信支付</p>
-	</div>
-	<div class="totle-order borderRadius5">
-			<p class="totle-count">合计<span>3</span>件</p>
-			<ul class="totle-price">
-				<li class="clear">
-					<p class="lf">消费金额</p>
-					<p class="rt">￥{{xfPrice}}</p>
-				</li>
-				<li class="clear">
-					<p class="lf">优惠金额</p>
-					<p class="rt youhui">￥{{youhuiPrice}}</p>
-				</li>
-				<li class="clear yingfu">
-					<p class="lf">应付金额</p>
-					<p class="rt">￥{{sfPrice}}</p>
-				</li>
-			</ul>
-		</div>
-	<div class="tishi clear textcenter">
-			<img src="img/tishi.png" alt="" />
-			亲,订单支付完成后才能为您做菜哦！
-	</div>
-	</div>
-	<div class="order-price textcenter borderRadius10 boxshadow">
-		<a href="#/bill">
-			还需支付<span>{{sfPrice}}</span>元，去支付
-		</a>		
-	</div>
-	<div id="cancel-order-dialog">
-		<div class="cancel-inner boxshadow borderRadius10">
-			<div class="tupian clear">
-				<p class="lf">
-					<img src="img/cancen-order-bg.png" alt="" />	
-				</p>
-				<p class="lf cancel-text">
-					确认取消订单吗？
-				</p>
-			</div>
-			<div class="cancel-button">
-				<p class="cancel-cancel-button lf textcenter borderRadius5" ng-click="closeDialog()">取消</p>
-				<p class="cancel-confirm-button lf textcenter borderRadius5"><a href="#/order" ng-click="addClass($event)" title="order">确定</a></p>
-			</div>
-		</div>
-	</div>
+	
 	<div id="cancel-order-button" class="textcenter boxshadow buttonColor borderRadius10" ng-click="openDialog()">
 		<img src="img/cancel-order.png" alt="" />
 		<p class="textcenter">取消</p>
 	</div>
 	<div ng-include="'tpl/include/menu-button.html'"></div>
+</div>
+<div id="youhui">
+	<div class="youhuipage-title textcenter">
+		优惠选择
+	</div>
+	<div class="youhuiCon">
+		<div class="youhuiquan">
+			<div class="youhuiquan-title">
+				优惠券
+			</div>
+			<p class="youhuiimgs canClick" ng-click="selYouhui($event)">
+				<span>&#10004</span>
+				<img src="img/youhui.jpg" alt="5元优惠券" title="1"/>
+			</p>
+		</div>
+		<div class="dazheka">
+			<div class="dazheka-title">
+				打折卡
+			</div>
+			<p class="youhuiimgs canClick" ng-click="selYouhui($event)">
+				<span>&#10004</span>
+				<img src="img/dazheka.png" alt="8折优惠"  title="2"/>
+			</p>
+		</div>
+	</div>
+
+	
+	<div id="youhuiBack" class="boxshadow borderRadius10 textcenter" ng-click="youhuiHide()">
+		<a>
+			<img src="img/youhuiBack.png" alt="" />
+		</a>	
+	</div>
 </div>

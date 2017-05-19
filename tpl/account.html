@@ -4,7 +4,7 @@
 			个人中心
 		</div>
 		<div class="user-head textcenter boxshadow">
-			<a href="#/usercenter" class="a-block">
+			<a href="#/usercenter" class="a-block" ng-click="addClass($event)">
 				<img src="img/userhead.png" alt="" />
 			</a>
 			<img src="img/head-light2.png" alt="" />
@@ -15,32 +15,32 @@
 		<div class="signature textcenter"><p contenteditable="true">个人签名</p></div>
 		<ul class="user-list textcenter clear">
 			<li class="lf borderRadius5">
-				<a href="#/myorder/{{0}}" class="a-block">
+				<a href="#/myorder/{{0}}" class="a-block" ng-click="addClass($event)">
 					<img src="img/allorder.png" alt="" />
 					<p>全部订单</p>
 				</a>
 			</li>
 			<li class="lf borderRadius5">
-				<a href="#/myorder/{{1}}" class="a-block">
+				<a href="#/myorder/{{1}}" class="a-block" ng-click="addClass($event)">
 					<img src="img/underorder.png" alt="" />
 					<p>待支付</p>
 				</a>
 			</li>
 			<li class="lf borderRadius5">
-				<a href="#/myorder/{{2}}" class="a-block">
+				<a href="#/myorder/{{2}}" class="a-block" ng-click="addClass($event)">
 					<img src="img/use.png" alt="" />
 					<p>待使用</p>
 				</a>
 			</li>
 			<li class="lf borderRadius5">
-				<a href="#/myorder/{{3}}" class="a-block">
+				<a href="#/myorder/{{3}}" class="a-block" ng-click="addClass($event)">
 					<img src="img/assess.png" alt="" />
 					<p>待评价</p>
 				</a>
 			</li>
 		</ul>
 		<div class="huiyuancenter boxshadow">
-			<a class="a-block" href="#/vipcenter">
+			<a class="a-block" href="#/vipcenter" ng-click="addClass($event)">
 				<img src="img/huiyuanka.png" alt="" />会员中心
 				<span class="rt">&gt;</span>
 			</a>

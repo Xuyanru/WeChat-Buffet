@@ -14,9 +14,9 @@
 				</ul>
 				<div class="orderItem">
 					<ul class="orderItems-list clear" ng-repeat="orderItem in orderList" on-finish-render-filters>
-						<li class="lf order-name">{{orderItem.name}}</li>
+						<li class="lf order-name">{{orderItem.name}} <span ng-show="orderItem.way!=''"> ({{orderItem.way}})</span></li>
 						<li class="lf order-count textcenter">{{orderItem.count}}</li>
-						<li class="lf order-price textcenter">{{orderItem.price}}</li>
+						<li class="lf order-price textcenter">{{orderItem.price}}/{{orderItem.unit}}</li>
 					</ul>
 				</div>
 			</div>
@@ -39,15 +39,15 @@
 				<ul class="totle-price">
 					<li class="clear">
 						<p class="lf">消费金额</p>
-						<p class="rt">&#165;{{xfPrice}}</p>
+						<p class="rt">&#165; {{xfPrice}}</p>
 					</li>
 					<li class="clear">
 						<p class="lf">优惠金额</p>
-						<p class="rt youhui">&#165;{{youhuiPrice}}</p>
+						<p class="rt youhui">&#165; {{youhuiPrice}}</p>
 					</li>
 					<li class="clear yingfu">
 						<p class="lf">应付金额</p>
-						<p class="rt">&#165;{{sfPrice}}</p>
+						<p class="rt">&#165; {{sfPrice}}</p>
 					</li>
 				</ul>
 			</div>
@@ -94,19 +94,27 @@
 			<div class="youhuiquan-title">
 				优惠券
 			</div>
-			<p class="youhuiimgs canClick" ng-click="selYouhui($event)">
-				<span>&#10004</span>
-				<img src="img/youhui.jpg" alt="5元优惠券" title="1"/>
-			</p>
+			<div class="youhuiimgs canClick">
+				<p ng-show="showQuan"><span>无法选择该优惠</span></p>
+				<div ng-click="selYouhui($event)">
+					<span title="199">&#10004</span>
+					<img src="img/youhui.jpg" alt="5元优惠券" title="1"/>
+				</div>
+				
+			</div>
 		</div>
 		<div class="dazheka">
 			<div class="dazheka-title">
 				打折卡
 			</div>
-			<p class="youhuiimgs canClick" ng-click="selYouhui($event)">
-				<span>&#10004</span>
-				<img src="img/dazheka.png" alt="8折优惠"  title="2"/>
-			</p>
+			<div class="youhuiimgs canClick">
+				<p ng-show="showKa"><span>无法选择该优惠</span></p>
+				<div ng-click="selYouhui($event)">
+					<span>&#10004</span>
+					<img src="img/dazheka.png" alt="8折优惠"  title="2"/>
+				</div>
+				
+			</div>
 		</div>
 	</div>
 

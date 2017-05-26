@@ -27,33 +27,42 @@
 	<div id="dishItems">
 		<div class="dishItem clear" ng-repeat="fooditems in foodList" on-finish-render-filters>
 			<p class="textcenter" id="{{fooditems.fCode}}">{{fooditems.foodName}}</p>
-			<ul class="clear {{foodinfoList.shopfood.id}}" ng-repeat="foodinfoList in fooditems.foodinfos" title="{{foodinfoList.shopfood.id}}">
-				<li class="lf dish-img">
-					<img src="img/01-xin_07.png" alt="" />
-				</li>
-				<li class="lf dish-msg">
-					<div class="feed">
-						<div class="heart"></div> 
-						<div class="likeCount">1</div>
-					</div>
-					<p class="dish-name">{{foodinfoList.foodinfo.foodName}}</p>
-					<p>
-						<span class="lf dish-price">&#165;</span>
-						<span class="lf dish-price price-num"> {{foodinfoList.foodinfo.price}}/</span><span  class="lf dish-price danwei">{{foodinfoList.enumitem.enumItemName}}</span>
-						<a class="rt add-cart textcenter" ng-click="addDish($event)" title="{{[foodinfoList.foodinfo.foodName,foodinfoList.foodinfo.price,foodinfoList.enumitem.enumItemName,foodinfoList.shopfood.id]}}">
-							<span >来一份</span>
-							<img src="img/cart-img.png" alt="" />
-						</a>
-					</p>
-				</li>
-				<!--<li class="clear">
-					<p class="lf">正常</p>
-					<div class="feed rt">
-						<div class="heart"></div> 
-						<div class="likeCount">1</div>
-					</div>
-				</li>-->
+			<div class="dishItem-con">
+				<ul class="clear dish{{foodinfoList.foodinfo.id}}" ng-repeat="foodinfoList in fooditems.foodinfos" title="dish{{foodinfoList.foodinfo.id}}" ng-if="foodinfoList.foodinfo!=null">
+					<li class="lf dish-img" title="{{foodinfoList.foodtype}}">
+						<img src="img/01-xin_07.png" alt="" />
+					</li>
+					<li class="lf dish-msg" title="{{foodinfoList.foodinfo.fCode}}">
+						<p class="dish-name">{{foodinfoList.foodinfo.foodName}}</p>
+						<p>
+							<span class="lf dish-price">&#165;</span>
+							<span class="lf dish-price price-num"> {{foodinfoList.foodinfo.price}}/</span><span  class="lf dish-price danwei">{{foodinfoList.enumitem.enumItemName}}</span>
+							<a class="rt add-cart textcenter" ng-click="addDish($event)" title="{{[foodinfoList.foodinfo.foodName,foodinfoList.foodinfo.price,foodinfoList.enumitem.enumItemName,'dish'+foodinfoList.foodinfo.id]}}">
+								<span >来一份</span>
+								<img src="img/cart-img.png" alt="" />
+							</a>
+						</p>
+					</li>
 			</ul>
+			<ul class="clear dish{{foodinfoList.foodcomboInfo.foodcombo.id}}" ng-repeat="foodinfoList in fooditems.foodinfos" title="dish{{foodinfoList.foodcomboInfo.foodcombo.id}}" ng-if="foodinfoList.foodcomboInfo!=null">
+					<li class="lf dish-img" title="{{foodinfoList.foodtype}}">
+						<img src="img/01-xin_07.png" alt="" />
+					</li>
+					<li class="lf dish-msg" title="{{foodinfoList.foodcomboInfo.foodcombo.fCode}}">
+						<p class="dish-name">{{foodinfoList.foodcomboInfo.foodcombo.typeName}}</p>
+						<p>
+							<span class="lf dish-price">&#165;</span>
+							<span class="lf dish-price price-num"> {{foodinfoList.foodcomboInfo.foodcombo.price}}/</span><span  class="lf dish-price danwei">份</span>
+							<a class="rt add-cart textcenter" ng-click="addDish($event)" title="{{[foodinfoList.foodcomboInfo.foodcombo.typeName,foodinfoList.foodcomboInfo.foodcombo.price,foodinfoList.enumitem.enumItemName,'dish'+foodinfoList.foodcomboInfo.foodcombo.id]}}">
+								<span >来一份</span>
+								<img src="img/cart-img.png" alt="" />
+							</a>
+						</p>
+					</li>
+			</ul>
+			</div>
+				
+			
 		</div>
 	</div>
 	<div id="cart-dialog-outer">
@@ -63,14 +72,12 @@
 				<span class="lf">{{dishInfo[0]}}</span>
 				<span class="rt">&#165;{{dishInfo[1]}}/{{dishInfo[2]}}</span>
 			</div>
-			<div class="make-way">
+			<div class="make-way" ng-if="showBZ">
 				<p>请选择做法(必选):</p>
 				<ul>
-					<li class="clear">
-						<span class="lf" id="bz10" ng-click="addActive($event)">正常</span>
-						<span class="lf" id="bz11" ng-click="addActive($event)">无辣</span>
-						<span class="lf" id="bz12" ng-click="addActive($event)">微辣</span>
-						<span class="lf" id="bz13" ng-click="addActive($event)">超辣</span>
+					<li class="clear" ng-repeat="tasteList in taste" ng-if="tasteList.tasteinfodetails!=''">
+						<p>{{tasteList.tasteTypeName}}:</p>
+						<span ng-repeat="tasteItem in tasteList.tasteinfodetails" class="lf" id="{{tasteItem.id}}" ng-click="addActive($event)">{{tasteItem.tasteName}}</span>
 					</li>
 				</ul>
 			</div>
@@ -96,7 +103,7 @@
 			<span class="cart-number">0</span>
 			<img src="img/cart-button.png" alt="" />
 		</a>
-		<a class="uncanClickA" href="javascript:volid(0);">
+		<a class="uncanClickA">
 			<span class="cart-number">0</span>
 			<img src="img/cart-button.png" alt="" />
 		</a>

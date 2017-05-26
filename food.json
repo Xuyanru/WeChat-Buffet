@@ -1,0 +1,643 @@
+[
+  {
+    "foodtypes": [
+      {
+        "fCode": "0034",
+        "foodName": "特色",
+        "foodinfos": [
+          {
+            "discountfood": null,
+            "enumitem": {
+              "enumId": "17908307-75d5-42c7-b39f-518d54a68af7",
+              "enumItemCode": "0009",
+              "enumItemName": "份",
+              "id": "440ff04f-16ea-4b9e-9acf-72eb27a4a096",
+              "indexNum": "0",
+              "rowVersion": "2016-09-10 14:26:39",
+              "shopID": "1"
+            },
+            "foodcomboInfo": null,
+            "foodinfo": {
+              "abravation": "LBHG",
+              "abstract": "",
+              "comboPrice": "0.01",
+              "cost": "1.00",
+              "enName": "liang",
+              "fCode": "0073",
+              "foodName": "凉拌黄瓜",
+              "foodSize": "1",
+              "foodType": "",
+              "id": "43",
+              "imgBinary": null,
+              "imgUrl": "../DinnerImages/0073.jpg",
+              "matieral": "",
+              "measureID": "440ff04f-16ea-4b9e-9acf-72eb27a4a096",
+              "packmoney": "1.00",
+              "price": "0.01",
+              "remark": "",
+              "rowVersion": "2017-03-22 16:51:07",
+              "shopID": "1",
+              "tasteID": ""
+            },
+            "foodtype": "1",
+            "shopfood": {
+              "comboPrice": null,
+              "cost": null,
+              "foodID": "43",
+              "foodNum": "9956",
+              "foodState": "2",
+              "foodType": "0",
+              "id": "8919d55e-a4cb-4a44-b0d1-aa3900677a73",
+              "price": null,
+              "shopID": "1",
+              "upperNum": "0",
+              "uppertime": "",
+              "warringNum": "0"
+            },
+            "tasteInfos": []
+          },
+          {
+            "discountfood": null,
+            "enumitem": {
+              "enumId": "",
+              "enumItemCode": "",
+              "enumItemName": "份",
+              "id": "",
+              "indexNum": null,
+              "rowVersion": null,
+              "shopID": ""
+            },
+            "foodcomboInfo": {
+              "foodInfos": [
+                {
+                  "abravation": "XB",
+                  "abstract": "",
+                  "comboPrice": "0.01",
+                  "cost": "0.01",
+                  "enName": "",
+                  "fCode": "0076",
+                  "foodName": "雪碧",
+                  "foodSize": "1",
+                  "foodType": "",
+                  "id": "56",
+                  "imgBinary": null,
+                  "imgUrl": "../DinnerImages/0076.jpg",
+                  "matieral": "",
+                  "measureID": "a73b6ed4-59a7-4fdf-9dc9-ca7c84576535",
+                  "packmoney": "0.00",
+                  "price": "10.00",
+                  "remark": "",
+                  "rowVersion": "2017-03-23 11:50:55",
+                  "shopID": "1",
+                  "tasteID": ""
+                },
+                {
+                  "abravation": "TCLJ",
+                  "abstract": "",
+                  "comboPrice": "0.01",
+                  "cost": "0.00",
+                  "enName": "tclj",
+                  "fCode": "0071",
+                  "foodName": "糖醋里脊",
+                  "foodSize": "1",
+                  "foodType": "",
+                  "id": "38",
+                  "imgBinary": null,
+                  "imgUrl": "../DinnerImages/0071.jpg",
+                  "matieral": "",
+                  "measureID": "2",
+                  "packmoney": "0.00",
+                  "price": "1.00",
+                  "remark": "",
+                  "rowVersion": "2017-03-22 16:51:07",
+                  "shopID": "1",
+                  "tasteID": ""
+                }
+              ],
+              "foodcombo": {
+                "abravation": "LJTC",
+                "enName": "taocc",
+                "fCode": "18",
+                "foodType": "",
+                "id": "3",
+                "imgBinary": null,
+                "imgUrl": "../DinnerImages/combo18.jpg",
+                "packmoney": "0.00",
+                "price": "0.02",
+                "realPrice": "0.00",
+                "remark": "",
+                "rowVersion": "2017-05-25 14:47:54",
+                "shopID": "1",
+                "typeName": "里脊套餐"
+              }
+            },
+            "foodinfo": null,
+            "foodtype": "2",
+            "shopfood": null,
+            "tasteInfos": null
+          },
+          {
+            "discountfood": null,
+            "enumitem": {
+              "enumId": "17908307-75d5-42c7-b39f-518d54a68af7",
+              "enumItemCode": "0009",
+              "enumItemName": "份",
+              "id": "440ff04f-16ea-4b9e-9acf-72eb27a4a096",
+              "indexNum": "0",
+              "rowVersion": "2016-09-10 14:26:39",
+              "shopID": "1"
+            },
+            "foodcomboInfo": null,
+            "foodinfo": {
+              "abravation": "LBLO",
+              "abstract": "",
+              "comboPrice": "0.01",
+              "cost": "0.00",
+              "enName": "ban",
+              "fCode": "0074",
+              "foodName": "凉拌莲藕",
+              "foodSize": "1",
+              "foodType": "",
+              "id": "14",
+              "imgBinary": null,
+              "imgUrl": "../DinnerImages/0074.jpg",
+              "matieral": "",
+              "measureID": "440ff04f-16ea-4b9e-9acf-72eb27a4a096",
+              "packmoney": "1.00",
+              "price": "0.01",
+              "remark": "",
+              "rowVersion": "2017-03-22 16:51:07",
+              "shopID": "1",
+              "tasteID": ""
+            },
+            "foodtype": "1",
+            "shopfood": {
+              "comboPrice": null,
+              "cost": null,
+              "foodID": "14",
+              "foodNum": "9865",
+              "foodState": "2",
+              "foodType": "0",
+              "id": "083edb18-6bd5-4b1b-8357-514ff83337e0",
+              "price": null,
+              "shopID": "1",
+              "upperNum": "0",
+              "uppertime": "",
+              "warringNum": "0"
+            },
+            "tasteInfos": []
+          },
+          {
+            "discountfood": {
+              "dRange": "8.00",
+              "discountId": "a4b1354e-2f76-4d7a-9242-a8eda568ac29",
+              "discountNum": null,
+              "discountPrice": "1.60",
+              "discountType": "2",
+              "endTime": null,
+              "foodId": "50",
+              "foodName": "麻辣超大个小龙虾（限购）",
+              "id": "5066d1c6-ebdc-4afb-a754-a3258d9fe7a0",
+              "isDelete": null,
+              "isTiming": null,
+              "nowVersion": "2017-05-18 09:53:58",
+              "opDate": null,
+              "policyNum": "0",
+              "remark": "",
+              "rowVersion": "2017-05-18 09:53:58",
+              "stateTime": null
+            },
+            "enumitem": {
+              "enumId": "17908307-75d5-42c7-b39f-518d54a68af7",
+              "enumItemCode": "0009",
+              "enumItemName": "份",
+              "id": "440ff04f-16ea-4b9e-9acf-72eb27a4a096",
+              "indexNum": "0",
+              "rowVersion": "2016-09-10 14:26:39",
+              "shopID": "1"
+            },
+            "foodcomboInfo": null,
+            "foodinfo": {
+              "abravation": "MLCDGXLH（XG）",
+              "abstract": "",
+              "comboPrice": "0.01",
+              "cost": "0.00",
+              "enName": "mlxlx",
+              "fCode": "0069",
+              "foodName": "麻辣超大个小龙虾（限购）",
+              "foodSize": "1",
+              "foodType": "",
+              "id": "50",
+              "imgBinary": null,
+              "imgUrl": "../DinnerImages/0069.jpg",
+              "matieral": "",
+              "measureID": "440ff04f-16ea-4b9e-9acf-72eb27a4a096",
+              "packmoney": "10.00",
+              "price": "2.00",
+              "remark": "",
+              "rowVersion": "2017-03-22 16:51:07",
+              "shopID": "1",
+              "tasteID": ""
+            },
+            "foodtype": "1",
+            "shopfood": {
+              "comboPrice": null,
+              "cost": null,
+              "foodID": "50",
+              "foodNum": "111097",
+              "foodState": "2",
+              "foodType": "0",
+              "id": "546030f2-e399-4666-8db0-83b5f2c72478",
+              "price": null,
+              "shopID": "1",
+              "upperNum": "0",
+              "uppertime": "",
+              "warringNum": "0"
+            },
+            "tasteInfos": [
+              {
+                "id": "ffcd2266-4d80-466e-880a-7c446920d255",
+                "remark": "",
+                "rowVersion": null,
+                "shopID": "1",
+                "tasteTypeName": "辣",
+                "tasteinfodetails": [
+                  {
+                    "id": "045cc4d7-bde5-48d8-b4fc-1d04f967bef1",
+                    "rowVersion": "2016-11-01 09:42:40",
+                    "shopID": "1",
+                    "tasteID": "ffcd2266-4d80-466e-880a-7c446920d255",
+                    "tasteName": "少辣椒"
+                  },
+                  {
+                    "id": "1a4037b7-63db-4b10-8a06-8525d295ed2a",
+                    "rowVersion": "2016-11-29 17:57:40",
+                    "shopID": "1",
+                    "tasteID": "ffcd2266-4d80-466e-880a-7c446920d255",
+                    "tasteName": "麻辣"
+                  },
+                  {
+                    "id": "5debc9be-2e60-44d2-aa02-e07c47f1be0e",
+                    "rowVersion": "2016-11-01 09:42:32",
+                    "shopID": "1",
+                    "tasteID": "ffcd2266-4d80-466e-880a-7c446920d255",
+                    "tasteName": "多辣椒"
+                  },
+                  {
+                    "id": "ee646b3f-a99b-4e71-8096-c3a26c1bd4e6",
+                    "rowVersion": "2016-11-01 09:42:50",
+                    "shopID": "1",
+                    "tasteID": "ffcd2266-4d80-466e-880a-7c446920d255",
+                    "tasteName": "中辣椒2"
+                  }
+                ]
+              },
+              {
+                "id": "617c995a-6c5c-4fad-b56e-afc541a29fd8",
+                "remark": "",
+                "rowVersion": null,
+                "shopID": "1",
+                "tasteTypeName": "汁",
+                "tasteinfodetails": [
+                  {
+                    "id": "77d00104-b8cc-48c1-aa0c-51d992b97c03",
+                    "rowVersion": "2017-04-26 09:45:45",
+                    "shopID": "1",
+                    "tasteID": "617c995a-6c5c-4fad-b56e-afc541a29fd8",
+                    "tasteName": "西瓜汁"
+                  },
+                  {
+                    "id": "aa27bef8-8951-4000-ba66-f3eab03e77f4",
+                    "rowVersion": "2017-04-26 09:44:53",
+                    "shopID": "1",
+                    "tasteID": "617c995a-6c5c-4fad-b56e-afc541a29fd8",
+                    "tasteName": "菠萝汁"
+                  },
+                  {
+                    "id": "c58fe3d8-1fad-4f22-963e-d14896624563",
+                    "rowVersion": "2017-04-26 09:46:04",
+                    "shopID": "1",
+                    "tasteID": "617c995a-6c5c-4fad-b56e-afc541a29fd8",
+                    "tasteName": "蓝莓汁"
+                  },
+                  {
+                    "id": "d0d1020c-b910-4d45-afdb-838689319f8c",
+                    "rowVersion": "2017-04-26 09:45:01",
+                    "shopID": "1",
+                    "tasteID": "617c995a-6c5c-4fad-b56e-afc541a29fd8",
+                    "tasteName": "草莓汁"
+                  },
+                  {
+                    "id": "dfafbd63-2f35-4ab3-9a6f-12ee9b1b5854",
+                    "rowVersion": "2017-04-26 09:46:28",
+                    "shopID": "1",
+                    "tasteID": "617c995a-6c5c-4fad-b56e-afc541a29fd8",
+                    "tasteName": "橙汁"
+                  },
+                  {
+                    "id": "f79a8815-8dfa-4243-97b1-da3dc915e807",
+                    "rowVersion": "2017-04-26 09:44:43",
+                    "shopID": "1",
+                    "tasteID": "617c995a-6c5c-4fad-b56e-afc541a29fd8",
+                    "tasteName": "苹果汁"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "2",
+        "isSelectMore": "0",
+        "orderNum": "10",
+        "remark": "",
+        "rowVersion": null,
+        "shopID": "1"
+      },
+      {
+        "fCode": "0037",
+        "foodName": "套餐",
+        "foodinfos": [
+          {
+            "discountfood": null,
+            "enumitem": {
+              "enumId": "",
+              "enumItemCode": "",
+              "enumItemName": "份",
+              "id": "",
+              "indexNum": null,
+              "rowVersion": null,
+              "shopID": ""
+            },
+            "foodcomboInfo": {
+              "foodInfos": [
+                {
+                  "abravation": "XB",
+                  "abstract": "",
+                  "comboPrice": "0.01",
+                  "cost": "0.01",
+                  "enName": "",
+                  "fCode": "0076",
+                  "foodName": "雪碧",
+                  "foodSize": "1",
+                  "foodType": "",
+                  "id": "56",
+                  "imgBinary": null,
+                  "imgUrl": "../DinnerImages/0076.jpg",
+                  "matieral": "",
+                  "measureID": "a73b6ed4-59a7-4fdf-9dc9-ca7c84576535",
+                  "packmoney": "0.00",
+                  "price": "10.00",
+                  "remark": "",
+                  "rowVersion": "2017-03-23 11:50:55",
+                  "shopID": "1",
+                  "tasteID": ""
+                },
+                {
+                  "abravation": "TCLJ",
+                  "abstract": "",
+                  "comboPrice": "0.01",
+                  "cost": "0.00",
+                  "enName": "tclj",
+                  "fCode": "0071",
+                  "foodName": "糖醋里脊",
+                  "foodSize": "1",
+                  "foodType": "",
+                  "id": "38",
+                  "imgBinary": null,
+                  "imgUrl": "../DinnerImages/0071.jpg",
+                  "matieral": "",
+                  "measureID": "2",
+                  "packmoney": "0.00",
+                  "price": "1.00",
+                  "remark": "",
+                  "rowVersion": "2017-03-22 16:51:07",
+                  "shopID": "1",
+                  "tasteID": ""
+                }
+              ],
+              "foodcombo": {
+                "abravation": "LJTC",
+                "enName": "taocc",
+                "fCode": "18",
+                "foodType": "",
+                "id": "3",
+                "imgBinary": null,
+                "imgUrl": "../DinnerImages/combo18.jpg",
+                "packmoney": "0.00",
+                "price": "0.02",
+                "realPrice": "0.00",
+                "remark": "",
+                "rowVersion": "2017-05-25 14:47:54",
+                "shopID": "1",
+                "typeName": "里脊套餐"
+              }
+            },
+            "foodinfo": null,
+            "foodtype": "2",
+            "shopfood": null,
+            "tasteInfos": null
+          },
+          {
+            "discountfood": null,
+            "enumitem": {
+              "enumId": "",
+              "enumItemCode": "",
+              "enumItemName": "份",
+              "id": "",
+              "indexNum": null,
+              "rowVersion": null,
+              "shopID": ""
+            },
+            "foodcomboInfo": {
+              "foodInfos": [
+                {
+                  "abravation": "NT",
+                  "abstract": "",
+                  "comboPrice": "0.01",
+                  "cost": "0.01",
+                  "enName": "nat",
+                  "fCode": "0077",
+                  "foodName": "拿铁",
+                  "foodSize": "1",
+                  "foodType": "",
+                  "id": "96",
+                  "imgBinary": null,
+                  "imgUrl": "../DinnerImages/0077.jpg",
+                  "matieral": "",
+                  "measureID": "5a8c88a8-d77d-4c60-a3f7-13c7efaf5636",
+                  "packmoney": "0.00",
+                  "price": "0.01",
+                  "remark": "",
+                  "rowVersion": "2017-03-23 11:51:00",
+                  "shopID": "1",
+                  "tasteID": ""
+                },
+                {
+                  "abravation": "MLCDGXLH（XG）",
+                  "abstract": "",
+                  "comboPrice": "0.01",
+                  "cost": "0.00",
+                  "enName": "mlxlx",
+                  "fCode": "0069",
+                  "foodName": "麻辣超大个小龙虾（限购）",
+                  "foodSize": "1",
+                  "foodType": "",
+                  "id": "50",
+                  "imgBinary": null,
+                  "imgUrl": "../DinnerImages/0069.jpg",
+                  "matieral": "",
+                  "measureID": "440ff04f-16ea-4b9e-9acf-72eb27a4a096",
+                  "packmoney": "10.00",
+                  "price": "2.00",
+                  "remark": "",
+                  "rowVersion": "2017-03-22 16:51:07",
+                  "shopID": "1",
+                  "tasteID": ""
+                },
+                {
+                  "abravation": "TTJ",
+                  "abstract": "",
+                  "comboPrice": "0.01",
+                  "cost": "0.00",
+                  "enName": "ttj",
+                  "fCode": "0070",
+                  "foodName": "甜甜圈",
+                  "foodSize": "1",
+                  "foodType": "",
+                  "id": "17",
+                  "imgBinary": null,
+                  "imgUrl": "../DinnerImages/0070.jpg",
+                  "matieral": "",
+                  "measureID": "2",
+                  "packmoney": "0.00",
+                  "price": "0.01",
+                  "remark": "",
+                  "rowVersion": "2017-03-22 16:51:07",
+                  "shopID": "1",
+                  "tasteID": ""
+                },
+                {
+                  "abravation": "TCLJ",
+                  "abstract": "",
+                  "comboPrice": "0.01",
+                  "cost": "0.00",
+                  "enName": "tclj",
+                  "fCode": "0071",
+                  "foodName": "糖醋里脊",
+                  "foodSize": "1",
+                  "foodType": "",
+                  "id": "38",
+                  "imgBinary": null,
+                  "imgUrl": "../DinnerImages/0071.jpg",
+                  "matieral": "",
+                  "measureID": "2",
+                  "packmoney": "0.00",
+                  "price": "1.00",
+                  "remark": "",
+                  "rowVersion": "2017-03-22 16:51:07",
+                  "shopID": "1",
+                  "tasteID": ""
+                }
+              ],
+              "foodcombo": {
+                "abravation": "CHTC",
+                "enName": "ch",
+                "fCode": "19",
+                "foodType": "",
+                "id": "5",
+                "imgBinary": null,
+                "imgUrl": "",
+                "packmoney": "0.00",
+                "price": "0.04",
+                "realPrice": "0.00",
+                "remark": "",
+                "rowVersion": "2017-05-25 14:36:58",
+                "shopID": "1",
+                "typeName": "超惠套餐"
+              }
+            },
+            "foodinfo": null,
+            "foodtype": "2",
+            "shopfood": null,
+            "tasteInfos": null
+          }
+        ],
+        "id": "11",
+        "isSelectMore": "0",
+        "orderNum": "5",
+        "remark": "",
+        "rowVersion": null,
+        "shopID": "1"
+      },
+      {
+        "fCode": "0058",
+        "foodName": "饮料",
+        "foodinfos": [
+          {
+            "discountfood": null,
+            "enumitem": {
+              "enumId": "17908307-75d5-42c7-b39f-518d54a68af7",
+              "enumItemCode": "0029",
+              "enumItemName": "杯",
+              "id": "5a8c88a8-d77d-4c60-a3f7-13c7efaf5636",
+              "indexNum": "0",
+              "rowVersion": "2016-10-25 16:18:55",
+              "shopID": "1"
+            },
+            "foodcomboInfo": null,
+            "foodinfo": {
+              "abravation": "KBJN",
+              "abstract": "",
+              "comboPrice": "0.01",
+              "cost": "0.00",
+              "enName": "kb",
+              "fCode": "0075",
+              "foodName": "卡布奇诺",
+              "foodSize": "1",
+              "foodType": "",
+              "id": "120",
+              "imgBinary": null,
+              "imgUrl": "../DinnerImages/0075.jpg",
+              "matieral": "",
+              "measureID": "5a8c88a8-d77d-4c60-a3f7-13c7efaf5636",
+              "packmoney": "0.00",
+              "price": "0.01",
+              "remark": "",
+              "rowVersion": "2017-03-22 16:51:07",
+              "shopID": "1",
+              "tasteID": ""
+            },
+            "foodtype": "1",
+            "shopfood": {
+              "comboPrice": null,
+              "cost": null,
+              "foodID": "120",
+              "foodNum": "9963",
+              "foodState": "2",
+              "foodType": "0",
+              "id": "eac9bbb4-af57-42f0-8589-0d21a0236397",
+              "price": null,
+              "shopID": "1",
+              "upperNum": "0",
+              "uppertime": "",
+              "warringNum": "0"
+            },
+            "tasteInfos": []
+          }
+        ],
+        "id": "100",
+        "isSelectMore": "0",
+        "orderNum": "3",
+        "remark": "",
+        "rowVersion": null,
+        "shopID": "1"
+      }
+    ],
+    "id": "906fe15f-9e9c-4143-867d-d63283a5ca95",
+    "isUsed": "1",
+    "mcode": "0011",
+    "mname": "主菜",
+    "remark": "",
+    "shopID": "1"
+  }
+]

@@ -21,7 +21,7 @@
 				</div>	
 			</div>			
 			<p class="order-time">
-				用餐时间 : <input type="date" name="" id="" value="" />
+				用餐时间 : <input type="datetime-local" name="" id="" value="" />
 				<!--<input id="selTime" type="text" readonly="" name="input_date" placeholder="请选择用餐时间" data-lcalendar="{{userTime}}" />-->
 			</p>
 			<p class="yongcan-way clear textcenter">
@@ -39,12 +39,12 @@
 		</div>
 		<div id="cartItems" class="boxshadow">
 			<p class="textcenter">已选菜品详情</p>
-			<ul class="clear {{orderItem.pid}}" ng-repeat="orderItem in orderList" on-finish-render-filters title="{{orderItem.pid}}">
+			<ul class="clear {{orderItem.pid}}" ng-repeat="orderItem in orderList" on-finish-render-filters title="{{orderItem.pid}}" id="{{orderItem.ids}}">
 				<li class="lf dish-img">
 					<img src="img/01-xin_07.png" alt="" />
 				</li>
 				<li class="lf dish-msg">
-					<p class="dish-name">{{orderItem.name}}</p>
+					<p class="dish-name"><span class="lf">{{orderItem.name}}</span> <span class="rt" ng-click="deleteOrder($event)">&chi;</span></p>
 					<p class="lf price">&#165;<span class="orderPrice">{{orderItem.price}}</span>/<span class="orderUnit">{{orderItem.unit}}</span></span> <span class="makeWay" title="{{orderItem.wayClass}}">{{orderItem.way}}</span></p>
 					<p class="rt">
 						<a href="" class="jian lf" ng-click="reducefun($event)">&ndash;</a>
@@ -95,7 +95,8 @@
 		</a>	
 	</div>
 	<div  id="place-order-button" class="boxshadow textcenter borderRadius10">
-		<a href="#/confirmorder/{{ulmsg}}" class="buttonColor" ng-click="addClass($event)" title="underorder">
+		<a class="buttonColor" ng-click="sendmsg()">
+			<!--href="#/confirmorder/{{ulmsg}}"-->
 			<img  src="img/place-order.png" alt=""/>
 			<p class="textcenter">下单</p>
 		</a>	

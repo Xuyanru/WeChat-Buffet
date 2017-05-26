@@ -1,16 +1,20 @@
 <div id="ordersuccess">
-	<div class="orderOk-title">
+	<div class="orderOk-title" ng-show="showTitle">
 		<p class="textcenter title-img"><img src="img/orderOk.png" alt="" /></p>
 		<p class="textcenter title-text">您已支付成功</p>
 	</div>
-	<div class="orderOk-con">
+	<div class="orderOk-con boxshadow borderRadius10">
 		<div class="orderOk-con-title">
 			<img src="img/logo.png" alt="" />
 		</div>
-		<ul>
-			<li>券码:</li>
-			<li></li>
+		<ul class="clear">
+			<li class="clear"><span class="lf">券&nbsp;&nbsp;&nbsp;码:</span><p class="rt textcenter">12df45d4sf5</p></li>
+			<li class="clear"><span class="lf">二维码: </span><p class="rt textcenter"><img src="img/qr-code.png" alt="" /></p></li>
 		</ul>
+	</div>
+	<div class="orderOkBtns" ng-show="showBtns">
+		<p class="searchDetail textcenter borderRadius5 lf"><a href="#/details/{{2}}">查看订单</a></p>
+		<p class="continueOrder textcenter borderRadius5 lf"><a href="#/order/{{0}}" ng-click="addClass($event)">继续点餐</a></p>
 	</div>
 	<div ng-include="'tpl/include/menu-button.html'"></div>
 </div>

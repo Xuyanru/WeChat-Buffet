@@ -5,9 +5,19 @@
 		</a>
 		订单详情
 	</div>
-	<div class="detailsIcon details-yiwancheng">
+	<div class="detailsIcon details-yiwancheng" ng-if="showTitle==0">
 		<span class="textcenter lf">交易成功</span>
 		<span class="iconImg textcenter lf"></span>
+	</div>
+	<div class="detailsIcon details-daishiyong" ng-if="showTitle==2">
+		<span class="textcenter lf">待使用</span>
+		<span class="iconImg textcenter lf"></span>
+	</div>
+	<div class="orderOk-con boxshadow borderRadius10" ng-if="showTitle==2">
+		<ul class="clear">
+			<li class="clear"><span class="lf">券&nbsp;&nbsp;&nbsp;码:</span><p class="rt textcenter">12df45d4sf5</p></li>
+			<li class="clear"><span class="lf">二维码: </span><p class="rt textcenter"><img src="img/qr-code.png" alt="" /></p></li>
+		</ul>
 	</div>
 	<div class="myorder-list boxshadow">
 	<div class="yiwancheng myorder-list-con">

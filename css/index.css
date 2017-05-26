@@ -3,14 +3,14 @@
 	padding: 0;
 	box-sizing: border-box;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-overflow-scrolling : touch; 
 }
-body{
+html,body{
 	width:100%;
 	height:100%;
 	overflow: hidden;
 	font:14px/20px arial,sans-serif;
 	color:#666666;
-	position: relative;
 }
 input{
 	outline: none;
@@ -65,6 +65,7 @@ a{
 	position: relative;
 	width:100%;
 	height: 100%;
+	overflow-x: hidden;
 	/*float: left;*/
 	background:url("../img/main-bg.jpg") no-repeat;
 	background-size:cover ;
@@ -133,12 +134,12 @@ div.page-inner>div{
 	box-shadow: 0 0 8px #666666;
 }
 @keyframes slideRightView{
-  from   { transform:translateX(0); }
-  to     { transform: translateX(200px); }
+  from   { left: 0px; }
+  to     {  left: 200px;  }
 }
 @keyframes slideLeftView{
-  from   { transform:translateX(200px); }
-  to     { transform: translateX(0); }
+  from   {  left: 200px; }
+  to     {  left: 0px; }
 }
 @keyframes slideRightMenu{
   from   { left:-50px}
@@ -1020,7 +1021,7 @@ div.page-inner>div{
 	border-bottom: 1px solid saddlebrown;
 }
 #dishItems div.dishItem ul{
-	padding:5px 0 5px 10px;
+	padding:5px 0 0px 10px;
 	padding-left: 10px;
 	border-bottom: 1px solid saddlebrown;
 	background: #FFFFFF;
@@ -1036,9 +1037,6 @@ div.page-inner>div{
 	width: -webkit-calc(100% - 100px);
 	position: relative;
 	margin-bottom: 10px;
-}
-#dishItems div.dishItem ul li.clear{
-	clear: both;
 }
 #dishItems div.dishItem ul li.dish-msg p:first-child{
 	height: 20px;
@@ -1071,23 +1069,40 @@ div.page-inner>div{
 	border:none;
 }
 #dishItems.active div.dishItem ul{
-	float: left;
-	width:-webkit-calc(50% - 3px);
-	background: #FFFFFF;
-	margin-bottom: 5px;
-	padding:5px;
+	padding:0 0 5px 0;
+	-webkit-column-break-inside: avoid;
+	break-inside: avoid;
+	background: transparent;
 	border:none;
-	height: auto;
+	border-radius: 5px;
+	-webkit-column-break-before:avoid;
 }
-#dishItems.active div.dishItem ul:nth-child(even){
-	margin-right: 3px;
+#dishItems.active div.dishItem ul li{
+	background: white;
+	padding:0 10px;
 }
-#dishItems.active div.dishItem ul:nth-child(odd){
-	margin-left: 3px;
+#dishItems.active div.dishItem ul li.dish-msg{
+	margin-bottom: 0;
+}
+#dishItems.active div.dishItem ul img{
+	width: 100%;
+	margin-bottom: 0.5em;
+}
+#dishItems.active div.dishItem div.dishItem-con{
+	-webkit-column-count: 2;
+	column-count: 2;
+	-webkit-column-width: 50%;
+	column-width:50%;
+	-webkit-column-gap: 0.5em;
+	column-gap: 0.5em;
 }
 #dishItems.active div.dishItem ul li.dish-msg,#dishItems.active div.dishItem ul li.dish-img{
 	float:none;
 	width:100%;
+	padding-top:5px;
+}
+#dishItems.active div.dishItem ul li.dish-msg{
+	padding-bottom: 10px;
 }
 #dishItems.active div.dishItem ul li.dish-msg>p{
 	float: none;
@@ -1122,7 +1137,16 @@ div.page-inner>div{
 #dishItems.active div.dishItem ul li.dish-msg p a.add-cart span{
 	display: none;
 }
-#dishItems div.dishItem ul li.dish-msg .heart,#dishItems div.dishItem ul li.clear .heart{
+/*点餐的数量新增行*/
+#dishItems div.dishItem ul li.clear{
+	position: relative;
+	height: 35px;
+	line-height: 35px;
+	padding-bottom: 5px;
+	border-top:1px dashed #8B4513;
+	clear: both;
+}
+#dishItems div.dishItem ul li.clear .heart{
 	    background: url(../img/web_heart_animation.png);
 	    background-position: left;
 	    background-repeat: no-repeat;
@@ -1152,7 +1176,7 @@ div.page-inner>div{
 	    background-position: right;
 	}
 	}
-#dishItems div.dishItem ul li.dish-msg .heartAnimation,#dishItems div.dishItem ul li.clear .heartAnimation{
+#dishItems div.dishItem ul li.clear .heartAnimation{
     display: inline-block;
     -webkit-animation-name: heartBlast;
     animation-name: heartBlast;
@@ -1164,20 +1188,16 @@ div.page-inner>div{
     animation-timing-function: steps(28);
     background-position: right;
     }
-#dishItems div.dishItem ul li.dish-msg .feed,#dishItems div.dishItem ul li.clear .feed{
+#dishItems div.dishItem ul li.clear .feed{
 	clear: both; 
 	width:100px;
 	height:100px;
 	position: absolute;
-	top:-12px;
-	right: 55px;
+	top:-33px;
+	left: -10px;
 	display: none;
 }
-#dishItems.active div.dishItem ul li.dish-msg .feed{
-	right: 16px;
-	top:-5px;
-}
-#dishItems div.dishItem ul li.dish-msg .likeCount,#dishItems div.dishItem ul li.clear .likeCount{
+#dishItems div.dishItem ul li.clear .likeCount{
 	font-family: 'Georgia', Times, Times New Roman, serif;
 	font-size: 15px;
 	color:#FFFFFF;
@@ -1186,29 +1206,48 @@ div.page-inner>div{
 	left:0;
 	width:100px;
 	height:100px;
-	line-height:100px;
-	text-align:center;
+	display: flex;
+	overflow: hidden;
 }
-#dishItems div.dishItem ul li.clear{
-	position: relative;
-	height: 30px;
-	line-height: 30px;
-	border-top:1px dashed #8B4513;
+#dishItems div.dishItem ul li.clear .likeCount span{
+	margin:auto
 }
 #dishItems div.dishItem ul li.clear>p{
 	width: 80px;
 	text-align: center;
 }
-#dishItems div.dishItem ul li.clear .feed{	
-	top:-35px;
-	right:-4px;
-	display: none;
+#dishItems div.dishItem ul li.clear>p.lf{
+	margin-left: 80px;
+}
+#dishItems div.dishItem ul li.clear>p.rt{
+	margin-right: 5px;
+	color: red;
+	font-weight: bold;
+	font-size: 2em;
+}
+#dishItems.active div.dishItem ul li.clear .feed{
+	left: -20px;
+	/*left:calc(50% - 50px);
+	left: -webkit-calc(50% - 50px);*/
+}
+#dishItems.active div.dishItem ul li.clear>p.lf{
+	width: 50px;
+	margin-left:calc(50% - 25px);
+	margin-left: -webkit-calc(50% - 25px);
+}
+#dishItems.active div.dishItem ul li.clear>p.rt{
+	width: 33px;
+	margin-right: 0;
+}
+#dishItems.active div.dishItem ul li:last-child{
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 /*点餐菜单*/
 #order div.order-menu{
 	width: 160px;
 	height:100%;
-	position: fixed;
+	position: absolute;
 	top:0;
 	right: 0;
 	z-index: 101;
@@ -1365,6 +1404,8 @@ div.page-inner>div{
 		height: 60px;
 		overflow: hidden;
 		opacity: 1;
+		padding-right: 0px;
+		padding-left: 0px;
 	}
 	31%{
 		width: 50px;
@@ -1375,6 +1416,8 @@ div.page-inner>div{
 		bottom: calc(50% - 30px);
 		right:calc(50% - 25px);
 		transform: rotateZ(0deg);
+		padding-right: 0px;
+		padding-left: 0px;
 	}
 	50%{
 		width: 50px;
@@ -1385,6 +1428,8 @@ div.page-inner>div{
 		right:45%;
 		overflow: hidden;
 		transform: rotateZ(0deg);
+		padding-right: 0px;
+		padding-left: 0px;
 	}
 	100%{	
 		width: 35px;
@@ -1395,13 +1440,17 @@ div.page-inner>div{
 		opacity:1;
 		overflow: hidden;
 		transform: rotateZ(1440deg);
+		padding-right: 0px;
+		padding-left: 0px;
+		padding-top:5px;
 	}
+}
+#cart-dialog.adddish>p.close-dialog{
+	text-align: center;
 }
 #cart-dialog>p.close-dialog{
 	text-align: right;
 	font-size: 1.2em;
-	margin-top:-7px;
-	margin-right: -7px;
 }
 #cart-dialog>p.close-dialog span{
 	display: inline-block;
@@ -1438,6 +1487,7 @@ div.page-inner>div{
 	height: 25px;
 	padding:0px 10px;
 	margin-right: 8px;
+	margin-bottom: 5px;
 	border-radius: 2px;
 	-webkit-border-radius: 2px;
 }
@@ -1512,7 +1562,11 @@ div.page-inner>div{
 	-webkit-border-radius: 5px;
 }
 #shopcart div.user-msg p.order-time{
-	margin-top:10px
+	margin-top:10px;
+}
+#shopcart div.user-msg p.order-time input{
+	height: 25px;
+	line-height: 25px;
 }
 #shopcart div.user-msg p.order-time,#shopcart div.user-msg p.yongcan-way{
 	padding:0 10px;
@@ -1588,8 +1642,6 @@ div.page-inner>div{
 /*购物车菜品列表*/
 #cartItems{
 	padding-bottom: 65px;
-	max-height: -webkit-calc(100% - 165px);
-	overflow-y: auto;
 	background: rgba(255,255,255,0.7);
 	width: -webkit-calc(100% - 10px);
 	margin:10px auto 0;
@@ -1611,6 +1663,7 @@ div.page-inner>div{
 }
 #cartItems ul li.dish-img img{
 	width: 100%;
+	height: 55px;
 }
 #cartItems ul li.dish-msg{
 	width: -webkit-calc(100% - 85px);
@@ -1620,9 +1673,19 @@ div.page-inner>div{
 #cartItems ul li.dish-msg p.dish-name{
 	height: 20px;
 }
+#cartItems ul li.dish-msg p.dish-name span.rt{
+	display: inline-block;
+	width: 40px;
+	margin-right: 10px;
+	font-size: 1.8em;
+	color:#FF0000;
+	margin-top:-5px;
+	text-align: right;
+}
 #cartItems ul li.dish-msg p.lf,#cartItems ul li.dish-msg p.rt{
 	height: 30px;
 	line-height: 30px;
+	margin-top:5px;
 }
 #cartItems ul li.dish-msg p.lf{
 	color:red
@@ -2563,12 +2626,14 @@ div.usercenter-title a img{
 	line-height: 30px;
 }
 #usercenter div.user-content ul.content-list li .lf{
+	position: relative;
+	z-index: 101;
 	padding-left: 35px;
 	color:#333333;
 	font-size: 16px;
 }
 #usercenter div.user-content ul.content-list li .rt{
-	padding-right: 20px;
+	padding-right: 32px;
 }
 #usercenter div.user-content ul.content-list li img{
 	border-radius: 50%;
@@ -2625,18 +2690,17 @@ div.usercenter-title a img{
 #usercenter div.user-content ul.content-list li.usercenter-birth .rt{
 	padding-right: 0;
 }
-#usercenter div.user-content ul.content-list li.usercenter-birth label.rt{
-	position: relative;
-	width: 20px;
-	z-index: 100;
-	background: #FFFFFF;
-}
 #usercenter div.user-content ul.content-list li.usercenter-birth input.rt{
+	position: relative;
+	width: calc(100% - 81px);
+	width: -webkit-calc(100% - 56px);
 	border:none;
-	height: 45px;
-	color:#666666
+	height: 43px;
+	color:#666666;
 	background: none;
-	margin-right: -60px;
+	margin-right: -25px;
+	background: url("../img/enter.png") no-repeat calc(100% - 27px) center;
+	padding-left: calc(100% - 190px);
 }
 #usercenter div.user-content ul.content-list li.usercenter-head .lf{
 	background: url("../img/head-icon.png") no-repeat 5px center;
@@ -2878,15 +2942,30 @@ div.usercenter-title a img{
 	padding-bottom: 50px;
 }
 #details div.detailsIcon{
-	background:#F5ADAF;
-}
-#details div.detailsIcon.details-yiwancheng span{
-	color: #F4666F;
+	color:#FFFFFF;
 	font-weight: bold;
+}
+#details div.detailsIcon.details-yiwancheng{
+	background:#F5ADAF;	
 }
 #details div.detailsIcon.details-yiwancheng span.iconImg{
 	background: url("../img/ycgIcon.png") no-repeat center center;
 	background-size:60px;
+}
+#details div.detailsIcon.details-daishiyong{
+	background:#A5C9F2;	
+}
+#details div.detailsIcon.details-daishiyong span.iconImg{
+	background: url("../img/dsyIcon.png") no-repeat center center;
+	background-size:60px;
+}
+#details div.orderOk-con{
+	width: 100%;
+	border-radius: 0;
+	margin-top:0;
+}
+#details div.orderOk-con .orderOk-con-title{
+	border-radius: 0;
 }
 #details .myorder-totle-price ul li{
 	line-height: 25px;
@@ -2900,7 +2979,7 @@ div.usercenter-title a img{
 #details .myorder-totle-price ul li:nth-child(3) span.con{
 	color:red;
 }
- #details .totle-msg .myoder-msg-list{
+#details .totle-msg .myoder-msg-list{
  	padding:10px;
  	line-height: 20px;
  }
@@ -2929,7 +3008,8 @@ div.usercenter-title a img{
 	width: 100%;
 	height: 100%;
 	overflow-y: auto;
-	background: rgba(255,255,255,0.8);
+	background: rgba(255,255,255,0.9);
+	padding-bottom: 65px;
 }
 #ordersuccess div.orderOk-title p.title-img img{
 	width: 120px;
@@ -2939,4 +3019,46 @@ div.usercenter-title a img{
 	color:#632A19;
 	line-height: 40px;
 	font-weight:bold;
+}
+div.orderOk-con{
+	background: #FFFFFF;
+	width: 90%;
+	margin:10px auto 0;
+}
+div.orderOk-con .orderOk-con-title{
+	padding:5px 10px;
+	background: #F0B262;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+div.orderOk-con .orderOk-con-title img{
+	width: 100px;
+}
+div.orderOk-con ul{
+	font-size: 1.2em;
+	padding:20px;
+}
+div.orderOk-con ul li{
+	margin-bottom: 15px;
+}
+div.orderOk-con ul li span{
+	margin-right: 20px;
+}
+div.orderOk-con ul li p{
+	width: calc(100% - 80px);
+	width: -webkit-calc(100% - 80px);
+	padding-right: 80px;
+	font-weight: bold;
+}
+#ordersuccess div.orderOkBtns p{
+	width: 100px;
+	height: 35px;
+	line-height: 35px;
+	background:#ED982C;
+	margin-left: calc((100% - 200px)/3);
+	margin-top:20px;
+}
+#ordersuccess div.orderOkBtns p a{
+	font-weight: bold;
+	color:#FFFFFF;
 }

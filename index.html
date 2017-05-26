@@ -11,7 +11,10 @@
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
 </head>
 <body ng-controller="parentCtrl">
-	<div id="menu-left">
+		<!--<div id="viewOuter">-->
+				<!--<div ng-hide="noanimate" ng-view class="page-animate page-inner"></div>-->
+				<div ng-view class="page-inner" id="pageView"></div>
+				<div id="menu-left">
 		<div class="view">
 			<div class="slice s1">
 			<span class="overlay"></span>
@@ -19,8 +22,11 @@
 				<span class="overlay"></span>
 				<div  id="menu-left-inner">
 					<div class="menu-head textcenter">
-						<img src="img/userhead.png" alt="" />
-						<p class="textcenter">John baby</p>
+						<a href="#/account" class="a-block" ng-click="addClass($event)" title="usercenter">
+							<img src="img/userhead.png" alt="" />
+							<p class="textcenter">John baby</p>
+						</a>
+						
 					</div>
 					<ul>
 						<li class="active start"><a class="a-block" href="#/start"><img src="img/home1.png" alt="" 
@@ -41,10 +47,9 @@
 			</div>
 		</div>
 	</div>
-		<!--<div id="viewOuter">-->
-				<!--<div ng-hide="noanimate" ng-view class="page-animate page-inner"></div>-->
-				<div ng-view class="page-inner"></div>
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/GuiID.js"></script>
+<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 <!--<script type="text/javascript" src="js/lCalendar.min.js"></script>-->
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/angular-route.min.js"></script>

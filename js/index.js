@@ -37,6 +37,11 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 		$scope.animate=function(str){
 		$scope.noanimate=str;
 	}
+//	页面跳转函数
+	 $scope.jump = function (path) {
+        $location.url(path);
+    }
+   
 	//$scope.animate(true);
 	  $("body").css("height",$(window).height()+"px");
 	  $("#menu-left").css("height",$(window).height()+"px");
@@ -47,12 +52,12 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 	 		}else{
 	 			$("#menu-left ul li.active").removeClass("active");
 	 			$(this).addClass("active");
-	// 			$("#menu-left").removeClass("active");
-	// 			$("#viewOuter div.page-inner").removeClass("active");
-	   			$timeout(function(){
-	   				$("#menu-left").removeClass("active");
-	   				$("div.page-inner").removeClass("active");
-	   			},300);
+	 			$("#menu-left").removeClass("active").addClass("close");
+	 			$("#viewOuter div.page-inner").removeClass("active").addClass("close");
+//	   			$timeout(function(){
+//	   				$("#menu-left").removeClass("active");
+//	   				$("div.page-inner").removeClass("active");
+//	   			},300);
 	 		}
 	 	});
 	 	
@@ -99,6 +104,7 @@ app.controller('evaluateCtrl', function($scope) {
 app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile){
 	$(function(){
 			//$scope.animate(false);
+//			控制点餐加入购物车中套餐的最高高度
 			
 			$scope.sendMsg={
 			    "dcombodetails": [],
@@ -203,31 +209,41 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 	 					$.each(this.foodinfos, function(){
 	 						if((this.foodinfo!=null&&this.foodinfo.fCode==foodInnerCode)||(this.foodinfo==null&&this.foodcomboInfo.foodcombo.fCode==foodInnerCode)){	
 	 							if(this.foodcomboInfo!=null){
-		 							var taocanMsg= {
-							            "cancelTime": "2017-05-25T02:34:52.719Z",
-							            "foodCode": "",
-							            "foodID": "56",
-							            "foodName": "",
-							            "foodNums": 1,
-							            "id": "1",
-							            "isCancel": 0,
-							            "isDelete": 0,
-							            "measureID": "",
-							            "orderDetailsID": "2",
-							            "price": 10,
-							            "tasteDetailsID": ""
-							        }
-	 							getOrderMsg=this.foodcomboInfo.foodcombo;
-	 							taocanMsg.foodName=getOrderMsg.typeName;
-	 							taocanMsg.foodCode=getOrderMsg.fCode;
-	 							taocanMsg.foodID=getOrderMsg.id;
-	 							taocanMsg.foodNums=$($("#dishItems div.dishItem ul."+res[j])[0]).children("li.clear").children("div.feed").children(".likeCount").children("span").html();
-	 							taocanMsg.id=Guid.NewGuid().ToString();
-	 							taocanMsg.measureID=this.enumitem.enumItemName;
-	 							taocanMsg.price=getOrderMsg.price;
-	 							var foodtype=this.foodtype;
+	 								getOrderMsg=this.foodcomboInfo.foodcombo;
+	 								var foodname=getOrderMsg.typeName;
+		 							var foodCode=getOrderMsg.fCode;
+		 							var foodId=getOrderMsg.id;
+		 							var foodnums=$($("#dishItems div.dishItem ul."+res[j])[0]).children("li.clear").children("div.feed").children(".likeCount").children("span").html();
+		 							var ids=$($("#dishItems div.dishItem ul."+res[j])[0]).children("li.clear").children("p.lf").attr("title");
+		 							var measureId=this.enumitem.enumItemName;
+		 							var priCe=getOrderMsg.price;
+	 								var foodtype=this.foodtype;
 //	 							循环套餐里的单品
 								$.each(this.foodcomboInfo.foodInfos, function(i,item) {
+										var guid=Guid.NewGuid().ToString();
+										var taocanMsg= {
+								            "cancelTime": "2017-05-25T02:34:52.719Z",
+								            "foodCode": "",
+								            "foodID": "56",
+								            "foodName": "",
+								            "foodNums": 1,
+								            "id": "1",
+								            "isCancel": 0,
+								            "isDelete": 0,
+								            "measureID": "",
+								            "orderDetailsID": "2",
+								            "price": 10,
+								            "tasteDetailsID": ""
+								        }
+			 	
+			 							taocanMsg.foodName=foodname;
+			 							taocanMsg.foodCode=foodCode;
+			 							taocanMsg.foodID=foodId;
+			 							taocanMsg.foodNums=foodnums;
+			 							taocanMsg.id=ids;
+			 							taocanMsg.measureID=measureId;
+			 							taocanMsg.orderDetailsID=guid;
+			 							taocanMsg.price=priCe;
 										var orderMsg= {
 								            "cancelTime": "2017-05-25T02:34:52.719Z",
 								            "day": 0,
@@ -261,26 +277,19 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 								       
 								        orderMsg.foodName=this.foodName;
 								        orderMsg.foodNum=taocanMsg.foodNums;
-									     orderMsg.dinnershopID=this.shopID;
-									     orderMsg.foodCode=this.fCode;
-									     orderMsg.foodID=this.id;
-									     orderMsg.price=this.price;
-									     orderMsg.foodType=foodtype;
-									     orderMsg.orderFormID=$scope.sendMsg.orderForm.id;
-									     var guid=Guid.NewGuid().ToString();
-									     taocanMsg.orderDetailsID=Guid.NewGuid().ToString();
-									     orderMsg.id=taocanMsg.orderDetailsID;
-									     orderMsg.measureID=taocanMsg.measureID;
-									     console.log(taocanMsg);
-									     $scope.sendMsg.dcombodetails.push(taocanMsg);
-									     $scope.sendMsg.oderdetails.push(orderMsg);
+									    orderMsg.dinnershopID=this.shopID;
+									    orderMsg.foodCode=this.fCode;
+									    orderMsg.foodID=this.id;
+									    orderMsg.price=this.price;
+									    orderMsg.foodType=foodtype;
+									    orderMsg.orderFormID=$scope.sendMsg.orderForm.id;
+									    orderMsg.id=guid;
+									    orderMsg.measureID=taocanMsg.measureID;
+									$scope.sendMsg.dcombodetails.push(taocanMsg);
+									$scope.sendMsg.oderdetails.push(orderMsg);
 									
 								       
 								});
-								
-	 							var foodname=getOrderMsg.typeName;
-	 							var foodtype=this.foodtype;
-	 							var foodCode=getOrderMsg.fCode;
 	 						}else{
 	 							getOrderMsg=this.foodinfo;
 	 							var foodname=getOrderMsg.foodName;
@@ -328,7 +337,7 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 								     orderMsg.price=getOrderMsg.price;
 								     orderMsg.foodType=foodtype;
 								     orderMsg.orderFormID=$scope.sendMsg.orderForm.id;
-								     orderMsg.id=$(this).attr("id");
+								     orderMsg.id=$(this).children("p.lf").attr("title");
 								     orderMsg.foodNum=xnum;
 								    orderMsg.measureID=$($("#dishItems div.dishItem ul."+res[j])[0]).find("span.danwei").html();
 								    orderMsg.tasteDetailsID=$(this).children("p.lf").html();
@@ -336,13 +345,14 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 								    ulobj.way=$(this).children("p.lf").html();
 				 					
 				 				}
-								ulobj.ids=$(this).attr("id");
+								ulobj.ids=$(this).children("p.lf").attr("title");
 				 				ulobj.pid=res[j];
 				 				ulobj.price=getOrderMsg.price;
 				 				ulobj.unit=$($("#dishItems div.dishItem ul."+res[j])[0]).find("span.danwei").html();
 				 				
 				 				ulobj.name=foodname;
 				 				ulobj.count=xnum;
+				 				ulobj.type=foodtype;
 				 				totle+=xnum;
 				 				ulobj.wayClass=$(this).attr("title");
 				 				$scope.ulmsg.push(ulobj);
@@ -375,7 +385,7 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 		 $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent){
 		 	$.each(eval($routeParams.orderItem),function(){
 		 		$("#dishItems div.dishItem ul."+this.pid).addClass("active");
-		 		$("#dishItems div.dishItem ul."+this.pid).append($compile('<li class="clear '+this.wayClass+'" title="'+this.wayClass+'"><p class="lf">'+this.way+'</p><div class="feed rt"><div class="heart"></div><div class="likeCount"><span>1</span></div></div><p class="rt" ng-click="deleteOrder($event)">&chi;</p></li>')($scope));
+		 		$("#dishItems div.dishItem ul."+this.pid).append($compile('<li class="clear '+this.wayClass+'" title="'+this.wayClass+'"><div class="feed lf"><div class="heart"></div><div class="likeCount"><span>1</span></div></div><p class="lf" title="'+this.ids+'">'+this.way+'</p><p class="rt" ng-click="deleteOrder($event)">&chi;</p></li>')($scope));
 		 		$("#dishItems div.dishItem ul."+this.pid+" li."+this.wayClass+" .likeCount span").html(this.count);
 			$("#dishItems div.dishItem ul."+this.pid+" li."+this.wayClass+" .feed").show();
 		 	});
@@ -492,6 +502,13 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 					}else{
 						$scope.showBZ=false;
 					}
+					if(this.foodtype==2){
+						$scope.getMeal=this.foodcomboInfo.foodInfos;
+						$scope.showMeal=true;
+						$scope.maxheight=$("body").height()-370+"px";
+					}else{
+						$scope.showMeal=false;
+					}
 				}
 				
 			});
@@ -535,7 +552,7 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 		if($("#cart-dialog div.make-way").length==0){
 			var spanA="normal";
 			if($("#dishItems div.dishItem ul."+pid+" li."+spanA).length==0){
-				var htmlCon='<li class="clear '+spanA+'" title="'+spanA+'"><p class="lf"></p><div class="feed rt"><div class="heart"></div><div class="likeCount"><span>1</span></div></div><p class="rt" ng-click="deleteOrder($event)">&chi;</p></li>';
+				var htmlCon='<li class="clear '+spanA+'" title="'+spanA+'"><div class="feed lf"><div class="heart"></div><div class="likeCount"><span>1</span></div></div><p class="lf"></p><p class="rt" ng-click="deleteOrder($event)">&chi;</p></li>';
 				$("#dishItems div.dishItem ul."+pid).append($compile(htmlCon)($scope));
 			}
 				$("#dishItems div.dishItem ul."+pid+" li."+spanA+" .likeCount span").html(numBer);
@@ -543,7 +560,7 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 			if($("#cart-dialog div.make-way ul li span.active").length!=0){
 				var spanA=$("#cart-dialog div.make-way ul li span.active").attr("id");
 				if($("#dishItems div.dishItem ul."+pid+" li."+spanA).length==0){
-					var htmlCon='<li class="clear '+spanA+'" title="'+spanA+'"><p class="lf">'+$("#"+spanA).html()+'</p><div class="feed rt"><div class="heart"></div><div class="likeCount"><span>1</span></div></div><p class="rt"  ng-click="deleteOrder($event)">&chi;</p></li>';
+					var htmlCon='<li class="clear '+spanA+'" title="'+spanA+'"><div class="feed lf"><div class="heart"></div><div class="likeCount"><span>1</span></div></div><p class="lf">'+$("#"+spanA).html()+'</p><p class="rt"  ng-click="deleteOrder($event)">&chi;</p></li>';
 					$("#dishItems div.dishItem ul."+pid).append($compile(htmlCon)($scope));
 				}
 				$("#dishItems div.dishItem ul."+pid+" li."+spanA+" .likeCount span").html(numBer);
@@ -556,7 +573,7 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 		$("#cart-dialog").addClass("adddish");
 		$("#cart-dialog>div").css("opacity","0");
 		$("#dishItems div.dishItem ul."+pid).addClass("active");
-		$("#dishItems div.dishItem ul."+pid+" li."+spanA).attr("id",Guid.NewGuid().ToString());
+		$("#dishItems div.dishItem ul."+pid+" li."+spanA+" p.lf").attr("title",Guid.NewGuid().ToString());
 		$("#cart-dialog").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
 			$("#cart-dialog").removeClass("adddish");
 			$("#cart-dialog p.close-dialog span").html("X");
@@ -614,6 +631,7 @@ app.controller('shopcartCtrl', function($scope,$routeParams,$http) {
 	
 //	获取存储的菜单列表
 	var sendMsg=JSON.parse(window.sessionStorage.getItem("sendMsg"));
+	console.log(sendMsg);
 
 //	菜品数量和价格
 	$scope.totleNum=function(){	
@@ -623,13 +641,27 @@ app.controller('shopcartCtrl', function($scope,$routeParams,$http) {
 		$("#cartItems ul").each(function(){
 			var count=parseInt($(this).children("li").children("p.rt").children("span").html());
 			var ids=$(this).attr("id");
-			$.each(sendMsg.oderdetails, function() {
+			$.each(sendMsg.dcombodetails, function() {
 				if(ids==this.id){
-					this.foodNum=count;
+					var idInner=this.orderDetailsID;
+					$.each(sendMsg.oderdetails, function() {
+						if(idInner==this.id){
+							this.foodNum=count;
+						}
+					});
+					this.foodNums=count;
+				}else{
+					$.each(sendMsg.oderdetails, function() {
+						if(ids==this.id){
+							this.foodNum=count;
+						}
+					});
 				}
 			});
+			
 			var ulobj={};
 			ulobj.pid=$(this).attr("title");
+			ulobj.ids=$(this).attr("id");
 			ulobj.count=count;
 			ulobj.name=$(this).children("li").children("p.dish-name").children("span.lf").html();
 			ulobj.price=$(this).children("li").children("p.price").children("span.orderPrice").html();
@@ -665,29 +697,58 @@ app.controller('shopcartCtrl', function($scope,$routeParams,$http) {
 	}
 	//	删除菜品
 	$scope.deleteOrder=function($event){
-		var me=$($event.currentTarget).parent().parent().parent().remove();
+		var me=$($event.currentTarget).parent().parent().parent();
 		var ids=$(me).attr("id");
-		$.each(sendMsg.oderdetails, function() {
-			if(ids==this.id){
-				sendMsg.oderdetails.pop(this);
+		console.log(ids);
+		var type=$(me).children("li.dish-img").attr("title");
+		if(type==2){
+			for(var i=0;i<sendMsg.dcombodetails.length;i++){
+				
+				if(ids==sendMsg.dcombodetails[i].id){
+					
+						var idInner=sendMsg.dcombodetails[i].orderDetailsID;
+						for(var j=0;j<sendMsg.oderdetails.length;j++){
+							if(idInner==sendMsg.oderdetails[j].id){
+								sendMsg.oderdetails.pop(sendMsg.oderdetails[j]);
+							}
+						}
+						sendMsg.dcombodetails.pop(sendMsg.dcombodetails[i]);
+						i-=1;
+				}
 			}
-		});
+		}else{
+			for(var j=0;j<sendMsg.oderdetails.length;j++){
+				if(ids==sendMsg.oderdetails[j].id){
+					sendMsg.oderdetails.pop(sendMsg.oderdetails[j]);
+				}
+			}
+		}
+		
 		$(me).remove();
 		$scope.totleNum();
 	}
 //	数据传输
 	$scope.sendmsg=function(){
+		if($scope.ulmsg.length>0){
+			$scope.jump('/confirmorder/'+JSON.stringify($scope.ulmsg));
+			$("#menu-left ul li.active").removeClass("active");
+			sessionStorage.clear("sendMsg");
+		}
+		
+	
+	
 //		sendMsg.orderForm.appointmenttime=new Date().getFullYear()+"-"+(+new Date().getMonth()+1)+"-"+new Date().getDate()+"T"+new Date().getHours()+":"+new Date().getMinutes();
 //		console.log(new Date().getFullYear()+"-"+(+new Date().getMonth()+1)+"-"+new Date().getDate()+"T"+new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds());
-		$http({
-			url:"http://192.168.99.60:7018/order/SaveOrder",
-			method:"post",
-			data:JSON.stringify(sendMsg)
-		}).success(function(data){
-			console.log(data);
-		}).error(function(data){
-			console.log(data);
-		});
+//		$http({
+//			url:"http://192.168.99.60:7018/order/SaveOrder",
+//			method:"post",
+//			data:JSON.stringify(sendMsg)
+//		}).success(function(data){
+//			console.log(data);
+//			sessionStorage.clear("sendMsg");
+//		}).error(function(data){
+//			console.log(data);
+//		});
 		
 	}
 	
@@ -745,7 +806,7 @@ $("#shopcart div.user-msg>div>div").unbind("click").click(function(){
 // confirmorder page controller 订单确认
 app.controller('confirmorderCtrl', function($scope,$routeParams) {
 // $scope.animate(false);
-
+	console.log($routeParams);
 	if($routeParams.alt!=0){
 		$scope.orderList=eval($routeParams.alt);
 	}
@@ -871,9 +932,9 @@ app.controller('assessCtrl', function($scope) {
 	
 	$(window).resize(function(){
 		if($("#textCon").hasClass("active")){
-			$("#assess").animate({
-				"top":"0px"
-			},50);
+//			$("#assess").animate({
+//				"top":"0px"
+//			},50);
 			$("#textCon").removeClass("active");
 			if($("#textCon").html()==""){
 				$("#textCon").append('<p>菜品口味还满足您的味蕾吗？服务还到位吗?环境是否符合您的要求？谈谈您的用餐感受吧！</p>');
@@ -881,15 +942,15 @@ app.controller('assessCtrl', function($scope) {
 			$("#cancel-assess-button,#publish-assess-button").show();
 		}else{
 			$("#textCon").addClass('active');
-			var mainOffsetTop = $("#textCon").offset().top;
-            var mainHeight = $("#textCon").height();
-            var winHeight = $(window).height();
-            var winScrollTop = $(window).scrollTop();
-            if(winScrollTop>mainOffsetTop+mainHeight||winScrollTop<mainOffsetTop-winHeight){
-            	$("#assess").animate({
-					"top":"-150px"
-				},50);
-            }
+//			var mainOffsetTop = $("#textCon").offset().top;
+//          var mainHeight = $("#textCon").height();
+//          var winHeight = $(window).height();
+//          var winScrollTop = $(window).scrollTop();
+//          if(winScrollTop>mainOffsetTop+mainHeight||winScrollTop<mainOffsetTop-winHeight){
+//          	$("#assess").animate({
+//					"top":"-150px"
+//				},50);
+//          }
 			
 			$("#textCon>p").remove();
 			$("#cancel-assess-button,#publish-assess-button").hide();

@@ -72,6 +72,32 @@
 				<span class="lf">{{dishInfo[0]}}</span>
 				<span class="rt">&#165;{{dishInfo[1]}}/{{dishInfo[2]}}</span>
 			</div>
+			<div class="cart-img textcenter">
+				<img class="boxshadow" src="img/01-xin_07.png" alt="" />
+			</div>
+			<div class="set-meal" ng-if="showMeal" style="max-height: {{maxheight}};">
+				<p class="set-meal-title">套餐详情</p>
+				<ul class="clear"  title="" ng-repeat="getMealList in getMeal">
+					<li class="lf dish-img" title="">
+						<img src="img/01-xin_07.png" alt="" />
+					</li>
+					<li class="rt dish-msg" title="">
+						<p class="dish-name">{{getMealList.foodName}}</p>
+						<p class="rt">&#165;{{getMealList.price}}/份
+						</p>
+					</li>
+				</ul>
+				<ul class="clear"  title="" ng-repeat="getMealList in getMeal">
+					<li class="lf dish-img" title="">
+						<img src="img/01-xin_07.png" alt="" />
+					</li>
+					<li class="rt dish-msg" title="">
+						<p class="dish-name">{{getMealList.foodName}}</p>
+						<p class="rt">&#165;{{getMealList.price}}/份
+						</p>
+					</li>
+				</ul>
+			</div>
 			<div class="make-way" ng-if="showBZ">
 				<p>请选择做法(必选):</p>
 				<ul>
@@ -80,9 +106,6 @@
 						<span ng-repeat="tasteItem in tasteList.tasteinfodetails" class="lf" id="{{tasteItem.id}}" ng-click="addActive($event)">{{tasteItem.tasteName}}</span>
 					</li>
 				</ul>
-			</div>
-			<div class="cart-img textcenter">
-				<img class="boxshadow" src="img/01-xin_07.png" alt="" />
 			</div>
 			<div class="cart-num clear">
 				<p class="lf">

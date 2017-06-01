@@ -1,11 +1,11 @@
 <div id="order">
-	<div class="search clear boxshadow">
+	<div class="search clear boxshadow borderRadius50">
 		<input type="text" id="search-input" class="lf" placeholder="请输入菜品名称"/>
 		<span class="lf textcenter">
 			<img src="img/dish-search.png" alt="" />
 		</span>
 	</div>
-	<div class="style clear boxshadow textcenter">
+	<div class="style clear boxshadow textcenter borderRadius50">
 		<img src="img/style.png" alt="" />
 	</div>
 	<div class="order-menu active">
@@ -37,7 +37,7 @@
 						<p>
 							<span class="lf dish-price">&#165;</span>
 							<span class="lf dish-price price-num"> {{foodinfoList.foodinfo.price}}/</span><span  class="lf dish-price danwei">{{foodinfoList.enumitem.enumItemName}}</span>
-							<a class="rt add-cart textcenter" ng-click="addDish($event)" title="{{[foodinfoList.foodinfo.foodName,foodinfoList.foodinfo.price,foodinfoList.enumitem.enumItemName,'dish'+foodinfoList.foodinfo.id]}}">
+							<a class="rt add-cart textcenter borderRadius5" ng-click="addDish($event)" title="{{[foodinfoList.foodinfo.foodName,foodinfoList.foodinfo.price,foodinfoList.enumitem.enumItemName,'dish'+foodinfoList.foodinfo.id]}}">
 								<span >来一份</span>
 								<img src="img/cart-img.png" alt="" />
 							</a>
@@ -53,7 +53,7 @@
 						<p>
 							<span class="lf dish-price">&#165;</span>
 							<span class="lf dish-price price-num"> {{foodinfoList.foodcomboInfo.foodcombo.price}}/</span><span  class="lf dish-price danwei">份</span>
-							<a class="rt add-cart textcenter" ng-click="addDish($event)" title="{{[foodinfoList.foodcomboInfo.foodcombo.typeName,foodinfoList.foodcomboInfo.foodcombo.price,foodinfoList.enumitem.enumItemName,'dish'+foodinfoList.foodcomboInfo.foodcombo.id]}}">
+							<a class="rt add-cart textcenter borderRadius5" ng-click="addDish($event)" title="{{[foodinfoList.foodcomboInfo.foodcombo.typeName,foodinfoList.foodcomboInfo.foodcombo.price,foodinfoList.enumitem.enumItemName,'dish'+foodinfoList.foodcomboInfo.foodcombo.id]}}">
 								<span >来一份</span>
 								<img src="img/cart-img.png" alt="" />
 							</a>
@@ -66,7 +66,7 @@
 		</div>
 	</div>
 	<div id="cart-dialog-outer">
-		<div id="cart-dialog">
+		<div id="cart-dialog" class="borderRadius5">
 			<p class="close-dialog"><span ng-click="closeDialog()">X</span></p>
 			<div class="cart-dish-name clear">
 				<span class="lf">{{dishInfo[0]}}</span>
@@ -75,18 +75,8 @@
 			<div class="cart-img textcenter">
 				<img class="boxshadow" src="img/01-xin_07.png" alt="" />
 			</div>
-			<div class="set-meal" ng-if="showMeal" style="max-height: {{maxheight}};">
+			<div class="set-meal" ng-if='showMeal==1' style="max-height: {{maxheight}};">
 				<p class="set-meal-title">套餐详情</p>
-				<ul class="clear"  title="" ng-repeat="getMealList in getMeal">
-					<li class="lf dish-img" title="">
-						<img src="img/01-xin_07.png" alt="" />
-					</li>
-					<li class="rt dish-msg" title="">
-						<p class="dish-name">{{getMealList.foodName}}</p>
-						<p class="rt">&#165;{{getMealList.price}}/份
-						</p>
-					</li>
-				</ul>
 				<ul class="clear"  title="" ng-repeat="getMealList in getMeal">
 					<li class="lf dish-img" title="">
 						<img src="img/01-xin_07.png" alt="" />
@@ -121,14 +111,14 @@
 	</div>
 	
 	<div ng-include="'tpl/include/menu-button.html'"></div>
-	<div  id="cart-button">
-		<a class="canClickA"  href="#/shopcart/{{ulmsg}}" ng-click="addClass($event)" title="shopcart">
+	<div  id="cart-button"  class="buttonDefalt borderRadius10 boxshadow">
+		<a class="canClickA a-block"  href="#/shopcart/{{ulmsg}}" ng-click="addClass($event)" title="shopcart">
 			<span class="cart-number">0</span>
-			<img src="img/cart-button.png" alt="" />
+			<img class="borderRadius10" src="img/cart-button.png" alt="" />
 		</a>
 		<a class="uncanClickA">
 			<span class="cart-number">0</span>
-			<img src="img/cart-button.png" alt="" />
+			<img class="borderRadius10" src="img/cart-button.png" alt="" />
 		</a>
 	</div>
 </div>

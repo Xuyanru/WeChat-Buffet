@@ -1,26 +1,33 @@
 <div id="start">
-	<!-- Start WOWSlider.com BODY section -->
+	<div id="starInner">
+			<!-- Start WOWSlider.com BODY section -->
 	<div id="wowslider-container1">
-		<div class="ws_images"><ul>
-				<li><img src="img/images/008.jpg" alt="008" title="008" id="wows1_0"/></li>
-			</ul></div>
-			<div class="ws_bullets"><div>
-				<a href="img/images/008.jpg" title="008"><span>1</span></a>
-				<a href="img/images/010.jpg" title="010"><span>2</span></a>
-				<a href="img/images/011.jpg" title="011"><span>3</span></a>
-				<a href="img/images/001.jpg" title="001"><span>4</span></a>
-				<a href="img/images/003.jpg" title="003"><span>5</span></a>
-				<a href="img/images/004.jpg" title="004"><span>6</span></a>
-			</div></div><div class="ws_script" style="position:absolute;left:-99%"><a href="http://wowslider.com">wow slider</a> by WOWSlider.com v8.7</div>
+		<div class="ws_images">
+			<ul>
+				<li><img src="img/images/008.jpg" alt="008" title="008" id="wows1_0"/>
+				</li>
+			</ul>
+		</div>
+			<div class="ws_bullets">
+				<div>
+					<a href="img/images/008.jpg" title="008"><span>1</span></a>
+					<a href="img/images/010.jpg" title="010"><span>2</span></a>
+					<a href="img/images/011.jpg" title="011"><span>3</span></a>
+					<a href="img/images/001.jpg" title="001"><span>4</span></a>
+					<a href="img/images/003.jpg" title="003"><span>5</span></a>
+					<a href="img/images/004.jpg" title="004"><span>6</span></a>
+				</div>
+			</div>
+			<div class="ws_script" style="position:absolute;left:-99%"></div>
 		<div class="ws_shadow"></div>
 	</div>
 	<!-- End WOWSlider.com BODY section -->
 	<div class="wellcome-img textcenter">
 		<!--<img src="img/happyday.png" alt="" />-->
 		<p class="textcenter name">钱林微信点餐</p>
-		<p class="weChat textcenter">欢迎亲爱的,<span>开心就好</span></p>
+		<p class="weChat textcenter">欢迎亲爱的,<span>{{usermsg.name}}</span></p>
 	</div>
-	<div class="favourable boxshadow">
+	<div class="favourable boxshadow borderRadius5">
 		<div class="youhui-title textcenter">
 			今日优惠
 		</div>
@@ -30,7 +37,7 @@
 			<p>结束日期:2017.05.02</p>
 		</div>
 	</div>
-	<div class="storeMsg boxshadow">
+	<div class="storeMsg boxshadow borderRadius5">
 		<div class="storeMsg-title textcenter">
 			店铺基本信息
 		</div>
@@ -66,7 +73,7 @@
 			</li>
 		</ul>
 	</div>
-	<div class="evaluate boxshadow">
+	<div class="evaluate boxshadow borderRadius5">
 		<div class="evaluate-title">顾客评价<span class="rt">共1条,好评率100% ></span></div>
 		<ul class="star">
 			<li class="lf">
@@ -85,7 +92,7 @@
 			<li class='evaluate-list clear'>
 				<div class="clear">
 					<p class="lf username">
-						<img src="img/userhead.png" alt="" />
+						<img class="borderRadius50" src="img/userhead.png" alt="" />
 						<span>逗你的</span>					
 					</p>
 					<p class="rt">
@@ -96,13 +103,12 @@
 						<img src="img/heart-full.png"/>
 					</p>
 				</div>
-				
 				<p>口味不错，建议大家来品尝！</p>
 			</li>
 			<li class='evaluate-list clear'>
 				<div class="clear">
 					<p class="lf username">
-						<img src="img/userhead.png" alt="" />
+						<img class=" borderRadius50" src="img/userhead.png" alt="" />
 						<span>逗你的</span>					
 					</p>
 					<p class="rt">
@@ -125,7 +131,7 @@
 			<li class='evaluate-list clear'>
 				<div class="clear">
 					<p class="lf username">
-						<img src="img/userhead.png" alt="" />
+						<img class="borderRadius50" src="img/userhead.png" alt="" />
 						<span>逗你的</span>					
 					</p>
 					<p class="rt">
@@ -148,6 +154,8 @@
 	</div>
 	<div ng-include="'tpl/include/menu-button.html'"></div>
 	<div ng-include="'tpl/include/order-button.html'"></div>
+	</div>
+
 </div>
 <script type="text/javascript" src="js/wowslider.js"></script>
 <script type="text/javascript" src="js/script.js"></script>

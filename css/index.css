@@ -9,7 +9,6 @@ html,body{
 	width:100%;
 	height:100%;
 	overflow-x:hidden ;
-	/*overflow: hidden;*/
 	font:14px/20px arial,sans-serif;
 	color:#666666;
 }
@@ -56,9 +55,18 @@ a{
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
+.borderRadius50{
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+}
 .buttonColor{
 	color: #446485;
 	font-size: 0.8em;
+}
+.buttonDefalt{
+	width: 55px;
+	height: 47px;
+	position: absolute;
 }
 /*ng-view外层框*/
  #viewOuter{
@@ -71,10 +79,11 @@ a{
 	width:100%;
 	height: 100%;
 	overflow-x: hidden;
-	/*float: left;*/
 	background:url("../img/main-bg.jpg") no-repeat;
 	background-size:cover ;
 	z-index: 100;
+	backface-visibility:hidden;
+	-webkit-backface-visibility:hidden;
 }
 div.page-inner>div{
 	width: 100%;
@@ -136,7 +145,9 @@ div.page-inner>div{
 #menu-button img{
 	width: 55px;
 	border-radius: 10px;
+	-webkit-border-radius: 10px;
 	box-shadow: 0 0 8px #666666;
+	-webkit-box-shadow: 0 0 8px #666666 ;
 }
 @keyframes slideRightView{
   from   { left: 0px; }
@@ -159,24 +170,25 @@ div.page-inner>div{
 	width:200px;
 	height: 100%;
 	overflow: hidden;
+	background: url("../img/menu-left-bg.jpg") no-repeat;
 	background-size:100% 100%;
 	position: absolute;
 	top:0;
 	left: -50px;
 	z-index:10;
 	color: #632A19;
-}
-#menu-left-inner{
-	width: 100%;
-	height: 100%;
 	padding-top:20px;
-	background: rgba(255,255,255,0.3);
+	backface-visibility:hidden;
+	-webkit-backface-visibility:hidden;
 }
-#menu-left-inner div.menu-head img{
-	border-radius: 50%;
+#menu-left div.menu-head img{
+	width:65px;
+	margin-bottom: 5px;
 }
-#menu-left-inner div.menu-head{
+#menu-left div.menu-head{
 	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 1.3em;
 }
 #menu-left ul{
 	height: calc(100% - 70px);
@@ -184,7 +196,7 @@ div.page-inner>div{
 	background: rgba(255,255,255,0.5);
 }
 #menu-left ul li{
-	padding-left: 10px;
+	padding-left: 45px;
 	font-size: 1.1em;
 	font-weight: 600;
 	height: 40px;
@@ -196,124 +208,11 @@ div.page-inner>div{
 #menu-left ul li a{
 	color: #632A19;
 }
-/*#menu-left ul li a{
-	line-height: 25px;
-}*/
 #menu-left ul li a img{
 	vertical-align: sub;
 	margin-right: 8px;
 	width: 22px;
 }
-#menu-left.active{
-	animation: slideRightMenu 0.25s both ease-in;
-	-webkit-animation: slideRightMenu 0.25s both ease-in;
-}
-#menu-left.close{
-	animation: slideLeftMenu 0.3s both ease-in;
-	-webkit-animation: slideLeftMenu 0.3s both ease-in;
-}
-/*#viewOuter*/ div.page-inner.active{
-	animation: slideRightView 0.3s both ease-in;
-	-webkit-animation: slideRightView 0.3s both ease-in;
-}
-/*#viewOuter*/ div.page-inner.close{
-	animation: slideLeftView 0.25s both ease-in;
-	-webkit-animation: slideLeftView 0.25s both ease-in;
-}
-.view {
-	width: 100%;
-	height:100%;
-	position: relative;
-	box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-	background: #333;
-	-webkit-perspective: 500px;
-	perspective: 500px;
-}
-
-.view .slice{
-	height: 100%;
-	z-index: 100;	
-	-webkit-transform-style: preserve-3d;
-	transform-style: preserve-3d;	
-	-webkit-transform-origin: left center;
-	transform-origin: left center;	
-	-webkit-transition: -webkit-transform 150ms ease-in-out;
-	transition: transform 150ms ease-in-out;
-	background: url("../img/menu-left-bg.jpg") no-repeat;
-		
-}
-.view .s1 {
-	width:25px;
-	background-position: 0px 0px;
-}
-.view .s2 {
-	width: 125px;
-	background-position: -25px 0px;
-	-webkit-transform: translate3d(25px,0,0);
-	transform: translate3d(25px,0,0);
-}
-.view .s3 {
-	width: 50px;
-	background-position: -150px 0px;
-	-webkit-transform: translate3d(125px,0,0);
-	transform: translate3d(125px,0,0);
-}
-.view .overlay {
-	height: 100%;
-	opacity: 0;
-	position: absolute;
-	-webkit-transition: opacity 150ms ease-in-out;
-	transition: opacity 150ms ease-in-out;
-}
-.view .s1 .overlay{
-	width: 25px;
-}
-.view .s2 .overlay{
-	width: 125px;
-}
-.view .s3 .overlay{
-	width: 50px;
-}
-
-#menu-left.close .overlay {
-	opacity: 1;
-}
-#menu-left.close .s2{
-	-webkit-transform: translate3d(25px,0,0) rotate3d(0,1,0,-60deg);
-	transform: translate3d(25px,0,0) rotate3d(0,1,0,-60deg);
-}
-#menu-left.close .s3
-	-webkit-transform: translate3d(125px,0,0) rotate3d(0,1,0,0deg);
-	transform: translate3d(125px,0,0) rotate3d(0,1,0,0deg);
-}
-#menu-left.active .s2{
-	-webkit-transform: translate3d(25px,0,0) rotate3d(0,1,0,-60deg);
-	transform: translate3d(25px,0,0) rotate3d(0,1,0,-60deg);
-}
-#menu-left.active .s3
-	-webkit-transform: translate3d(125px,0,0) rotate3d(0,1,0,0deg);
-	transform: translate3d(125px,0,0) rotate3d(0,1,0,0deg);
-}
-.view .s1 > .overlay {
-	background: -webkit-linear-gradient(right, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%);
-	background: linear-gradient(right, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%);
-}
-
-.view .s2 > .overlay {
-	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.2) 100%);
-	background: linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.2) 100%);
-}
-
-.view .s3 > .overlay {
-	background: -webkit-linear-gradient(right, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.2) 100%);
-	background: linear-gradient(right, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.2) 100%);
-}
-#menu-left-inner{
-	width: 100%;
-	height: 100%;
-	position: absolute;	
-}
-
 /*店铺主页*/
 #start,#order{
 	width: 100%;
@@ -321,6 +220,17 @@ div.page-inner>div{
 	overflow-y:auto;
 	overflow-x: hidden;
 	background: rgba(200,200,200,0.5);
+}
+#start{
+	overflow: hidden;
+	position: relative;
+}
+#starInner{
+	width: 100%;
+	height: 100%;
+	overflow-y:auto;
+	overflow-x: hidden;
+	padding-bottom: 45px;
 }
 /*轮播*/
 #wowslider-container1 { 
@@ -352,7 +262,6 @@ div.page-inner>div{
 	padding:0;
 	border-spacing:0;
 	overflow: visible;
-	/*table-layout:fixed;*/
 }
 #wowslider-container1 .ws_images ul li{
 	position: relative;
@@ -361,7 +270,6 @@ div.page-inner>div{
 	line-height:0; /*opera*/
 	overflow: hidden;
 	float:left;
-	/*font-size:0;*/
 	padding:0 0 0 0 !important;
 	margin:0 0 0 0 !important;
 }
@@ -398,22 +306,18 @@ div.page-inner>div{
 #wowslider-container1 .ws_images > div > img {
 	max-height:360px;
 }
-
 #wowslider-container1 .ws_images iframe {
 	position: absolute;
 	z-index: -1;
 }
-
 #wowslider-container1 .ws-title > div {
 	display: inline-block !important;
 }
-
 #wowslider-container1 a{ 
 	text-decoration: none; 
 	outline: none; 
 	border: none; 
 }
-
 #wowslider-container1  .ws_bullets { 
 	float: left;
 	position:absolute;
@@ -428,7 +332,6 @@ div.page-inner>div{
 #wowslider-container1  .ws_bullets a {
 	line-height: 0;
 }
-
 #wowslider-container1  .ws_script{
 	display:none;
 }
@@ -436,14 +339,12 @@ div.page-inner>div{
 #wowslider-container1 object{
 	position:absolute;
 }
-
 /* prevent some of users reset styles */
 #wowslider-container1 .ws_effect {
 	position: static;
 	width: 100%;
 	height: 100%;
 }
-
 #wowslider-container1 .ws_photoItem {
 	border: 2em solid #fff;
 	margin-left: -2em;
@@ -452,7 +353,6 @@ div.page-inner>div{
 #wowslider-container1 .ws_cube_side {
 	background: #A6A5A9;
 }
-
 /* hide controls when video start play */
 #wowslider-container1.ws_video_playing .ws_bullets,
 #wowslider-container1.ws_video_playing .ws_fullscreen,
@@ -460,8 +360,6 @@ div.page-inner>div{
 #wowslider-container1.ws_video_playing .ws_prev {
 	display: none;
 }
-
-
 /* youtube/vimeo buttons */
 #wowslider-container1 .ws_video_btn {
 	position: absolute;
@@ -518,10 +416,6 @@ div.page-inner>div{
 	margin-left:7px;
 	color:transparent;
 }
-
-#wowslider-container1 .ws_bullets a.ws_selbull, #wowslider-container1 .ws_bullets a:hover{
-	background-position: 0 100%;
-}
 #wowslider-container1 a.ws_next, #wowslider-container1 a.ws_prev {
 	background-size: 200%;
 	position:absolute;
@@ -540,7 +434,6 @@ div.page-inner>div{
 	left:0.5em;
 	background-position: 0 0; 
 }
-
 /*playpause*/
 #wowslider-container1 .ws_playpause {
     width: 5.8em;
@@ -548,16 +441,14 @@ div.page-inner>div{
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -1.9em;
+    margin-left: -2.9em;
     margin-top: -2.9em;
     z-index: 59;
 	background-size: 100%;
 }
-
 #wowslider-container1 .ws_pause {
     background-image: url(./pause.png);
 }
-
 #wowslider-container1 .ws_play {
     background-image: url(./play.png);
 }
@@ -566,7 +457,6 @@ div.page-inner>div{
     bottom: 5px;
 	right:5px;
 }
-
 #wowslider-container1 .ws-title{
 	position:absolute;
 	display:block;
@@ -583,12 +473,9 @@ div.page-inner>div{
 	padding:0.3em;
 	background:#e7d7c3;
 	border-radius:0 0.25em 0.25em 0;
-	-moz-border-radius:0 0.25em 0.25em 0;
 	-webkit-border-radius:0 0.25em 0.25em 0;
-	box-shadow: 0.1em 0 0.15em rgba(114, 82, 45, 0.6);
-    -moz-box-shadow: 0.1em 0 0.15em rgba(114, 82, 45, 0.6);	
+	box-shadow: 0.1em 0 0.15em rgba(114, 82, 45, 0.6);	
 	-webkit-box-shadow: 0.1em 0 0.15em rgba(114, 82, 45, 0.6);	
-
 }
 #wowslider-container1 .ws-title div{
 	font-family:"Palatino Linotype","Book Antiqua",Palatino,serif;
@@ -637,19 +524,16 @@ div.page-inner>div{
 	left:-55px;
 	visibility:hidden;
 	position:absolute;
-	box-shadow: 0 1px 3px rgba(46, 15, 0, 0.4);
-    -moz-box-shadow: 0 1px 3px rgba(46, 15, 0, 0.4);	
+	box-shadow: 0 1px 3px rgba(46, 15, 0, 0.4);	
 	-webkit-box-shadow:0 1px 3px rgba(46, 15, 0, 0.4);
     border: 3px solid #edd8a3;
 	border-radius:5px;
-	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	max-width:none;
 }
 #wowslider-container1 .ws_bullets a:hover img{
 	visibility:visible;
 }
-
 #wowslider-container1 .ws_bulframe div div{
 	height:48px;
 	overflow:visible;
@@ -668,12 +552,10 @@ div.page-inner>div{
 	overflow:visible;
 	position:absolute;
 	cursor:pointer;
-	box-shadow: 0 1px 3px rgba(46, 15, 0, 0.4);
-    -moz-box-shadow: 0 1px 3px rgba(46, 15, 0, 0.4);	
+	box-shadow: 0 1px 3px rgba(46, 15, 0, 0.4);	
 	-webkit-box-shadow:0 1px 3px rgba(46, 15, 0, 0.4);
     border: 3px solid #edd8a3;
 	border-radius:5px;
-	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 }
 #wowslider-container1 .ws_bulframe span{
@@ -688,7 +570,6 @@ div.page-inner>div{
 }#wowslider-container1 .ws_bulframe div div{
 	height: auto;
 }
-
 @media all and (max-width:760px) {
 	#wowslider-container1 .ws_fullscreen {
 		display: block;
@@ -700,12 +581,6 @@ div.page-inner>div{
 	#wowslider-container1 .ws_thumbs{
 		display: none
 	}
-}
-#start div.wellcome-img img{
-	border-radius: 10px;
-	-webkit-border-radius: 10px;
-	box-shadow: 0 0 8px #555555;
-	-webkit-box-shadow: 0 0 8px #555555;
 }
 #start div.wellcome-img p.name{
 	font-size: 1.5em;
@@ -730,7 +605,6 @@ div.page-inner>div{
 #start div.favourable,#start div.storeMsg,#start div.evaluate{
 	width:90%;
 	margin: 20px auto;
-	border-radius: 5px;
 	border:1px solid #999999;
 	background: rgba(255,255,255,0.7);
 	padding:0 10px;
@@ -797,9 +671,6 @@ div.page-inner>div{
 	border-bottom: 1px dashed #999999;
 	padding-top:5px
 }
-#start div.evaluate ul.evaluate-lists li p.username img,#evaluate div.evaluateCon ul.evaluate-lists li p.username img{
-	border-radius: 50%;
-}
 #start div.evaluate ul.evaluate-lists li p.rt,#evaluate div.evaluateCon ul.evaluate-lists li p.rt{
 	height: 50px;
 	line-height: 50px;
@@ -828,13 +699,8 @@ div.page-inner>div{
 }
 /*点餐按钮*/
 #order-button{
-	width: 55px;
-	position: absolute;
 	bottom: 15px;
 	right: 20px;	
-}
-#order-button img{
-	border-radius: 10px;
 }
 /*点餐页面*/
 #order{
@@ -850,7 +716,6 @@ div.page-inner>div{
 	position: absolute;
 	top:10px;
 	right: 20px;
-	border-radius: 50%;
 }
 #order .style{
 	right:70px;
@@ -887,6 +752,7 @@ div.page-inner>div{
 		right: 0px;
 		background: rgba(142,100,93,0.8);
 		border-radius: 0;
+		-webkit-border-radius: 0;
 	}
 }
 @-webkit-keyframes openinput{
@@ -902,7 +768,9 @@ div.page-inner>div{
 		height: 35px;
 		padding:4px 8px;
 		border-top-right-radius: 5px;
+		-webkit-border-top-right-radius: 5px;
 		border-bottom-right-radius: 5px;
+		-webkit-border-bottom-right-radius: 5px;
 		border:1px solid #643E37;
 		border-left: none;
 	}
@@ -934,6 +802,7 @@ div.page-inner>div{
 		right: 0px;
 		background: rgba(142,100,93,0.8);
 		border-radius: 0;
+		-webkit-border-radius: 0;
 	}
 	to{
 		background: linear-gradient(to bottom,#F4F7FA,#C5D1DF);
@@ -943,10 +812,12 @@ div.page-inner>div{
 		top:10px;
 		right: 20px;
 		border-radius: 50%;
+		-webkit-border-radius: 50%;
 	}
 }
 @-webkit-keyframes closeinput{
 	from{
+		width:calc(100% - 42px);
 		width:-webkit-calc(100% - 42px);
 		height:35px;
 	}
@@ -961,7 +832,9 @@ div.page-inner>div{
 		height: 35px;
 		padding:4px 8px;
 		border-top-right-radius: 5px;
+		-webkit-border-top-right-radius: 5px;
 		border-bottom-right-radius: 5px;
+		-webkit-border-bottom-right-radius: 5px;
 		border:1px solid #643E37
 		border-left: none;
 	}
@@ -996,10 +869,12 @@ div.page-inner>div{
 	left: 0;
 	width: 100%;
 	height: 60px;
+	z-index: 10;
 	background:rgba(71,23,13,0.8);
 	padding-left: 20px;
 	padding-bottom: 5px;
 	transition: all 0.3s;
+	-webkit-transition: all 0.3s ;
 }
 #order div.wellcome-title.active{
 	top:0;
@@ -1039,6 +914,7 @@ div.page-inner>div{
 	height:50px;
 }
 #dishItems div.dishItem ul li.dish-msg{
+	width: calc(100% - 100px);
 	width: -webkit-calc(100% - 100px);
 	position: relative;
 	margin-bottom: 10px;
@@ -1062,9 +938,8 @@ div.page-inner>div{
 	padding:3px 12px;
 	background: #E5004B;
 	border:1px solid #B4083E;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	color:#333333;
+	color:#efefef;
+	font-weight: 600;
 }
 #dishItems div.dishItem ul li.dish-msg p a.add-cart img{
 	display: none;
@@ -1080,6 +955,7 @@ div.page-inner>div{
 	background: transparent;
 	border:none;
 	border-radius: 5px;
+	-webkit-border-radius: 5px;
 	-webkit-column-break-before:avoid;
 }
 #dishItems.active div.dishItem ul li{
@@ -1233,9 +1109,6 @@ div.page-inner>div{
 }
 #dishItems.active div.dishItem ul li.clear .feed{
 	margin-left: -30px;
-	/*left: -20px;*/
-	/*left:calc(50% - 50px);
-	left: -webkit-calc(50% - 50px);*/
 }
 #dishItems.active div.dishItem ul li.clear>p.lf{
 	width: 50px;
@@ -1249,7 +1122,9 @@ div.page-inner>div{
 }
 #dishItems.active div.dishItem ul li:last-child{
 	border-bottom-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
 }
 /*点餐菜单*/
 #order div.order-menu{
@@ -1260,6 +1135,7 @@ div.page-inner>div{
 	right: 0;
 	z-index: 101;
 	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
 	background: url("../img/order-menu-bg2.png") no-repeat;
 	background-size:100% 100%;
 }
@@ -1283,10 +1159,12 @@ div.page-inner>div{
 #order div.order-menu div.menuBtn{
 	position: absolute;
 	top:50%;
-	right:-webkit-calc(100% - 20px);
+	right: calc(100% - 31px);
+	right:-webkit-calc(100% - 31px);
 	transform: translateY(-50%);
-	width: 50px;
-	height: 73px;
+	-webkit-transform: translateY(-50%);
+	width: 70px;
+	height: 102px;
 }
 #order div.order-menu div.menucontent ul{
 	padding:0px 40px 0 40px;
@@ -1306,19 +1184,11 @@ div.page-inner>div{
 }
 /*购物车按钮*/
 #cart-button{
-	position: absolute;
 	bottom: 15px;
 	right: 20px;
 }
-#cart-button>a{
-	display: block;
-	width:55px;
-	height: 47px;
-}
 #cart-button img{
 	width: 55px;
-	border-radius: 10px;
-	box-shadow: 0 0 8px #666666;
 }
 #cart-button>a>span{
 	height:15px;
@@ -1327,10 +1197,12 @@ div.page-inner>div{
 	top:2px;
 	left:50%;
 	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
 	padding:1px 5px 0 5px;
 	background: red;
 	font-size: 0.8em;
 	border-radius: 3px;
+	-webkit-border-radius: 3px;
 	color: #FFFFFF;
 }
 #cart-button>span.active{
@@ -1355,10 +1227,8 @@ div.page-inner>div{
 	max-height: calc(100% - 40px);
 	max-height: -webkit-calc(100% - 40px);
 	width: 90%;
-	border:1px solid #333333;
+	border:1px solid #666666;
 	background: #FFFFFF;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
 	padding:10px;
 }
 #cart-dialog.active{
@@ -1409,6 +1279,7 @@ div.page-inner>div{
 		height: 50px;
 		opacity: 1;
 		transform: rotateZ(0deg);
+		-webkit-transform: rotateZ(0deg);
 		overflow: hidden;
 	}
 	30%{
@@ -1419,15 +1290,16 @@ div.page-inner>div{
 		padding-right: 0px;
 		padding-left: 0px;
 	}
-	31%{
+	35%{
 		width: 50px;
 		height: 60px;
 		opacity:1;
 		overflow: hidden;
 		position: absolute;
-		bottom: calc(50% - 30px);
-		right:calc(50% - 25px);
+		bottom: 50%;
+		right:50%;
 		transform: rotateZ(0deg);
+		-webkit-transform: rotateZ(0deg);
 		padding-right: 0px;
 		padding-left: 0px;
 	}
@@ -1440,6 +1312,7 @@ div.page-inner>div{
 		right:45%;
 		overflow: hidden;
 		transform: rotateZ(0deg);
+		-webkit-transform: rotateZ(0deg);
 		padding-right: 0px;
 		padding-left: 0px;
 	}
@@ -1452,6 +1325,7 @@ div.page-inner>div{
 		opacity:1;
 		overflow: hidden;
 		transform: rotateZ(1440deg);
+		-webkit-transform: rotateZ(1440deg);
 		padding-right: 0px;
 		padding-left: 0px;
 		padding-top:5px;
@@ -1536,11 +1410,15 @@ div.page-inner>div{
 }
 #cart-dialog div.cart-num a.add{
 	border-top-right-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
 }
 #cart-dialog div.cart-num a.reduce{
 	border-top-left-radius: 5px;
+	-webkit-border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
 }
 #cart-dialog div.cart-num a.numBer{
 	padding:0 7px;
@@ -1558,10 +1436,8 @@ div.page-inner>div{
 #cart-dialog div.set-meal{
 	overflow-y: auto;
 	margin-top:10px;
-	max-height: auto;
 }
 #cart-dialog div.set-meal p.set-meal-title{
-	margin-top:10px;
 	font-weight: bold;
 	border-bottom: 1px dashed #BCBCBC;
 }
@@ -1576,6 +1452,7 @@ div.page-inner>div{
 }
 #cart-dialog div.set-meal ul li.dish-msg{
 	max-width: calc(100% - 85px);
+	max-width: -webkit-calc(100% - 85px);
 }
 #cart-dialog div.set-meal ul li.dish-msg p{
 	text-align: center;
@@ -1588,17 +1465,15 @@ div.page-inner>div{
 	height: 100%;
 	padding:0 10px;
 	background: rgba(255,255,255,0.8);
-	/*overflow-y:auto ;*/
 }
 #shopcart div.cart-title{
 	padding:10px 0;
 }
 #shopcart div.user-msg{
 	background: rgba(255,255,255,0.7);
+	width: calc(100% - 10px);
 	width: -webkit-calc(100% - 10px);
 	margin:5px auto;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
 }
 #shopcart div.user-msg p.order-time{
 	margin-top:10px;
@@ -1682,10 +1557,9 @@ div.page-inner>div{
 #cartItems{
 	padding-bottom: 65px;
 	background: rgba(255,255,255,0.7);
+	width: calc(100% - 10px);
 	width: -webkit-calc(100% - 10px);
 	margin:10px auto 0;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
 }
 #cartItems>p{
 	height: 35px;
@@ -1705,6 +1579,7 @@ div.page-inner>div{
 	height: 55px;
 }
 #cartItems ul li.dish-msg{
+	width: calc(100% - 85px);
 	width: -webkit-calc(100% - 85px);
 	margin-left: 5px;
 	position: relative;
@@ -1744,13 +1619,17 @@ div.page-inner>div{
 	color: red;
 }
 #cartItems ul li.dish-msg p.rt a.jian{
-	border-top-left-radius: 100%;
-	border-bottom-left-radius: 100%;
+	border-top-left-radius: 50%;
+	-webkit-border-top-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+	-webkit-border-bottom-left-radius: 50%;
 	border-right: none;
 }
 #cartItems ul li.dish-msg p.rt a.jia{
 	border-top-right-radius: 50%;
+	-webkit-border-top-right-radius: 50%;
 	border-bottom-right-radius: 50%;
+	-webkit-border-bottom-right-radius: 50%;
 	border-left: none;
 }
 #cartItems ul li.dish-msg p.rt span{
@@ -1786,6 +1665,7 @@ div.page-inner>div{
 	margin:0 auto;
 }
 #beizhu-dialog ul.sel-num li{
+	width: calc(25% - 10px);
 	width: -webkit-calc(25% - 10px);
 	height: 30px;
 	line-height: 30px;
@@ -1818,8 +1698,6 @@ textarea{
 }
 #beizhu-dialog div.dialogBtn p span{
 	padding:8px 20px;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
 }
 #beizhu-dialog div.dialogBtn p.lf span{
 	background: #CB2D2C;
@@ -1829,9 +1707,6 @@ textarea{
 }
 /*加菜,下单按钮*/
 #continue-order-button,#place-order-button,#cancel-order-button{
-	width: 55px;
-	height: 47px;
-	position: absolute;
 	bottom: 15px;
 	padding-top:3px;
 	background: url("../img/button-bg.png") no-repeat;	
@@ -1842,6 +1717,7 @@ textarea{
 #continue-order-button{
 	left: 50%;
 	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
 }
 #place-order-button,#cancel-order-button{
 	right: 20px;
@@ -1851,6 +1727,7 @@ textarea{
 	padding:0;
 	background: rgba(255,255,255,0.5);
 	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
 	position: relative;
 	overflow: hidden;
 }
@@ -1881,7 +1758,6 @@ textarea{
 }
 #orderItems ul li{
 	padding:5px 0;
-	/*border-top: 1px dashed #632A19;*/
 }
 #orderItems ul.orderItems-title{
 	border-top:none;
@@ -2023,6 +1899,7 @@ textarea{
 	top:0;
 	left: 100%;
 	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
 }
 #youhuiBack{
 	width: 55px;
@@ -2109,9 +1986,6 @@ textarea{
 	color:#AE9088;
 	outline: none;
 }
-#evaluate div.evaluateCon div.evaluate-totleNum select option{
-	background:;
-}
 #evaluate>div.evaluate-title{
 	height: 60px;
     line-height: 60px;
@@ -2192,6 +2066,7 @@ a {
 	z-index: 9999;
 	position: relative;
 	box-shadow: 1px 0px 2px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 1px 0px 2px rgba(0,0,0,0.2);
 }
 .codrops-top a {
 	padding: 0px 10px;
@@ -2278,13 +2153,6 @@ a {
 .cd-dropdown ul li span:active{
 	color: #fc756f;
 }
-/*
-.cd-dropdown > span, .cd-dropdown ul li span {
-	-webkit-backface-visibility: hidden;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	user-select: none;
-}*/
  .cd-dropdown > span span[class^="icon-"], .cd-dropdown > span span[class*=" icon-"] {
  padding: 0 30px 0 45px;
 }
@@ -2323,6 +2191,7 @@ a {
 }
 .cd-active.cd-dropdown > span, .cd-active.cd-dropdown ul li span {
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 } 
 .cd-active.cd-dropdown ul li span {
 	-webkit-transition: all 0.2s linear 0s;
@@ -2369,7 +2238,9 @@ a {
 	background: #FFFFFF;
 	padding-bottom: 20px;
 	border-bottom-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
 }
 #assess ul.assessMain-zongp{
 	position: relative;
@@ -2382,9 +2253,8 @@ a {
 }
 #assess ul.assessMain-zongp li p{
 	width: 100%;
-	/*height: calc(100% - 1px);
-	height: -webkit-calc(100% - 1px);*/
 	box-shadow: 0.5px 0 0 #CCCCCC;
+	-webkit-box-shadow: 0.5px 0 0 #CCCCCC;
 	border-right: 1px solid #CCCCCC;adding:5px;
 	padding:5px;
 	font-size: 0.8em;
@@ -2397,8 +2267,7 @@ a {
 	width: -webkit-calc(20% - 1px);
 }
 #assess ul.assessMain-zongp li:last-child p{
-	border-right: none;
-	
+	border-right: none;	
 }
 #assess ul.assessMain-zongp li.active{
 	border-bottom: none;
@@ -2416,6 +2285,7 @@ a {
 	border-bottom: 1px solid #CCCCCC;
 	padding:10px;
 	box-shadow: 0px -2px 5px #777777;
+	-webkit-box-shadow: 0px -2px 5px #777777;
 	margin-top:-1px
 }
 #assess div.assessStar ul.zongStar li{
@@ -2443,6 +2313,7 @@ a {
 }
 #assess div.assessStar ul.assessStar-list{
 	box-shadow: 0px 2px 5px #666666;
+	-webkit-box-shadow: 0px 2px 5px #666666;
 	padding:5px 0;
 }
 #textCon{
@@ -2462,6 +2333,7 @@ a {
 	margin-right: 5px;
 	margin-bottom: 5px;
 	border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 #assess div.assessMain div.addimgs ul li.addIcon{
 	border:1px dashed #CCCCCC;
@@ -2516,11 +2388,6 @@ a {
 	background: url("../img/button-bg.png") no-repeat;	
 	right: 20px;
 }
-#publish-assess-button a{
-	display: block;
-	width: 100%;
-	height: 100%;
-}
 /*个人中心*/
 #account{
 	width: 100%;
@@ -2547,6 +2414,7 @@ a {
 	position: absolute;
 	top:80px;
 	left: calc(50% - 40px);
+	left: -webkit-calc(50% - 40px);
 	
 }
 #account div.user-title div.user-head a img{
@@ -2571,9 +2439,11 @@ a {
 	from{
 		opacity: 1;
 		transform: rotate(0);
+		-webkit-transform: rotate(0);
 	}
 	to{
 		transform: rotate(580deg);
+		-webkit-transform: rotate(580deg);
 		opacity: 0;
 		display: none;
 	}
@@ -2606,9 +2476,11 @@ a {
 #account div.user-main ul.user-list li{
 	margin:5px;
 	width:calc(25% - 10px);
+	width: -webkit-calc(25% - 10px);
 	border:1px solid #CCCCCC;
 	padding:8px 0;
 	box-shadow: 0 0 6px #bbbbbb;
+	-webkit-box-shadow: 0 0 6px #bbbbbb;
 }
 #account div.user-main ul.user-list li p{
 	margin-top:4px
@@ -2675,7 +2547,8 @@ div.usercenter-title a img{
 	padding-right: 32px;
 }
 #usercenter div.user-content ul.content-list li img{
-	border-radius: 50%;
+	width: 50px;
+	height: 50px;
 }
 #usercenter div.user-content ul.content-list li.enter .rt{
 	background: url("../img/enter.png") no-repeat right center;
@@ -2865,11 +2738,13 @@ div.usercenter-title a img{
 }
 #myorder div.myorder-list ul.myorder-list-main li div.rt,#details div.myorder-list ul.myorder-list-main li div.rt{
 	width: calc(100% - 125px);
+	width: -webkit-calc(100% - 125px);
 	margin-left: 5px;
 	padding-top:10px;
 }
 #myorder div.myorder-list ul.myorder-list-main li .myorder-name,#details div.myorder-list ul.myorder-list-main li .myorder-name{
 	width: calc(100% - 60px);
+	width: -webkit-calc(100% - 60px);
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -2891,18 +2766,22 @@ div.usercenter-title a img{
 #myorder div.myorder-list div.totle-msg div.myoder-handle a{
 	padding:5px 10px;
 	box-shadow: 0 0 0.5px #363837;
+	-webkit-box-shadow: 0 0 0.5px #363837;
 	margin-right: 10px;
 	border-radius: 3px;
-}
+	-webkit-border-radius: 3px;
 #myorder div.myorder-list div.totle-msg div.myoder-handle a.handleWay{
 	box-shadow: 0 0 0.5px red;
+	-webkit-box-shadow: 0 0 0.5px red;
 	color:red;
 }
 #myorder div.myorder-list div.totle-msg div.myoder-handle a.a-block{
 	padding:0;
 	box-shadow:none;
+	-webkit-box-shadow:none;
 	margin-right:0;
 	border-radius:0;
+	-webkit-border-radius:0;
 }
 #myorder div.myorder-list div.myorder-list-con div.myOrder-title div.tubiao-icon{
 	position: absolute;
@@ -3001,10 +2880,12 @@ div.usercenter-title a img{
 #details div.orderOk-con{
 	width: 100%;
 	border-radius: 0;
+	-webkit-border-radius: 0;
 	margin-top:0;
 }
 #details div.orderOk-con .orderOk-con-title{
 	border-radius: 0;
+	-webkit-border-radius: 0;
 }
 #details .myorder-totle-price ul li{
 	line-height: 25px;
@@ -3034,12 +2915,15 @@ div.usercenter-title a img{
 #details-handle a{
 	padding:5px 10px;
 	box-shadow: 0 0 0.5px #363837;
+	-webkit-box-shadow: 0 0 0.5px #363837;
 	margin-right: 10px;
 	border-radius: 3px;
+	-webkit-border-radius: 3px;
 	margin-top:8px;
 }
 #details-handle a.handleWay{
 	box-shadow: 0 0 0.5px red;
+	-webkit-box-shadow: 0 0 0.5px red;
 	color:red;
 }
 /*支付成功页面*/
@@ -3068,7 +2952,9 @@ div.orderOk-con .orderOk-con-title{
 	padding:5px 10px;
 	background: #F0B262;
 	border-top-left-radius: 10px;
+	-webkit-border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
 }
 div.orderOk-con .orderOk-con-title img{
 	width: 100px;

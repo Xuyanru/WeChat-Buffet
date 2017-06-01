@@ -15,16 +15,11 @@
 				<!--<div ng-hide="noanimate" ng-view class="page-animate page-inner"></div>-->
 				<div ng-view class="page-inner" id="pageView"></div>
 				<div id="menu-left">
-		<div class="view">
-			<div class="slice s1">
-			<span class="overlay"></span>
-			<div class="slice s2">
-				<span class="overlay"></span>
-				<div  id="menu-left-inner">
+				<!--<div  id="menu-left-inner">-->
 					<div class="menu-head textcenter">
 						<a href="#/account" class="a-block" ng-click="addClass($event)" title="usercenter">
-							<img src="img/userhead.png" alt="" />
-							<p class="textcenter">John baby</p>
+							<img class="borderRadius50" ng-src='{{usermsg.headimgurl}}' alt="" />
+							<p class="textcenter">{{usermsg.name}}</p>
 						</a>
 						
 					</div>
@@ -39,14 +34,8 @@
 						<li class="underuse"><a class="a-block" href="#/myorder/{{2}}"><img src="img/bill2.png" alt="" /><span>待使用订单</span></a></li>
 						<li class="usercenter"><a class="a-block" href="#/account"><img src="img/account2.png" alt="" /><span>个人中心</span></a></li>
 					</ul>
-				</div>
-				<div class="slice s3">
-					<span class="overlay"></span>
-				</div>
-			</div>
-			</div>
+			<!--</div>-->
 		</div>
-	</div>
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/GuiID.js"></script>
 <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>

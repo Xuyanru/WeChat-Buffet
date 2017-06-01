@@ -5,13 +5,13 @@
 		</div>
 		<div class="user-head textcenter boxshadow">
 			<a href="#/usercenter" class="a-block" ng-click="addClass($event)">
-				<img src="img/userhead.png" alt="" />
+				<img ng-src="{{usermsg.headimgurl}}" alt="" />
 			</a>
 			<img src="img/head-light2.png" alt="" />
 		</div>
 	</div>
 	<div class="user-main">
-		<p class="user_name textcenter">John baby</p>
+		<p class="user_name textcenter">{{usermsg.name}}</p>
 		<div class="signature textcenter"><p contenteditable="true">个人签名</p></div>
 		<ul class="user-list textcenter clear">
 			<li class="lf borderRadius5">

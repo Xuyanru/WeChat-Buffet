@@ -34,6 +34,16 @@ app.directive('onFinishRenderFilters', function ($timeout) {
 // parent page controller 父控制器
 app.controller('parentCtrl', function($scope,$location,$timeout) {
 	$(function(){
+		//	获取微信用户头像和昵称
+// var userUrl="http://www.qianlinhengxing.com:1234/%E5%BE%AE%E4%BF%A1%E7%82%B9%E9%A4%90/WeChat-Buffet/index.html#/start?openid=ohSEqwq_uRQdDl1AgBLW3dKBxnHc&headimgurl=http:%2F%2Fwx.qlogo.cn%2Fmmopen%2FPiajxSqBRaEJ3ibzhynP7IwkQiceGic4X8336wvGz6mBu4wc7ulLlDDMUm1qDgTRmqTAhTppaMkWknCGvJgia86Lsiaw%2F0&name=admin%F0%9F%92%8B";
+//	 var userMsg = $location.search();  
+var userMsg={openid:"ohSEqwq_uRQdDl1AgBLW3dKBxnHc",headimgurl:"http:%2F%2Fwx.qlogo.cn%2Fmmopen%2FPiajxSqBRaEJ3ibzhynP7IwkQiceGic4X8336wvGz6mBu4wc7ulLlDDMUm1qDgTRmqTAhTppaMkWknCGvJgia86Lsiaw%2F0",name:"admin%F0%9F%92%8B"};
+	userMsg.openid=decodeURI(userMsg.openid);
+	userMsg.headimgurl=decodeURIComponent(userMsg.headimgurl);
+	userMsg.name=decodeURI(userMsg.name);
+	$scope.usermsg=userMsg;
+	console.log($scope.usermsg);	
+		
 		$scope.animate=function(str){
 		$scope.noanimate=str;
 	}
@@ -47,13 +57,13 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 	  $("#menu-left").css("height",$(window).height()+"px");
 	 	$("#menu-left ul li").click(function(){
 	 		if($(this).hasClass("active")){
-					$("#menu-left").removeClass("active").addClass("close");
-					$("div.page-inner").removeClass("active").addClass("close");
+					$("#menu-left").removeClass("active").addClass("close").css({"animation":"slideLeftMenu 0.3s both ease-in","-webkit-animation":"slideLeftMenu 0.3s both ease-in"});
+					$("div.page-inner").removeClass("active").addClass("close").css({"animation":"slideLeftView 0.25s both ease-in","-webkit-animation":"slideLeftView 0.25s both ease-in"});
 	 		}else{
 	 			$("#menu-left ul li.active").removeClass("active");
 	 			$(this).addClass("active");
-	 			$("#menu-left").removeClass("active").addClass("close");
-	 			$("#viewOuter div.page-inner").removeClass("active").addClass("close");
+	 			$("#menu-left").removeClass("active").addClass("close").css({"animation":"slideLeftMenu 0.3s both ease-in","-webkit-animation":"slideLeftMenu 0.3s both ease-in"});
+	 			$("div.page-inner").removeClass("active").addClass("close").css({"animation":"slideLeftView 0.25s both ease-in","-webkit-animation":"slideLeftView 0.25s both ease-in"});
 //	   			$timeout(function(){
 //	   				$("#menu-left").removeClass("active");
 //	   				$("div.page-inner").removeClass("active");
@@ -66,8 +76,8 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 	 	$scope.addClass=function($event){
 	 		
 	 		if($("#menu-left").hasClass("active")){
-				$("#menu-left").removeClass("active").addClass("close");
-				$("div.page-inner").removeClass("active").addClass("close");
+				$("#menu-left").removeClass("active").addClass("close").css({"animation":"slideLeftMenu 0.3s both ease-in","-webkit-animation":"slideLeftMenu 0.3s both ease-in"});
+				$("div.page-inner").removeClass("active").addClass("close").css({"animation":"slideLeftView 0.25s both ease-in","-webkit-animation":"slideLeftView 0.25s both ease-in"});
 	 		}
 	 		if($($event.currentTarget).parent().attr("id")=="cart-button"&&$($event.currentTarget).children("span").html()==0){
 				return false;
@@ -88,8 +98,8 @@ app.controller('parentCtrl', function($scope,$location,$timeout) {
 });
 
 // start page controller 主页
-app.controller('startCtrl', function($scope) {
- 
+app.controller('startCtrl', function($scope,$location) {
+
 });
 
 app.controller('evaluateCtrl', function($scope) {
@@ -101,7 +111,7 @@ app.controller('evaluateCtrl', function($scope) {
 });
   
 // order page controller 点餐
-app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile){
+app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile,$location){
 	$(function(){
 			//$scope.animate(false);
 //			控制点餐加入购物车中套餐的最高高度
@@ -488,6 +498,7 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 	});
 	
 //	点击来一份弹出添加购物车弹出框
+	$scope.showMeal=0;
 	$scope.addDish=function($event){
 		$scope.dishInfo=eval($($event.currentTarget).attr("title"));
 		var foodOutCode=$($event.currentTarget).parent().parent().parent().parent().parent().children("p").attr("id");
@@ -504,10 +515,10 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 					}
 					if(this.foodtype==2){
 						$scope.getMeal=this.foodcomboInfo.foodInfos;
-						$scope.showMeal=true;
+						$scope.showMeal=1;
 						$scope.maxheight=$("body").height()-370+"px";
 					}else{
-						$scope.showMeal=false;
+						$scope.showMeal=0;
 					}
 				}
 				
@@ -527,6 +538,7 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 		$('#cart-dialog').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 			$(this).removeClass("animated bounceOut");
 			$("#cart-dialog-outer").hide();
+			$scope.showMeal=0;
 		});
 	}
 	
@@ -588,11 +600,11 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 				$("#dishItems div.dishItem ul."+pid+" li."+spanA+" .heart").removeClass("heartAnimation");
 				$("#dishItems div.dishItem ul."+pid+" li."+spanA+" .heart").css("background-position","left");
 			$("#cart-dialog div.cart-num a.numBer span").html("1");
+			$scope.showMeal=0;
 			});
 		});
 	});
 
-	
 	//	做法选择
 	$scope.addActive=function($event){
 		$scope.me=$event.target;
@@ -1171,11 +1183,11 @@ app.controller('usercenterCtrl', function($scope) {
 app.controller("menuCtrl",function($scope){
 	$scope.menuAnimate=function(){
 		if($("#menu-left").hasClass("active")){
-			$("#menu-left").removeClass("active").addClass("close");
-			$("div.page-inner").removeClass("active").addClass("close");
+			$("#menu-left").removeClass("active").addClass("close").css({"animation":"slideLeftMenu 0.3s both ease-in","-webkit-animation":"slideLeftMenu 0.3s both ease-in"});
+			$("div.page-inner").removeClass("active").addClass("close").css({"animation":"slideLeftView 0.25s both ease-in","-webkit-animation":"slideLeftView 0.25s both ease-in"});
 		}else{
-			$("#menu-left").removeClass("close").addClass("active");
-			$("div.page-inner").removeClass("close").addClass("active");
+			$("#menu-left").removeClass("close").addClass("active").css({"animation":"slideRightMenu 0.25s both ease-in","-webkit-animation":"slideRightMenu 0.25s both ease-in"});
+			$("div.page-inner").removeClass("close").addClass("active").css({"animation":"slideRightView 0.3s both ease-in","-webkit-animation":"slideRightView 0.3s both ease-in"});
 		}
 	}
 });

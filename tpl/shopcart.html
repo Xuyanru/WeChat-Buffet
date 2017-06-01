@@ -3,7 +3,7 @@
 		<img src="img/cart-title.png" alt="" />
 	</div>
 	<div class="cart-msg clear">
-		<div class="clear user-msg boxshadow">
+		<div class="clear user-msg boxshadow borderRadius5">
 			<div class="clear">
 				<ul class="lf addmsg">
 					<li>
@@ -37,7 +37,7 @@
 			</div>
 		</div>	
 		</div>
-		<div id="cartItems" class="boxshadow">
+		<div id="cartItems" class="boxshadow borderRadius5">
 			<p class="textcenter">已选菜品详情</p>
 			<ul class="clear {{orderItem.pid}}" ng-repeat="orderItem in orderList" on-finish-render-filters title="{{orderItem.pid}}" id="{{orderItem.ids}}">
 				<li class="lf dish-img" title="{{orderItem.type}}">
@@ -83,18 +83,18 @@
 			<p class="textcenter">备注信息</p>
 			<textarea name="" rows="3" cols="" id="beizhu-main" placeholder="请输入需要备注的内容，如:口味要求、忌口等。"></textarea>
 			<div class="dialogBtn">
-				<p class="lf textcenter"><span ng-click="selBeizhu($event)">取消</span></p>
-				<p class="rt textcenter"><span ng-click="selBeizhu($event)">确定</span></p>
+				<p class="lf textcenter"><span class="borderRadius5" ng-click="selBeizhu($event)">取消</span></p>
+				<p class="rt textcenter"><span class="borderRadius5" ng-click="selBeizhu($event)">确定</span></p>
 			</div>
 		</div>
 	</div>
-	<div  id="continue-order-button" class="boxshadow textcenter borderRadius10">
+	<div  id="continue-order-button" class="boxshadow textcenter borderRadius10 buttonDefalt">
 		<a href="#/order/{{ulmsg}}" class="buttonColor" ng-click="addClass($event)"  title="order">
 			<img src="img/continue-order.png" alt=""/>
 			<p class="textcenter">加菜</p>
 		</a>	
 	</div>
-	<div  id="place-order-button" class="boxshadow textcenter borderRadius10">
+	<div  id="place-order-button" class="boxshadow textcenter borderRadius10 buttonDefalt">
 		<a class="buttonColor" ng-click="sendmsg()">
 			<!--href="#/confirmorder/{{ulmsg}}"-->
 			<img  src="img/place-order.png" alt=""/>

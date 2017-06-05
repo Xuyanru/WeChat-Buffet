@@ -39,6 +39,7 @@
 		</div>
 		<div id="cartItems" class="boxshadow borderRadius5">
 			<p class="textcenter">已选菜品详情</p>
+			<div class="textcenter warnMsg" ng-if="showWarn">亲爱的客官，您还没有点菜，请先点菜哦！</div>
 			<ul class="clear {{orderItem.pid}}" ng-repeat="orderItem in orderList" on-finish-render-filters title="{{orderItem.pid}}" id="{{orderItem.ids}}">
 				<li class="lf dish-img" title="{{orderItem.type}}">
 					<img src="img/01-xin_07.png" alt="" />

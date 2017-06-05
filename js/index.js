@@ -41,9 +41,7 @@ var userMsg={openid:"ohSEqwq_uRQdDl1AgBLW3dKBxnHc",headimgurl:"http:%2F%2Fwx.qlo
 	userMsg.openid=decodeURI(userMsg.openid);
 	userMsg.headimgurl=decodeURIComponent(userMsg.headimgurl);
 	userMsg.name=decodeURI(userMsg.name);
-	$scope.usermsg=userMsg;
-	console.log($scope.usermsg);	
-		
+	$scope.usermsg=userMsg;		
 		$scope.animate=function(str){
 		$scope.noanimate=str;
 	}
@@ -53,21 +51,18 @@ var userMsg={openid:"ohSEqwq_uRQdDl1AgBLW3dKBxnHc",headimgurl:"http:%2F%2Fwx.qlo
     }
    
 	//$scope.animate(true);
+		var closeMenu={"transform": "translateX(0px)","-webkit-transform":"translateX(0px)","transition": "all 0.3s ease-in","-webkit-transition":"all 0.3s ease-in"}
 	  $("body").css("height",$(window).height()+"px");
 	  $("#menu-left").css("height",$(window).height()+"px");
 	 	$("#menu-left ul li").click(function(){
 	 		if($(this).hasClass("active")){
-					$("#menu-left").removeClass("active").addClass("close").css({"animation":"slideLeftMenu 0.3s both ease-in","-webkit-animation":"slideLeftMenu 0.3s both ease-in"});
-					$("div.page-inner").removeClass("active").addClass("close").css({"animation":"slideLeftView 0.25s both ease-in","-webkit-animation":"slideLeftView 0.25s both ease-in"});
+					$("#menu-left").removeClass("active").addClass("close").css(closeMenu);
+					$("div.page-inner").removeClass("active").addClass("close").css(closeMenu);
 	 		}else{
 	 			$("#menu-left ul li.active").removeClass("active");
 	 			$(this).addClass("active");
-	 			$("#menu-left").removeClass("active").addClass("close").css({"animation":"slideLeftMenu 0.3s both ease-in","-webkit-animation":"slideLeftMenu 0.3s both ease-in"});
-	 			$("div.page-inner").removeClass("active").addClass("close").css({"animation":"slideLeftView 0.25s both ease-in","-webkit-animation":"slideLeftView 0.25s both ease-in"});
-//	   			$timeout(function(){
-//	   				$("#menu-left").removeClass("active");
-//	   				$("div.page-inner").removeClass("active");
-//	   			},300);
+	 			$("#menu-left").removeClass("active").addClass("close").css(closeMenu);
+	 			$("div.page-inner").removeClass("active").addClass("close").css(closeMenu);
 	 		}
 	 	});
 	 	
@@ -76,8 +71,8 @@ var userMsg={openid:"ohSEqwq_uRQdDl1AgBLW3dKBxnHc",headimgurl:"http:%2F%2Fwx.qlo
 	 	$scope.addClass=function($event){
 	 		
 	 		if($("#menu-left").hasClass("active")){
-				$("#menu-left").removeClass("active").addClass("close").css({"animation":"slideLeftMenu 0.3s both ease-in","-webkit-animation":"slideLeftMenu 0.3s both ease-in"});
-				$("div.page-inner").removeClass("active").addClass("close").css({"animation":"slideLeftView 0.25s both ease-in","-webkit-animation":"slideLeftView 0.25s both ease-in"});
+				$("#menu-left").removeClass("active").addClass("close").css(closeMenu);
+				$("div.page-inner").removeClass("active").addClass("close").css(closeMenu);
 	 		}
 	 		if($($event.currentTarget).parent().attr("id")=="cart-button"&&$($event.currentTarget).children("span").html()==0){
 				return false;
@@ -387,7 +382,6 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 			arr.push($(this).attr("title"));
 		});
 		arr.unique3();
-		console.log($scope.sendMsg);
 	}
 	$scope.totleNum();
 	
@@ -463,19 +457,21 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
     });
     
 //  点击小厨师图片伸缩菜单
+	var openMenu={"transform": "translateX(0px)","-webkit-transform":"translateX(0px)"}
+	var closeMenu={"transform":"translateX(160px)","-webkit-transform":"translateX(160px)"}
 	$("#order div.order-menu div.menuBtn").unbind("click").click(function(){
 		if($(this).hasClass("active")){
 			$(this).removeClass("active");
-			$("#order div.order-menu").removeClass("active").addClass("close");
+			$("#order div.order-menu").removeClass("active").addClass("close").css(closeMenu);
 		}else{
 			$(this).addClass("active");
-			$("#order div.order-menu").removeClass("close").addClass("active");
+			$("#order div.order-menu").removeClass("close").addClass("active").css(openMenu);
 		}
 	});
 	$("#dishItems").unbind("click").click(function(){
 		if($("#order div.order-menu div.menuBtn").hasClass("active")){
 			$("#order div.order-menu div.menuBtn").removeClass("active");
-			$("#order div.order-menu").removeClass("active").addClass("close");
+			$("#order div.order-menu").removeClass("active").addClass("close").css(closeMenu);
 		}
 	});
 //左右滑动打开、关闭小厨菜单
@@ -483,22 +479,21 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 	    swipeLeft:function(){
 	       if(!($("#order div.order-menu div.menuBtn").hasClass("active"))){
 		       	$("#order div.order-menu div.menuBtn").addClass("active");
-				$("#order div.order-menu").removeClass("close").addClass("active");
+				$("#order div.order-menu").removeClass("close").addClass("active").css(openMenu);
 	       }
 	    },
 	    swipeRight:function(){
 	       if(!($("#order div.order-menu div.menuBtn").hasClass("active"))){
 		       	$("#order div.order-menu div.menuBtn").addClass("active");
-				$("#order div.order-menu").removeClass("close").addClass("active");
+				$("#order div.order-menu").removeClass("close").addClass("active").css(openMenu);
 	       }else{
 		       	$("#order div.order-menu div.menuBtn").removeClass("active");
-				$("#order div.order-menu").removeClass("active").addClass("close");
+				$("#order div.order-menu").removeClass("active").addClass("close").css(closeMenu);
 	       }
 	    }
 	});
 	
 //	点击来一份弹出添加购物车弹出框
-	$scope.showMeal=0;
 	$scope.addDish=function($event){
 		$scope.dishInfo=eval($($event.currentTarget).attr("title"));
 		var foodOutCode=$($event.currentTarget).parent().parent().parent().parent().parent().children("p").attr("id");
@@ -515,10 +510,10 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 					}
 					if(this.foodtype==2){
 						$scope.getMeal=this.foodcomboInfo.foodInfos;
-						$scope.showMeal=1;
+						$scope.showMeal=true;
 						$scope.maxheight=$("body").height()-370+"px";
 					}else{
-						$scope.showMeal=0;
+						$scope.showMeal=false;
 					}
 				}
 				
@@ -538,7 +533,11 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 		$('#cart-dialog').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 			$(this).removeClass("animated bounceOut");
 			$("#cart-dialog-outer").hide();
-			$scope.showMeal=0;
+			if($scope.showMeal==true){
+				$scope.showMeal=false;
+				$scope.$apply();
+			}
+			
 		});
 	}
 	
@@ -596,11 +595,14 @@ app.controller('orderCtrl', function($scope,$timeout,$http,$routeParams,$compile
 			$scope.totleNum();
 			$("#dishItems div.dishItem ul."+pid+" li."+spanA+" .feed").show();
 			$("#dishItems div.dishItem ul."+pid+" li."+spanA+" .heart").addClass("heartAnimation");
+				if($scope.showMeal==true){
+					$scope.showMeal=false;
+					$scope.$apply();
+				}
 			$($("#dishItems div.dishItem ul."+pid+" li."+spanA+" .heart")[0]).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 				$("#dishItems div.dishItem ul."+pid+" li."+spanA+" .heart").removeClass("heartAnimation");
 				$("#dishItems div.dishItem ul."+pid+" li."+spanA+" .heart").css("background-position","left");
-			$("#cart-dialog div.cart-num a.numBer span").html("1");
-			$scope.showMeal=0;
+				$("#cart-dialog div.cart-num a.numBer span").html("1");
 			});
 		});
 	});
@@ -639,60 +641,74 @@ app.controller('shopcartCtrl', function($scope,$routeParams,$http) {
 //	从点餐页面获取数据
 	if($routeParams.msgItem!=0){
 		$scope.orderList=eval($routeParams.msgItem);
+		sessionStorage.setItem("orderList",$routeParams.msgItem);
+	}else if($routeParams.msgItem==0&&sessionStorage.getItem("orderList")!=null&&sessionStorage.getItem("orderList")!=0){
+		$scope.orderList=eval(sessionStorage.getItem("orderList"));
+	}else{
+		$scope.showWarn=true;
 	}
-	
-//	获取存储的菜单列表
-	var sendMsg=JSON.parse(window.sessionStorage.getItem("sendMsg"));
-	console.log(sendMsg);
+//	获取存储的菜单列表	
+	if(window.sessionStorage.getItem("sendMsg")!=null){
+		var sendMsg=JSON.parse(window.sessionStorage.getItem("sendMsg"));	
+	}
 
 //	菜品数量和价格
 	$scope.totleNum=function(){	
 		$scope.totlePrice=0;
 		$scope.totlenum=0;
-		$scope.ulmsg=[];
-		$("#cartItems ul").each(function(){
-			var count=parseInt($(this).children("li").children("p.rt").children("span").html());
-			var ids=$(this).attr("id");
-			$.each(sendMsg.dcombodetails, function() {
-				if(ids==this.id){
-					var idInner=this.orderDetailsID;
-					$.each(sendMsg.oderdetails, function() {
-						if(idInner==this.id){
-							this.foodNum=count;
-						}
-					});
-					this.foodNums=count;
-				}else{
-					$.each(sendMsg.oderdetails, function() {
-						if(ids==this.id){
-							this.foodNum=count;
-						}
-					});
-				}
+		if($("#cartItems ul").length>0){
+			$scope.ulmsg=[];
+			$("#cartItems ul").each(function(){
+				var count=parseInt($(this).children("li").children("p.rt").children("span").html());
+				var ids=$(this).attr("id");
+				$.each(sendMsg.dcombodetails, function() {
+					if(ids==this.id){
+						var idInner=this.orderDetailsID;
+						$.each(sendMsg.oderdetails, function() {
+							if(idInner==this.id){
+								this.foodNum=count;
+							}
+						});
+						this.foodNums=count;
+					}else{
+						$.each(sendMsg.oderdetails, function() {
+							if(ids==this.id){
+								this.foodNum=count;
+							}
+						});
+					}
+				});
+				
+				var ulobj={};
+				ulobj.pid=$(this).attr("title");
+				ulobj.ids=$(this).attr("id");
+				ulobj.count=count;
+				ulobj.type=$(this).children("li.dish-img").attr("title");
+				ulobj.name=$(this).children("li").children("p.dish-name").children("span.lf").html();
+				ulobj.price=$(this).children("li").children("p.price").children("span.orderPrice").html();
+				ulobj.unit=$(this).children("li").children("p.price").children("span.orderUnit").html();
+				ulobj.way=$(this).children("li").children("p.price").children("span.makeWay").html();
+				ulobj.wayClass=$(this).children("li").children("p.price").children("span.makeWay").attr("title");
+				$scope.totlenum+=count;
+				$scope.totlePrice=(parseFloat($scope.totlePrice)+($(this).children("li").children("p.price").children("span.orderPrice").html()*count)).toFixed(2);
+				$scope.ulmsg.push(ulobj);
 			});
-			
-			var ulobj={};
-			ulobj.pid=$(this).attr("title");
-			ulobj.ids=$(this).attr("id");
-			ulobj.count=count;
-			ulobj.name=$(this).children("li").children("p.dish-name").children("span.lf").html();
-			ulobj.price=$(this).children("li").children("p.price").children("span.orderPrice").html();
-			ulobj.unit=$(this).children("li").children("p.price").children("span.orderUnit").html();
-			ulobj.way=$(this).children("li").children("p.price").children("span.makeWay").html();
-			ulobj.wayClass=$(this).children("li").children("p.price").children("span.makeWay").attr("title");
-			$scope.totlenum+=count;
-			$scope.totlePrice=(parseFloat($scope.totlePrice)+($(this).children("li").children("p.price").children("span.orderPrice").html()*count)).toFixed(2);
-			$scope.ulmsg.push(ulobj);
-		});
+		}else{
+			$scope.ulmsg=0;
+		}
+		
 		sendMsg.orderForm.realPrice=$scope.totlePrice;
 		sendMsg.orderForm.totalPrice=$scope.totlePrice;
-		
+		sessionStorage.setItem("orderList",JSON.stringify($scope.ulmsg));
 	}
-	
-	  $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
+	if($scope.showWarn==true){
+		$scope.totleNum();
+	}else{
+		$scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
 	       $scope.totleNum();
-	    });
-	
+	   });
+	}
+	  
 	//	加减菜的数量
 	$scope.addfun=function($event){
 		var me=$event.currentTarget;
@@ -741,10 +757,14 @@ app.controller('shopcartCtrl', function($scope,$routeParams,$http) {
 	}
 //	数据传输
 	$scope.sendmsg=function(){
-		if($scope.ulmsg.length>0){
+		if($("#cartItems ul").length>0){
+			var sd=JSON.parse(sessionStorage.getItem("sendMsg"));
+			console.log(sd);
 			$scope.jump('/confirmorder/'+JSON.stringify($scope.ulmsg));
 			$("#menu-left ul li.active").removeClass("active");
-			sessionStorage.clear("sendMsg");
+			sessionStorage.clear("sendMsg","orderList");
+		}else{
+			$scope.showWarn=true;
 		}
 		
 	
@@ -1181,13 +1201,14 @@ app.controller('usercenterCtrl', function($scope) {
 
 //左侧菜单
 app.controller("menuCtrl",function($scope){
+	var closeMenu={"transform": "translateX(0px)","-webkit-transform":"translateX(0px)","transition": "all 0.3s ease-in","-webkit-transition":"all 0.3s ease-in"};
 	$scope.menuAnimate=function(){
 		if($("#menu-left").hasClass("active")){
-			$("#menu-left").removeClass("active").addClass("close").css({"animation":"slideLeftMenu 0.3s both ease-in","-webkit-animation":"slideLeftMenu 0.3s both ease-in"});
-			$("div.page-inner").removeClass("active").addClass("close").css({"animation":"slideLeftView 0.25s both ease-in","-webkit-animation":"slideLeftView 0.25s both ease-in"});
+			$("#menu-left").removeClass("active").addClass("close").css(closeMenu);
+			$("div.page-inner").removeClass("active").addClass("close").css(closeMenu);
 		}else{
-			$("#menu-left").removeClass("close").addClass("active").css({"animation":"slideRightMenu 0.25s both ease-in","-webkit-animation":"slideRightMenu 0.25s both ease-in"});
-			$("div.page-inner").removeClass("close").addClass("active").css({"animation":"slideRightView 0.3s both ease-in","-webkit-animation":"slideRightView 0.3s both ease-in"});
+			$("#menu-left").removeClass("close").addClass("active").css({"transform": "translateX(50px)","-webkit-transform":"translateX(50px)","transition": "all 0.3s ease-in","-webkit-transition":"all 0.3s ease-in"});
+			$("div.page-inner").removeClass("close").addClass("active").css({"transform": "translateX(200px)","-webkit-transform":"translateX(200px)","transition": "all 0.3s ease-in","-webkit-transition":"all 0.3s ease-in"});
 		}
 	}
 });

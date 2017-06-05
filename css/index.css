@@ -150,20 +150,20 @@ div.page-inner>div{
 	-webkit-box-shadow: 0 0 8px #666666 ;
 }
 @keyframes slideRightView{
-  from   { left: 0px; }
-  to     {  left: 200px;  }
+  from   {transform: translateX(0px);}
+  to     {transform: translateX(200px);}
 }
 @keyframes slideLeftView{
-  from   {  left: 200px; }
-  to     {  left: 0px; }
+  from   {transform: translateX(200px);}
+  to     {transform: translateX(0px);}
 }
 @keyframes slideRightMenu{
-  from   { left:-50px}
-  to     { left:0; }
+   from   {transform: translateX(0px);}
+   to     {transform: translateX(50px);}
 }
 @keyframes slideLeftMenu{
-  from   { left:0px}
-  to     { left:-50px; }
+  from   {transform: translateX(50px);}
+  to     {transform: translateX(0px);}
 }
 /*左侧导航*/
 #menu-left{
@@ -1140,10 +1140,12 @@ div.page-inner>div{
 	background-size:100% 100%;
 }
 #order div.order-menu.active{
-	right: 0;
+	transform: translateX(0px);
+	-webkit-transform: translateX(0px);
 }
 #order div.order-menu.close{
-	right:-160px;
+	transform: translateX(160px);
+	-webkit-transform: translateX(160px);
 }
 #order div.order-menu div.menucontent{
 	width:100%;
@@ -1566,6 +1568,11 @@ div.page-inner>div{
 	line-height: 35px;
 	font-size: 1.1em;
 	border-bottom: 1px dashed sandybrown;
+}
+#cartItems>div.warnMsg{
+	padding-top:10px;
+	font-size: 1.1em;
+	color:red
 }
 #cartItems ul{
 	padding:5px;
@@ -2770,6 +2777,7 @@ div.usercenter-title a img{
 	margin-right: 10px;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
+}
 #myorder div.myorder-list div.totle-msg div.myoder-handle a.handleWay{
 	box-shadow: 0 0 0.5px red;
 	-webkit-box-shadow: 0 0 0.5px red;
@@ -2813,7 +2821,7 @@ div.usercenter-title a img{
 	border-color: #FEC549;
 }
 /*返回顶部按钮*/
-#myorder div.backTop{
+#myorder .backTop{
 	right: 20px;
 }
 /*取消订单弹出框*/
@@ -2934,21 +2942,21 @@ div.usercenter-title a img{
 	background: rgba(255,255,255,0.9);
 	padding-bottom: 65px;
 }
-#ordersuccess div.orderOk-title p.title-img img{
+#ordersuccess .orderOk-title p.title-img img{
 	width: 120px;
 }
-#ordersuccess div.orderOk-title p.title-text{
+#ordersuccess .orderOk-title p.title-text{
 	font-size: 1.3em;
 	color:#632A19;
 	line-height: 40px;
 	font-weight:bold;
 }
-div.orderOk-con{
+.orderOk-con{
 	background: #FFFFFF;
 	width: 90%;
 	margin:10px auto 0;
 }
-div.orderOk-con .orderOk-con-title{
+.orderOk-con .orderOk-con-title{
 	padding:5px 10px;
 	background: #F0B262;
 	border-top-left-radius: 10px;
@@ -2956,26 +2964,26 @@ div.orderOk-con .orderOk-con-title{
 	border-top-right-radius: 10px;
 	-webkit-border-top-right-radius: 10px;
 }
-div.orderOk-con .orderOk-con-title img{
+.orderOk-con .orderOk-con-title img{
 	width: 100px;
 }
-div.orderOk-con ul{
+.orderOk-con ul{
 	font-size: 1.2em;
 	padding:20px;
 }
-div.orderOk-con ul li{
+.orderOk-con ul li{
 	margin-bottom: 15px;
 }
-div.orderOk-con ul li span{
+.orderOk-con ul li span{
 	margin-right: 20px;
 }
-div.orderOk-con ul li p{
+.orderOk-con ul li p{
 	width: calc(100% - 80px);
 	width: -webkit-calc(100% - 80px);
 	padding-right: 80px;
 	font-weight: bold;
 }
-#ordersuccess div.orderOkBtns p{
+#ordersuccess .orderOkBtns p{
 	width: 100px;
 	height: 35px;
 	line-height: 35px;
@@ -2983,7 +2991,8 @@ div.orderOk-con ul li p{
 	margin-left: calc((100% - 200px)/3);
 	margin-top:20px;
 }
-#ordersuccess div.orderOkBtns p a{
+#ordersuccess .orderOkBtns p a{
 	font-weight: bold;
 	color:#FFFFFF;
 }
+
